@@ -1,0 +1,36 @@
+# Build / artefatos
+build/
+*.bin
+*.elf
+*.map
+*.o
+*.out
+a.out
+test_fsm
+
+# ESP-IDF / Arduino
+sdkconfig
+sdkconfig.old
+managed_components/
+dependencies.lock
+.pio/
+
+# ESBMC / verificação
+*.smt2
+*.goto
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Modelos / dados pesados de treino (versionar só se < alguns MB)
+ml_training/*.h5
+ml_training/*.tflite
+
+# SO / editor
+.DS_Store
+*.swp
+.vscode/
+.idea/
