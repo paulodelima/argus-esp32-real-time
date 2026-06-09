@@ -55,8 +55,13 @@ static bool    have_prev = false;
 static argus_ctx_t argus;
 
 /* --------- acumuladores de WCET (microssegundos) --------------- */
-static uint32_t wc_detect = 0, wc_track = 0, wc_classify = 0, wc_feedback = 0;
-static uint32_t track_calls = 0;
+static uint32_t wc_detect = 0, wc_feedback = 0;
+/* WCET de argus_update() indexado pelo N de tracks ATIVOS durante o frame.
+ * Modelo: C_total(N) = C_detect + C_update(N) + C_feedback.
+ * C_update(N) engloba matching, tracking, classificacao e criacao de tracks
+ * — a "funcao unica cuja carga depende de N" (nao tarefas independentes,
+ * por isso Liu-Layland nao se aplica). */
+static uint32_t wc_update[ARGUS_MAX_TRACKS + 1] = {0};
 
 /* ------------------------ buzzer -------------------------------- */
 static void beep(int n) {
@@ -145,26 +150,34 @@ void loop() {
   uint32_t dt_detect = (uint32_t)(esp_timer_get_time() - t0);
   if (dt_detect > wc_detect) wc_detect = dt_detect;
 
-  /* -- N*Ctrack + Cclassify (dentro de argus_update) -- */
-  int n_before = argus_active_tracks(&argus);
+  /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
   argus_update(&argus, dets, n);
   uint32_t dt_update = (uint32_t)(esp_timer_get_time() - t1);
-  /* normaliza por objeto para estimar Ctrack (WCET por track) */
-  int Nref = n_before > 0 ? n_before : 1;
-  uint32_t per_track = dt_update / Nref;
-  if (per_track > wc_track) wc_track = per_track;
-  track_calls += Nref;
+  /* N de referencia: o maior entre tracks antes e depois (captura o pico
+   * de carga do frame, inclusive criacao/finalizacao de tracks) */
+  int n_after = argus_active_tracks(&argus);
+  int n_idx = n_after;  /* tracks ativos apos o update */
+  if (n_idx > ARGUS_MAX_TRACKS) n_idx = ARGUS_MAX_TRACKS;
+  if (dt_update > wc_update[n_idx]) wc_update[n_idx] = dt_update;
 
-  /* -- Cfeedback -- */
+  /* -- Cfeedback: mede APENAS o custo de CPU de despachar o evento.
+   * O Serial.println (transmissao serial) e o beep() (tom + delays de UI)
+   * ficam FORA da janela cronometrada: o tempo fisico do buzzer eh tratado
+   * como latencia de atuador, modelada separadamente, nao como custo de CPU. */
   argus_event_t e;
-  while ((e = argus_poll_event(&argus)) != ARGUS_EVENT_NONE) {
+  while (1) {
     int64_t t2 = esp_timer_get_time();
+    e = argus_poll_event(&argus);            /* o despacho do evento */
+    uint32_t dt_fb = (uint32_t)(esp_timer_get_time() - t2);
+    if (dt_fb > wc_feedback) wc_feedback = dt_fb;
+
+    if (e == ARGUS_EVENT_NONE) break;        /* fila vazia: sai */
+
+    /* atuacao (FORA da medicao de WCET) */
     if (e == ARGUS_EVENT_AMBIGUOUS) { Serial.println("AMBIGUOUS"); beep(2); }
     else if (e == ARGUS_EVENT_IN)   { Serial.println("IN");        beep(1); }
     else                            { Serial.println("OUT");       beep(1); }
-    uint32_t dt_fb = (uint32_t)(esp_timer_get_time() - t2);
-    if (dt_fb > wc_feedback) wc_feedback = dt_fb;
   }
 
   esp_camera_fb_return(fb);
@@ -174,8 +187,12 @@ void loop() {
   int64_t now = esp_timer_get_time();
   if (now - last > 5000000) {
     last = now;
-    Serial.printf("WCET[us] Cdetect=%u Ctrack=%u Cclassify(incl)=%u Cfeedback=%u  N=%d\n",
-                  wc_detect, wc_track, wc_track /*classify embutido*/, wc_feedback,
-                  argus_active_tracks(&argus));
+    Serial.printf("=== WCET[us] ===  Cdetect=%u  Cfeedback=%u\n",
+                  wc_detect, wc_feedback);
+    Serial.print("  C_update(N) por N: ");
+    for (int k = 0; k <= ARGUS_MAX_TRACKS; k++) {
+      Serial.printf("[%d]=%u ", k, wc_update[k]);
+    }
+    Serial.println();
   }
 }

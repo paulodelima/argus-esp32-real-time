@@ -20,7 +20,7 @@ from argus_tracker import Argus, Event
 # --- parametros de visao (ajuste para a sua cena) ---
 PROC_W, PROC_H = 320, 240   # resolucao de processamento (mantenha baixa)
 DIFF_THRESH = 25            # limiar de diferenca de movimento (0-255)
-MIN_AREA = 300              # area minima de blob (pixels) para virar deteccao
+MIN_AREA = 1500              # area minima de blob (pixels) para virar deteccao
 BG_ALPHA = 0.02             # taxa de atualizacao do fundo (running average)
 
 
