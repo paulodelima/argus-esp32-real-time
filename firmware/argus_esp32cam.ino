@@ -51,6 +51,9 @@ extern "C" {
 #define CELL_MIN_PIX    20           /* pixels em movimento p/ celula "ativa" */
 
 static uint8_t prev_frame[IMG_W * IMG_H];
+static long g_motion_mass = 0;   /* total de pixels em movimento no ultimo frame */
+static long g_peak_mass = 0;     /* pico de massa durante a passagem atual */
+static bool g_in_pass   = false; /* true enquanto ha mao no quadro */
 static bool    have_prev = false;
 static argus_ctx_t argus;
 
@@ -113,6 +116,13 @@ static int detect(const uint8_t *cur, argus_point_t *out) {
       }
     }
   }
+  /* massa de movimento = soma de pixels em movimento em todas as celulas.
+   * proxy de "tamanho do blob": mao vazia -> pequena; mao + produto -> grande. */
+  g_motion_mass = 0;
+  for (int gy=0; gy<GRID; gy++)
+    for (int gx=0; gx<GRID; gx++)
+      g_motion_mass += cell_cnt[gy][gx];
+
   /* cada celula "ativa" vira um centroide candidato (simplificacao
    * deliberada: blobs adjacentes podem se fundir; suficiente p/ MVP) */
   int n = 0;
@@ -149,6 +159,19 @@ void loop() {
   have_prev = true;
   uint32_t dt_detect = (uint32_t)(esp_timer_get_time() - t0);
   if (dt_detect > wc_detect) wc_detect = dt_detect;
+  /* CALIBRACAO mao cheia/vazia por PASSAGEM (nao por frame):
+   * acumula o PICO de massa enquanto ha mao no quadro; quando a mao sai
+   * (sem deteccao), reporta o pico daquela passagem inteira e reseta.
+   * Compare PICO de mao VAZIA vs mao COM PRODUTO. */
+  if (n > 0) {
+    g_in_pass = true;
+    if (g_motion_mass > g_peak_mass) g_peak_mass = g_motion_mass;
+  } else if (g_in_pass) {
+    /* a mao acabou de sair: reporta o pico da passagem */
+    Serial.printf("PICO_MASSA=%ld\n", g_peak_mass);
+    g_peak_mass = 0;
+    g_in_pass = false;
+  }
 
   /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
