@@ -213,7 +213,9 @@ void loop() {
    *   separamos pela INVERSAO DE SENTIDO do centroide: bufferizamos
    *   (centroide, massa) por frame e, no fechamento, achamos a VIRADA = frame
    *   de maxima distancia do ponto de entrada (ponto mais fundo, rumo a
-   *   porta). massa_ida = pico ate a virada; massa_volta = pico apos a virada.
+   *   porta). massa_ida = pico ate a virada (inclusive); massa_volta = pico
+   *   ESTRITAMENTE APOS a virada (o frame da virada, ponto mais fundo, conta
+   *   so na ida — senao o pico no fundo vaza p/ a volta).
    *   Tambem mantemos massa_inicio (validado n=20) como referencia da ida.
    *   Aqui NAO se classifica nada; so mede (ida vazia+volta cheia=pegou; etc).
    * =================================================================== */
@@ -293,14 +295,22 @@ void loop() {
           long d2 = (long)dx*dx + (long)dy*dy;
           if (d2 > dmax) { dmax = d2; virada = i; }
         }
+        /* IDA inclui a virada (ponto mais fundo); VOLTA comeca DEPOIS dela,
+         * p/ o pico no fundo nao vazar p/ a volta. Se a virada for o ultimo
+         * frame, a volta fica vazia (massa_volta=0) — amostra degenerada. */
         long massa_ida = 0, massa_volta = 0;
-        for (int i = 0; i <= virada;     i++) if (ia_buf_m[i] > massa_ida)   massa_ida   = ia_buf_m[i];
-        for (int i = virada; i < ia_buf_n; i++) if (ia_buf_m[i] > massa_volta) massa_volta = ia_buf_m[i];
+        for (int i = 0;        i <= virada;   i++) if (ia_buf_m[i] > massa_ida)   massa_ida   = ia_buf_m[i];
+        for (int i = virada+1; i < ia_buf_n;  i++) if (ia_buf_m[i] > massa_volta) massa_volta = ia_buf_m[i];
         Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld frames=%d "
                       "virada=%d massa_inicio=%ld massa_ida=%ld massa_volta=%ld "
                       "pico=%ld\n",
                       ms, ia_bursts, maxgap_ms, ia_buf_n, virada,
                       ia_massa_inicio, massa_ida, massa_volta, ia_peak);
+        /* DIAGNOSTICO (removivel): perfil de massa por frame, p/ ver ONDE esta
+         * a massa do objeto (ida vs volta) e confirmar a separacao da virada. */
+        Serial.print("TRAJ_M=");
+        for (int i = 0; i < ia_buf_n; i++) Serial.printf("%u,", (unsigned)ia_buf_m[i]);
+        Serial.println();
         ia_active = false;
       }
     }
