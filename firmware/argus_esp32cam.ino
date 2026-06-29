@@ -51,6 +51,8 @@ extern "C" {
 #define CELL_MIN_PIX    20           /* pixels em movimento p/ celula "ativa" */
 
 static uint8_t prev_frame[IMG_W * IMG_H];
+static uint8_t baseline_frame[IMG_W * IMG_H]; /* cena em repouso p/ delta antes/depois */
+static bool    baseline_valid = false;        /* baseline ja capturado ao menos 1x? */
 static long g_motion_mass = 0;   /* total de pixels em movimento no ultimo frame */
 static long g_peak_mass = 0;     /* pico de massa durante a passagem atual */
 static bool g_in_pass   = false; /* true enquanto ha mao no quadro */
@@ -198,9 +200,12 @@ void loop() {
    *   empiricamente se IA_END_GAP_US esta bem calibrado (nem corta nem
    *   funde interacoes). IA_MAX_US e so um teto de seguranca.
    *
-   *   Tambem medimos massa_inicio (pico na fase de entrada) e massa_fim
-   *   (pico na fase de saida) como DADOS CRUS p/ futura classificacao da
-   *   acao (vazio/cheio -> pegou/deixou/nada). Aqui NAO se classifica nada.
+   *   Tambem medimos massa_inicio (pico na fase de entrada, discrimina mao
+   *   VAZIA vs CHEIA na entrada) e delta (pixels que mudaram entre a cena em
+   *   repouso ANTES e DEPOIS do cacho = mudanca permanente de inventario,
+   *   imune a velocidade do movimento) como DADOS CRUS p/ futura
+   *   classificacao (entrou_vazio+delta->pegou; entrou_cheio+delta->deixou;
+   *   sem delta->nada). Aqui NAO se classifica nada; so mede.
    * =================================================================== */
   static bool    ia_active   = false;  /* cacho em andamento? */
   static bool    ia_in_burst = false;  /* dentro de uma rajada de movimento? */
@@ -209,14 +214,13 @@ void loop() {
   static long    ia_peak     = 0;      /* pico de massa de movimento no cacho */
   static int     ia_bursts   = 0;      /* nº de rajadas de movimento */
   static int64_t ia_max_gap  = 0;      /* maior pausa interna costurada (us) */
-  /* massa de ENTRADA vs SAIDA: dados crus p/ futura classificacao
-   * (vazio/cheio na entrada e na saida -> pegou/deixou/nada). massa_inicio =
-   * pico nos 1os IA_PHASE_US; massa_fim = pico nos ultimos ~IA_PHASE_US (janela
-   * deslizante tumbling de 2 baldes). NAO classifica nada aqui; so mede. */
+  /* DADOS CRUS p/ futura classificacao:
+   *  - massa_inicio = pico de massa de movimento nos 1os IA_PHASE_US (fase de
+   *    entrada). Discrimina mao VAZIA vs CHEIA na entrada (validado n=20).
+   *  - delta = pixels que mudaram entre o baseline (repouso ANTES do cacho) e
+   *    o frame atual (repouso DEPOIS). Mudanca permanente de inventario.
+   * (massa_fim de saida foi REMOVIDA: provou-se redundante com a entrada.) */
   static long    ia_massa_inicio = 0;  /* pico de massa na fase de entrada */
-  static long    ia_tail_peak    = 0;  /* pico do balde de saida atual */
-  static long    ia_tail_prev    = 0;  /* pico do balde de saida anterior */
-  static int64_t ia_tail_start   = 0;  /* us: inicio do balde de saida atual */
   const  int64_t IA_END_GAP_US = 1500000;   /* 1,5 s sem movimento encerra o cacho */
   const  int64_t IA_MAX_US     = 60000000;  /* 60 s: teto de seguranca */
   const  int64_t IA_PHASE_US   = 600000;    /* 600 ms: janela de entrada/saida */
@@ -234,9 +238,6 @@ void loop() {
       ia_bursts   = 1;
       ia_max_gap  = 0;
       ia_massa_inicio = g_motion_mass;  /* abre a fase de entrada */
-      ia_tail_peak    = g_motion_mass;  /* abre o 1o balde de saida */
-      ia_tail_prev    = 0;
-      ia_tail_start   = ia_now;
     }
   } else {
     if (ia_present) {                   /* movimento agora: estende o cacho */
@@ -245,35 +246,34 @@ void loop() {
         if (gap > ia_max_gap) ia_max_gap = gap;
         ia_bursts++;
         ia_in_burst = true;
-        /* reinicia a janela de SAIDA: massa_fim deve refletir so a rajada
-         * final (retirada), nunca a massa de entrada de antes da pausa */
-        ia_tail_prev  = 0;
-        ia_tail_peak  = 0;
-        ia_tail_start = ia_now;
       }
       ia_t_last = ia_now;
       if (g_motion_mass > ia_peak) ia_peak = g_motion_mass;
       /* fase de ENTRADA: pico nos primeiros IA_PHASE_US do cacho */
       if ((ia_now - ia_t_first) < IA_PHASE_US &&
           g_motion_mass > ia_massa_inicio) ia_massa_inicio = g_motion_mass;
-      /* fase de SAIDA: janela deslizante tumbling (so em frames com movimento) */
-      if ((ia_now - ia_tail_start) >= IA_PHASE_US) {
-        ia_tail_prev  = ia_tail_peak;   /* fecha o balde e abre outro */
-        ia_tail_peak  = 0;
-        ia_tail_start = ia_now;
-      }
-      if (g_motion_mass > ia_tail_peak) ia_tail_peak = g_motion_mass;
     } else {                            /* sem movimento agora */
       ia_in_burst = false;
       if ((ia_now - ia_t_last) >= IA_END_GAP_US) {   /* cena estatica: fecha */
         long ms        = (long)((ia_t_last - ia_t_first) / 1000);
         long maxgap_ms = (long)(ia_max_gap / 1000);
-        long massa_fim = (ia_tail_prev > ia_tail_peak) ? ia_tail_prev
-                                                       : ia_tail_peak;
+        /* delta = mudanca permanente da cena: pixels que diferem entre o
+         * baseline (repouso ANTES do cacho) e o frame atual (repouso AGORA,
+         * apos IA_END_GAP sem movimento). Roda 1x no fechamento, FORA das
+         * janelas de WCET. delta=-1 => baseline ainda nao estava pronto. */
+        long delta = -1;
+        if (baseline_valid) {
+          delta = 0;
+          for (int i = 0; i < IMG_W * IMG_H; i++) {
+            int d = (int)fb->buf[i] - (int)baseline_frame[i];
+            if (d < 0) d = -d;
+            if (d > DIFF_THRESH) delta++;
+          }
+        }
         Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld "
-                      "massa_inicio=%ld massa_fim=%ld pico_massa=%ld\n",
+                      "massa_inicio=%ld delta=%ld pico_massa=%ld\n",
                       ms, ia_bursts, maxgap_ms,
-                      ia_massa_inicio, massa_fim, ia_peak);
+                      ia_massa_inicio, delta, ia_peak);
         ia_active = false;
       }
     }
@@ -284,6 +284,17 @@ void loop() {
     }
   }
   /* =========== fim INSTRUMENTACAO DE COLETA — duracao da interacao ==== */
+
+  /* manutencao do BASELINE de repouso: so atualiza quando a cena esta
+   * GENUINAMENTE em repouso -> sem cacho ativo (!ia_active) E sem movimento
+   * neste frame (!ia_present). Durante o cacho fica CONGELADO (cena pre-
+   * interacao). Apos o fechamento NORMAL (frame ja sem movimento) re-baselina
+   * p/ a nova cena. O !ia_present evita congelar uma cena COM a mao no caso de
+   * descarte por IA_MAX (que dispara em pleno movimento). */
+  if (!ia_active && !ia_present) {
+    memcpy(baseline_frame, fb->buf, IMG_W * IMG_H);
+    baseline_valid = true;
+  }
 
   /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
