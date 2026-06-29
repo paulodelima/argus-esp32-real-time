@@ -51,9 +51,8 @@ extern "C" {
 #define CELL_MIN_PIX    20           /* pixels em movimento p/ celula "ativa" */
 
 static uint8_t prev_frame[IMG_W * IMG_H];
-static uint8_t baseline_frame[IMG_W * IMG_H]; /* cena em repouso p/ delta antes/depois */
-static bool    baseline_valid = false;        /* baseline ja capturado ao menos 1x? */
 static long g_motion_mass = 0;   /* total de pixels em movimento no ultimo frame */
+static int  g_cx = 0, g_cy = 0;  /* centroide global do movimento no ultimo frame */
 static long g_peak_mass = 0;     /* pico de massa durante a passagem atual */
 static bool g_in_pass   = false; /* true enquanto ha mao no quadro */
 static bool    have_prev = false;
@@ -119,11 +118,19 @@ static int detect(const uint8_t *cur, argus_point_t *out) {
     }
   }
   /* massa de movimento = soma de pixels em movimento em todas as celulas.
-   * proxy de "tamanho do blob": mao vazia -> pequena; mao + produto -> grande. */
+   * proxy de "tamanho do blob": mao vazia -> pequena; mao + produto -> grande.
+   * Junto, o CENTROIDE GLOBAL do movimento (g_cx,g_cy) = posicao media dos
+   * pixels em movimento; usado p/ separar IDA de VOLTA pela inversao de sentido. */
   g_motion_mass = 0;
+  long gsx = 0, gsy = 0;
   for (int gy=0; gy<GRID; gy++)
-    for (int gx=0; gx<GRID; gx++)
+    for (int gx=0; gx<GRID; gx++) {
       g_motion_mass += cell_cnt[gy][gx];
+      gsx += sx[gy][gx];
+      gsy += sy[gy][gx];
+    }
+  if (g_motion_mass > 0) { g_cx = (int)(gsx / g_motion_mass);
+                           g_cy = (int)(gsy / g_motion_mass); }
 
   /* cada celula "ativa" vira um centroide candidato (simplificacao
    * deliberada: blobs adjacentes podem se fundir; suficiente p/ MVP) */
@@ -200,12 +207,15 @@ void loop() {
    *   empiricamente se IA_END_GAP_US esta bem calibrado (nem corta nem
    *   funde interacoes). IA_MAX_US e so um teto de seguranca.
    *
-   *   Tambem medimos massa_inicio (pico na fase de entrada, discrimina mao
-   *   VAZIA vs CHEIA na entrada) e delta (pixels que mudaram entre a cena em
-   *   repouso ANTES e DEPOIS do cacho = mudanca permanente de inventario,
-   *   imune a velocidade do movimento) como DADOS CRUS p/ futura
-   *   classificacao (entrou_vazio+delta->pegou; entrou_cheio+delta->deixou;
-   *   sem delta->nada). Aqui NAO se classifica nada; so mede.
+   *   Como a camera so ve a FAIXA DE PASSAGEM, a acao sai das DUAS
+   *   travessias (ida pessoa->porta, volta porta->pessoa) e da MASSA de cada
+   *   uma. Ida e volta vem fundidas num so cacho (sem ausencia), entao
+   *   separamos pela INVERSAO DE SENTIDO do centroide: bufferizamos
+   *   (centroide, massa) por frame e, no fechamento, achamos a VIRADA = frame
+   *   de maxima distancia do ponto de entrada (ponto mais fundo, rumo a
+   *   porta). massa_ida = pico ate a virada; massa_volta = pico apos a virada.
+   *   Tambem mantemos massa_inicio (validado n=20) como referencia da ida.
+   *   Aqui NAO se classifica nada; so mede (ida vazia+volta cheia=pegou; etc).
    * =================================================================== */
   static bool    ia_active   = false;  /* cacho em andamento? */
   static bool    ia_in_burst = false;  /* dentro de uma rajada de movimento? */
@@ -214,16 +224,18 @@ void loop() {
   static long    ia_peak     = 0;      /* pico de massa de movimento no cacho */
   static int     ia_bursts   = 0;      /* nº de rajadas de movimento */
   static int64_t ia_max_gap  = 0;      /* maior pausa interna costurada (us) */
-  /* DADOS CRUS p/ futura classificacao:
-   *  - massa_inicio = pico de massa de movimento nos 1os IA_PHASE_US (fase de
-   *    entrada). Discrimina mao VAZIA vs CHEIA na entrada (validado n=20).
-   *  - delta = pixels que mudaram entre o baseline (repouso ANTES do cacho) e
-   *    o frame atual (repouso DEPOIS). Mudanca permanente de inventario.
-   * (massa_fim de saida foi REMOVIDA: provou-se redundante com a entrada.) */
-  static long    ia_massa_inicio = 0;  /* pico de massa na fase de entrada */
+  static long    ia_massa_inicio = 0;  /* pico de massa na 1a fase (ref. da ida) */
+  /* buffer da TRAJETORIA do cacho: (centroide, massa) por frame de movimento.
+   * No fechamento, a VIRADA (max distancia do ponto de entrada) separa ida de
+   * volta. Cap p/ caber qualquer interacao normal; alem disso, para de gravar. */
+  #define IA_BUF_MAX 256
+  static uint8_t  ia_buf_cx[IA_BUF_MAX];
+  static uint8_t  ia_buf_cy[IA_BUF_MAX];
+  static uint16_t ia_buf_m [IA_BUF_MAX];
+  static int      ia_buf_n = 0;
   const  int64_t IA_END_GAP_US = 1500000;   /* 1,5 s sem movimento encerra o cacho */
   const  int64_t IA_MAX_US     = 60000000;  /* 60 s: teto de seguranca */
-  const  int64_t IA_PHASE_US   = 600000;    /* 600 ms: janela de entrada/saida */
+  const  int64_t IA_PHASE_US   = 600000;    /* 600 ms: janela da fase de entrada */
 
   bool    ia_present = (n > 0);         /* ha MOVIMENTO neste frame */
   int64_t ia_now     = esp_timer_get_time();
@@ -238,6 +250,11 @@ void loop() {
       ia_bursts   = 1;
       ia_max_gap  = 0;
       ia_massa_inicio = g_motion_mass;  /* abre a fase de entrada */
+      /* 1a amostra da trajetoria = ponto de ENTRADA (lado pessoa) */
+      ia_buf_cx[0] = (uint8_t)g_cx;
+      ia_buf_cy[0] = (uint8_t)g_cy;
+      ia_buf_m [0] = (uint16_t)g_motion_mass;
+      ia_buf_n     = 1;
     }
   } else {
     if (ia_present) {                   /* movimento agora: estende o cacho */
@@ -252,28 +269,38 @@ void loop() {
       /* fase de ENTRADA: pico nos primeiros IA_PHASE_US do cacho */
       if ((ia_now - ia_t_first) < IA_PHASE_US &&
           g_motion_mass > ia_massa_inicio) ia_massa_inicio = g_motion_mass;
+      /* grava a trajetoria (centroide + massa) p/ separar ida/volta no fim */
+      if (ia_buf_n < IA_BUF_MAX) {
+        ia_buf_cx[ia_buf_n] = (uint8_t)g_cx;
+        ia_buf_cy[ia_buf_n] = (uint8_t)g_cy;
+        ia_buf_m [ia_buf_n] = (uint16_t)g_motion_mass;
+        ia_buf_n++;
+      }
     } else {                            /* sem movimento agora */
       ia_in_burst = false;
       if ((ia_now - ia_t_last) >= IA_END_GAP_US) {   /* cena estatica: fecha */
         long ms        = (long)((ia_t_last - ia_t_first) / 1000);
         long maxgap_ms = (long)(ia_max_gap / 1000);
-        /* delta = mudanca permanente da cena: pixels que diferem entre o
-         * baseline (repouso ANTES do cacho) e o frame atual (repouso AGORA,
-         * apos IA_END_GAP sem movimento). Roda 1x no fechamento, FORA das
-         * janelas de WCET. delta=-1 => baseline ainda nao estava pronto. */
-        long delta = -1;
-        if (baseline_valid) {
-          delta = 0;
-          for (int i = 0; i < IMG_W * IMG_H; i++) {
-            int d = (int)fb->buf[i] - (int)baseline_frame[i];
-            if (d < 0) d = -d;
-            if (d > DIFF_THRESH) delta++;
-          }
+        /* VIRADA = frame de maxima distancia do ponto de entrada (buf[0]) =
+         * ponto mais fundo, rumo a porta. Separa IDA (ate a virada) de VOLTA
+         * (apos). Orientacao-agnostico (distancia euclidiana). Roda 1x no
+         * fechamento, FORA das janelas de WCET. */
+        int  x0 = ia_buf_cx[0], y0 = ia_buf_cy[0];
+        int  virada = 0;
+        long dmax = -1;
+        for (int i = 0; i < ia_buf_n; i++) {
+          int  dx = (int)ia_buf_cx[i] - x0, dy = (int)ia_buf_cy[i] - y0;
+          long d2 = (long)dx*dx + (long)dy*dy;
+          if (d2 > dmax) { dmax = d2; virada = i; }
         }
-        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld "
-                      "massa_inicio=%ld delta=%ld pico_massa=%ld\n",
-                      ms, ia_bursts, maxgap_ms,
-                      ia_massa_inicio, delta, ia_peak);
+        long massa_ida = 0, massa_volta = 0;
+        for (int i = 0; i <= virada;     i++) if (ia_buf_m[i] > massa_ida)   massa_ida   = ia_buf_m[i];
+        for (int i = virada; i < ia_buf_n; i++) if (ia_buf_m[i] > massa_volta) massa_volta = ia_buf_m[i];
+        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld frames=%d "
+                      "virada=%d massa_inicio=%ld massa_ida=%ld massa_volta=%ld "
+                      "pico=%ld\n",
+                      ms, ia_bursts, maxgap_ms, ia_buf_n, virada,
+                      ia_massa_inicio, massa_ida, massa_volta, ia_peak);
         ia_active = false;
       }
     }
@@ -284,17 +311,6 @@ void loop() {
     }
   }
   /* =========== fim INSTRUMENTACAO DE COLETA — duracao da interacao ==== */
-
-  /* manutencao do BASELINE de repouso: so atualiza quando a cena esta
-   * GENUINAMENTE em repouso -> sem cacho ativo (!ia_active) E sem movimento
-   * neste frame (!ia_present). Durante o cacho fica CONGELADO (cena pre-
-   * interacao). Apos o fechamento NORMAL (frame ja sem movimento) re-baselina
-   * p/ a nova cena. O !ia_present evita congelar uma cena COM a mao no caso de
-   * descarte por IA_MAX (que dispara em pleno movimento). */
-  if (!ia_active && !ia_present) {
-    memcpy(baseline_frame, fb->buf, IMG_W * IMG_H);
-    baseline_valid = true;
-  }
 
   /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
