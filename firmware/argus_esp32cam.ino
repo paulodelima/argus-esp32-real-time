@@ -57,10 +57,6 @@ static bool g_in_pass   = false; /* true enquanto ha mao no quadro */
 static bool    have_prev = false;
 static argus_ctx_t argus;
 
-/* INSTRUMENTACAO DE COLETA — tempo de interacao (REMOVIVEL): estados da
- * maquina que cronometra o INTERVALO entre as duas travessias. */
-enum ia_state_t { IA_IDLE, IA_FIRST, IA_ABSENCE, IA_ARMED, IA_SECOND, IA_CLOSING };
-
 /* --------- acumuladores de WCET (microssegundos) --------------- */
 static uint32_t wc_detect = 0, wc_feedback = 0;
 /* WCET de argus_update() indexado pelo N de tracks ATIVOS durante o frame.
@@ -178,98 +174,80 @@ void loop() {
   }
 
   /* ===================================================================
-   * INSTRUMENTACAO DE COLETA — tempo de interacao (REMOVIVEL)
+   * INSTRUMENTACAO DE COLETA — duracao da interacao (REMOVIVEL)
    * -------------------------------------------------------------------
-   * Mede empiricamente o INTERVALO entre as DUAS travessias de uma
-   * interacao de inventario, para calibrar cientificamente o timeout de
-   * pareamento. NAO decide MA/MB; apenas cronometra e imprime.
+   * Mede empiricamente a DURACAO de uma interacao de inventario, para
+   * calibrar cientificamente o timeout de pareamento. NAO decide MA/MB;
+   * apenas cronometra e imprime.
    *
-   * Modelo de uma interacao (Interpretacao 1):
-   *   T_inicio  = 1a travessia (mao cruza o eixo / movimento inicia)
-   *   [ausencia: n==0 sustentado por >= IA_MIN_ABSENCE_US -> mao saiu]
-   *   T_fim     = 2a travessia (mao reaparece e cruza de volta)
-   *   INTERVALO = T_fim - T_inicio  (ms)
+   * MODELO: "cacho de atividade de movimento".
+   *   A deteccao e por diferenca de frames => n>0 significa MOVIMENTO
+   *   agora; n==0 significa SEM movimento agora (mao parada OU cena vazia
+   *   — indistinguivel, e nao importa). Como a mao NUNCA sai do quadro
+   *   numa interacao real, nao existe "ausencia"; existem rajadas de
+   *   movimento separadas por pausas curtas (ex.: pegar o objeto).
    *
-   * O debounce de ausencia evita contar uma passagem unica e tremula
-   * (falha momentanea de deteccao) como duas travessias. O teto de coleta
-   * (IA_TIMEOUT_US) e amplo de proposito: NAO e o timeout final do produto.
+   *   T_inicio = 1o movimento a partir do repouso
+   *   ... rajadas + pausas curtas (costuradas) ...
+   *   T_fim    = ultimo movimento antes de a cena ficar estatica
+   *   DURACAO  = T_fim - T_inicio  (ms)
+   *
+   *   A interacao so FECHA apos IA_END_GAP_US sem movimento (cena voltou
+   *   ao repouso). Pausas internas menores que isso sao costuradas, nao
+   *   viram fronteira. Logamos 'rajadas' e 'maior_pausa' p/ verificar
+   *   empiricamente se IA_END_GAP_US esta bem calibrado (nem corta nem
+   *   funde interacoes). IA_MAX_US e so um teto de seguranca.
    * =================================================================== */
-  static ia_state_t ia_state        = IA_IDLE;
-  static int64_t    ia_t_inicio     = 0;   /* us: instante da 1a travessia */
-  static int64_t    ia_t_fim        = 0;   /* us: instante da 2a travessia */
-  static int64_t    ia_absence_start= 0;   /* us: inicio da ausencia em curso */
-  static long       ia_massa1       = 0;   /* pico de massa da 1a travessia */
-  static long       ia_massa2       = 0;   /* pico de massa da 2a travessia */
-  const  int64_t    IA_MIN_ABSENCE_US = 400000;    /* 400 ms confirmam ausencia */
-  const  int64_t    IA_TIMEOUT_US     = 30000000;  /* 30 s: teto de coleta */
+  static bool    ia_active   = false;  /* cacho em andamento? */
+  static bool    ia_in_burst = false;  /* dentro de uma rajada de movimento? */
+  static int64_t ia_t_first  = 0;      /* us: 1o movimento do cacho */
+  static int64_t ia_t_last   = 0;      /* us: ultimo movimento visto */
+  static long    ia_peak     = 0;      /* pico de massa de movimento no cacho */
+  static int     ia_bursts   = 0;      /* nº de rajadas de movimento */
+  static int64_t ia_max_gap  = 0;      /* maior pausa interna costurada (us) */
+  const  int64_t IA_END_GAP_US = 1500000;   /* 1,5 s sem movimento encerra o cacho */
+  const  int64_t IA_MAX_US     = 60000000;  /* 60 s: teto de seguranca */
 
-  bool    ia_present = (n > 0);
+  bool    ia_present = (n > 0);         /* ha MOVIMENTO neste frame */
   int64_t ia_now     = esp_timer_get_time();
 
-  /* teto de seguranca: enquanto a 2a travessia nao comeca, descarta se estourar */
-  if (ia_state != IA_IDLE && ia_state != IA_SECOND && ia_state != IA_CLOSING &&
-      (ia_now - ia_t_inicio) > IA_TIMEOUT_US) {
-    Serial.println("INTERACAO_DESCARTADA=timeout");
-    ia_state = IA_IDLE;
+  if (!ia_active) {
+    if (ia_present) {                   /* comeca um novo cacho */
+      ia_active   = true;
+      ia_in_burst = true;
+      ia_t_first  = ia_now;
+      ia_t_last   = ia_now;
+      ia_peak     = g_motion_mass;
+      ia_bursts   = 1;
+      ia_max_gap  = 0;
+    }
+  } else {
+    if (ia_present) {                   /* movimento agora: estende o cacho */
+      if (!ia_in_burst) {               /* retomou apos uma pausa: nova rajada */
+        int64_t gap = ia_now - ia_t_last;
+        if (gap > ia_max_gap) ia_max_gap = gap;
+        ia_bursts++;
+        ia_in_burst = true;
+      }
+      ia_t_last = ia_now;
+      if (g_motion_mass > ia_peak) ia_peak = g_motion_mass;
+    } else {                            /* sem movimento agora */
+      ia_in_burst = false;
+      if ((ia_now - ia_t_last) >= IA_END_GAP_US) {   /* cena estatica: fecha */
+        long ms       = (long)((ia_t_last - ia_t_first) / 1000);
+        long maxgap_ms= (long)(ia_max_gap / 1000);
+        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld pico_massa=%ld\n",
+                      ms, ia_bursts, maxgap_ms, ia_peak);
+        ia_active = false;
+      }
+    }
+    /* teto de seguranca: cacho longo demais (ex.: limpeza da geladeira) */
+    if (ia_active && (ia_now - ia_t_first) > IA_MAX_US) {
+      Serial.println("INTERACAO_DESCARTADA=excedeu_max");
+      ia_active = false;
+    }
   }
-
-  switch (ia_state) {
-    case IA_IDLE:                        /* aguardando a 1a travessia */
-      if (ia_present) {
-        ia_t_inicio = ia_now;
-        ia_massa1   = g_motion_mass;
-        ia_state    = IA_FIRST;
-      }
-      break;
-
-    case IA_FIRST:                       /* mao da 1a travessia no quadro */
-      if (ia_present) {
-        if (g_motion_mass > ia_massa1) ia_massa1 = g_motion_mass;
-      } else {                           /* sumiu: comeca a contar ausencia */
-        ia_absence_start = ia_now;
-        ia_state         = IA_ABSENCE;
-      }
-      break;
-
-    case IA_ABSENCE:                     /* aguardando confirmar que a mao saiu */
-      if (ia_present) {                  /* voltou cedo: flicker, segue na 1a */
-        if (g_motion_mass > ia_massa1) ia_massa1 = g_motion_mass;
-        ia_state = IA_FIRST;
-      } else if ((ia_now - ia_absence_start) >= IA_MIN_ABSENCE_US) {
-        ia_state = IA_ARMED;             /* ausencia confirmada */
-      }
-      break;
-
-    case IA_ARMED:                       /* ausencia ok, espera a 2a travessia */
-      if (ia_present) {                  /* 2a travessia: marca T_fim */
-        ia_t_fim  = ia_now;
-        ia_massa2 = g_motion_mass;
-        ia_state  = IA_SECOND;
-      }
-      break;
-
-    case IA_SECOND:                      /* 2a travessia em curso: acumula o pico */
-      if (ia_present) {
-        if (g_motion_mass > ia_massa2) ia_massa2 = g_motion_mass;
-      } else {                           /* sumiu: confirma o fim com debounce */
-        ia_absence_start = ia_now;
-        ia_state         = IA_CLOSING;
-      }
-      break;
-
-    case IA_CLOSING:                     /* fim simetrico: so fecha apos ausencia sustentada */
-      if (ia_present) {                  /* voltou cedo: flicker, segue na 2a */
-        if (g_motion_mass > ia_massa2) ia_massa2 = g_motion_mass;
-        ia_state = IA_SECOND;
-      } else if ((ia_now - ia_absence_start) >= IA_MIN_ABSENCE_US) {
-        long ms = (long)((ia_t_fim - ia_t_inicio) / 1000);   /* T_fim ja travado na 2a travessia */
-        Serial.printf("INTERACAO=%ld massa1=%ld massa2=%ld\n",
-                      ms, ia_massa1, ia_massa2);
-        ia_state = IA_IDLE;
-      }
-      break;
-  }
-  /* =========== fim INSTRUMENTACAO DE COLETA — tempo de interacao ====== */
+  /* =========== fim INSTRUMENTACAO DE COLETA — duracao da interacao ==== */
 
   /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
