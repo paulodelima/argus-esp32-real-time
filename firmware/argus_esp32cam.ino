@@ -197,6 +197,10 @@ void loop() {
    *   viram fronteira. Logamos 'rajadas' e 'maior_pausa' p/ verificar
    *   empiricamente se IA_END_GAP_US esta bem calibrado (nem corta nem
    *   funde interacoes). IA_MAX_US e so um teto de seguranca.
+   *
+   *   Tambem medimos massa_inicio (pico na fase de entrada) e massa_fim
+   *   (pico na fase de saida) como DADOS CRUS p/ futura classificacao da
+   *   acao (vazio/cheio -> pegou/deixou/nada). Aqui NAO se classifica nada.
    * =================================================================== */
   static bool    ia_active   = false;  /* cacho em andamento? */
   static bool    ia_in_burst = false;  /* dentro de uma rajada de movimento? */
@@ -205,8 +209,17 @@ void loop() {
   static long    ia_peak     = 0;      /* pico de massa de movimento no cacho */
   static int     ia_bursts   = 0;      /* nº de rajadas de movimento */
   static int64_t ia_max_gap  = 0;      /* maior pausa interna costurada (us) */
+  /* massa de ENTRADA vs SAIDA: dados crus p/ futura classificacao
+   * (vazio/cheio na entrada e na saida -> pegou/deixou/nada). massa_inicio =
+   * pico nos 1os IA_PHASE_US; massa_fim = pico nos ultimos ~IA_PHASE_US (janela
+   * deslizante tumbling de 2 baldes). NAO classifica nada aqui; so mede. */
+  static long    ia_massa_inicio = 0;  /* pico de massa na fase de entrada */
+  static long    ia_tail_peak    = 0;  /* pico do balde de saida atual */
+  static long    ia_tail_prev    = 0;  /* pico do balde de saida anterior */
+  static int64_t ia_tail_start   = 0;  /* us: inicio do balde de saida atual */
   const  int64_t IA_END_GAP_US = 1500000;   /* 1,5 s sem movimento encerra o cacho */
   const  int64_t IA_MAX_US     = 60000000;  /* 60 s: teto de seguranca */
+  const  int64_t IA_PHASE_US   = 600000;    /* 600 ms: janela de entrada/saida */
 
   bool    ia_present = (n > 0);         /* ha MOVIMENTO neste frame */
   int64_t ia_now     = esp_timer_get_time();
@@ -220,6 +233,10 @@ void loop() {
       ia_peak     = g_motion_mass;
       ia_bursts   = 1;
       ia_max_gap  = 0;
+      ia_massa_inicio = g_motion_mass;  /* abre a fase de entrada */
+      ia_tail_peak    = g_motion_mass;  /* abre o 1o balde de saida */
+      ia_tail_prev    = 0;
+      ia_tail_start   = ia_now;
     }
   } else {
     if (ia_present) {                   /* movimento agora: estende o cacho */
@@ -228,16 +245,35 @@ void loop() {
         if (gap > ia_max_gap) ia_max_gap = gap;
         ia_bursts++;
         ia_in_burst = true;
+        /* reinicia a janela de SAIDA: massa_fim deve refletir so a rajada
+         * final (retirada), nunca a massa de entrada de antes da pausa */
+        ia_tail_prev  = 0;
+        ia_tail_peak  = 0;
+        ia_tail_start = ia_now;
       }
       ia_t_last = ia_now;
       if (g_motion_mass > ia_peak) ia_peak = g_motion_mass;
+      /* fase de ENTRADA: pico nos primeiros IA_PHASE_US do cacho */
+      if ((ia_now - ia_t_first) < IA_PHASE_US &&
+          g_motion_mass > ia_massa_inicio) ia_massa_inicio = g_motion_mass;
+      /* fase de SAIDA: janela deslizante tumbling (so em frames com movimento) */
+      if ((ia_now - ia_tail_start) >= IA_PHASE_US) {
+        ia_tail_prev  = ia_tail_peak;   /* fecha o balde e abre outro */
+        ia_tail_peak  = 0;
+        ia_tail_start = ia_now;
+      }
+      if (g_motion_mass > ia_tail_peak) ia_tail_peak = g_motion_mass;
     } else {                            /* sem movimento agora */
       ia_in_burst = false;
       if ((ia_now - ia_t_last) >= IA_END_GAP_US) {   /* cena estatica: fecha */
-        long ms       = (long)((ia_t_last - ia_t_first) / 1000);
-        long maxgap_ms= (long)(ia_max_gap / 1000);
-        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld pico_massa=%ld\n",
-                      ms, ia_bursts, maxgap_ms, ia_peak);
+        long ms        = (long)((ia_t_last - ia_t_first) / 1000);
+        long maxgap_ms = (long)(ia_max_gap / 1000);
+        long massa_fim = (ia_tail_prev > ia_tail_peak) ? ia_tail_prev
+                                                       : ia_tail_peak;
+        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld "
+                      "massa_inicio=%ld massa_fim=%ld pico_massa=%ld\n",
+                      ms, ia_bursts, maxgap_ms,
+                      ia_massa_inicio, massa_fim, ia_peak);
         ia_active = false;
       }
     }
