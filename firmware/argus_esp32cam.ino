@@ -52,7 +52,6 @@ extern "C" {
 
 static uint8_t prev_frame[IMG_W * IMG_H];
 static long g_motion_mass = 0;   /* total de pixels em movimento no ultimo frame */
-static int  g_cx = 0, g_cy = 0;  /* centroide global do movimento no ultimo frame */
 static long g_peak_mass = 0;     /* pico de massa durante a passagem atual */
 static bool g_in_pass   = false; /* true enquanto ha mao no quadro */
 static bool    have_prev = false;
@@ -60,8 +59,9 @@ static argus_ctx_t argus;
 
 /* --------- acumuladores de WCET (microssegundos) --------------- */
 static uint32_t wc_detect = 0, wc_feedback = 0;
+static uint32_t wc_classify = 0;   /* WCET do bloco duracao+classificacao (CPU) */
 /* WCET de argus_update() indexado pelo N de tracks ATIVOS durante o frame.
- * Modelo: C_total(N) = C_detect + C_update(N) + C_feedback.
+ * Modelo: C_total(N) = C_detect + C_classify + C_update(N) + C_feedback.
  * C_update(N) engloba matching, tracking, classificacao e criacao de tracks
  * — a "funcao unica cuja carga depende de N" (nao tarefas independentes,
  * por isso Liu-Layland nao se aplica). */
@@ -118,19 +118,11 @@ static int detect(const uint8_t *cur, argus_point_t *out) {
     }
   }
   /* massa de movimento = soma de pixels em movimento em todas as celulas.
-   * proxy de "tamanho do blob": mao vazia -> pequena; mao + produto -> grande.
-   * Junto, o CENTROIDE GLOBAL do movimento (g_cx,g_cy) = posicao media dos
-   * pixels em movimento; usado p/ separar IDA de VOLTA pela inversao de sentido. */
+   * proxy de "tamanho do blob": mao vazia -> pequena; mao + produto -> grande. */
   g_motion_mass = 0;
-  long gsx = 0, gsy = 0;
   for (int gy=0; gy<GRID; gy++)
-    for (int gx=0; gx<GRID; gx++) {
+    for (int gx=0; gx<GRID; gx++)
       g_motion_mass += cell_cnt[gy][gx];
-      gsx += sx[gy][gx];
-      gsy += sy[gy][gx];
-    }
-  if (g_motion_mass > 0) { g_cx = (int)(gsx / g_motion_mass);
-                           g_cy = (int)(gsy / g_motion_mass); }
 
   /* cada celula "ativa" vira um centroide candidato (simplificacao
    * deliberada: blobs adjacentes podem se fundir; suficiente p/ MVP) */
@@ -183,41 +175,23 @@ void loop() {
   }
 
   /* ===================================================================
-   * INSTRUMENTACAO DE COLETA — duracao da interacao (REMOVIVEL)
+   * DURACAO DA INTERACAO + CLASSIFICACAO DE ACAO (intencao de entrada)
    * -------------------------------------------------------------------
-   * Mede empiricamente a DURACAO de uma interacao de inventario, para
-   * calibrar cientificamente o timeout de pareamento. NAO decide MA/MB;
-   * apenas cronometra e imprime.
+   * Mede a DURACAO de cada interacao (modelo "cacho de atividade") e
+   * classifica a ACAO por INTENCAO DE ENTRADA. NAO mexe na FSM antiga.
    *
-   * MODELO: "cacho de atividade de movimento".
-   *   A deteccao e por diferenca de frames => n>0 significa MOVIMENTO
-   *   agora; n==0 significa SEM movimento agora (mao parada OU cena vazia
-   *   — indistinguivel, e nao importa). Como a mao NUNCA sai do quadro
-   *   numa interacao real, nao existe "ausencia"; existem rajadas de
-   *   movimento separadas por pausas curtas (ex.: pegar o objeto).
+   * MODELO do cacho: deteccao por diff de frames => n>0 = MOVIMENTO agora;
+   * n==0 = SEM movimento (mao parada OU cena vazia). Um cacho abre no 1o
+   * movimento, costura pausas curtas, e FECHA apos IA_END_GAP_US sem
+   * movimento. DURACAO = ultimo - primeiro movimento. IA_MAX_US e teto.
    *
-   *   T_inicio = 1o movimento a partir do repouso
-   *   ... rajadas + pausas curtas (costuradas) ...
-   *   T_fim    = ultimo movimento antes de a cena ficar estatica
-   *   DURACAO  = T_fim - T_inicio  (ms)
-   *
-   *   A interacao so FECHA apos IA_END_GAP_US sem movimento (cena voltou
-   *   ao repouso). Pausas internas menores que isso sao costuradas, nao
-   *   viram fronteira. Logamos 'rajadas' e 'maior_pausa' p/ verificar
-   *   empiricamente se IA_END_GAP_US esta bem calibrado (nem corta nem
-   *   funde interacoes). IA_MAX_US e so um teto de seguranca.
-   *
-   *   Como a camera so ve a FAIXA DE PASSAGEM, a acao sai das DUAS
-   *   travessias (ida pessoa->porta, volta porta->pessoa) e da MASSA de cada
-   *   uma. Ida e volta vem fundidas num so cacho (sem ausencia), entao
-   *   separamos pela INVERSAO DE SENTIDO do centroide: bufferizamos
-   *   (centroide, massa) por frame e, no fechamento, achamos a VIRADA = frame
-   *   de maxima distancia do ponto de entrada (ponto mais fundo, rumo a
-   *   porta). massa_ida = pico ate a virada (inclusive); massa_volta = pico
-   *   ESTRITAMENTE APOS a virada (o frame da virada, ponto mais fundo, conta
-   *   so na ida — senao o pico no fundo vaza p/ a volta).
-   *   Tambem mantemos massa_inicio (validado n=20) como referencia da ida.
-   *   Aqui NAO se classifica nada; so mede (ida vazia+volta cheia=pegou; etc).
+   * CLASSIFICACAO: a camera so ve a FAIXA DE PASSAGEM (nunca o interior), e
+   * a massa de movimento da SAIDA e dominada pelo VIGOR da retirada, nao
+   * pelo conteudo da mao (3 metodos falharam: massa_fim, delta, massa_volta;
+   * validado 5x/caso). O sinal CONFIAVEL e a massa na ENTRADA (massa_inicio
+   * = pico nos 1os IA_PHASE_US): entrou VAZIO (< MASSA_LIMIAR_CHEIO) =
+   * intencao de PEGAR; entrou CHEIO = intencao de DEIXAR. Limite aceito:
+   * erra em "browsing" (entra vazio, olha, nao leva -> falso PEGOU).
    * =================================================================== */
   static bool    ia_active   = false;  /* cacho em andamento? */
   static bool    ia_in_burst = false;  /* dentro de uma rajada de movimento? */
@@ -226,18 +200,20 @@ void loop() {
   static long    ia_peak     = 0;      /* pico de massa de movimento no cacho */
   static int     ia_bursts   = 0;      /* nº de rajadas de movimento */
   static int64_t ia_max_gap  = 0;      /* maior pausa interna costurada (us) */
-  static long    ia_massa_inicio = 0;  /* pico de massa na 1a fase (ref. da ida) */
-  /* buffer da TRAJETORIA do cacho: (centroide, massa) por frame de movimento.
-   * No fechamento, a VIRADA (max distancia do ponto de entrada) separa ida de
-   * volta. Cap p/ caber qualquer interacao normal; alem disso, para de gravar. */
-  #define IA_BUF_MAX 256
-  static uint8_t  ia_buf_cx[IA_BUF_MAX];
-  static uint8_t  ia_buf_cy[IA_BUF_MAX];
-  static uint16_t ia_buf_m [IA_BUF_MAX];
-  static int      ia_buf_n = 0;
+  static long    ia_massa_inicio = 0;  /* pico de massa na fase de ENTRADA */
   const  int64_t IA_END_GAP_US = 1500000;   /* 1,5 s sem movimento encerra o cacho */
   const  int64_t IA_MAX_US     = 60000000;  /* 60 s: teto de seguranca */
   const  int64_t IA_PHASE_US   = 600000;    /* 600 ms: janela da fase de entrada */
+  const  long    MASSA_LIMIAR_CHEIO = 7000; /* massa_inicio >= isto = mao CHEIA */
+
+  /* -- C_classify: WCET (CPU) do bloco de duracao+classificacao. O Serial
+   * fica FORA da janela (transmissao = E/S, nao CPU), igual ao Cfeedback. -- */
+  int64_t t_cls = esp_timer_get_time();
+
+  bool        ia_emit = false, ia_desc = false; /* houve saida neste frame? */
+  long        em_ms = 0, em_maxgap = 0, em_massa = 0, em_pico = 0;
+  int         em_rajadas = 0;
+  const char* em_acao = "";
 
   bool    ia_present = (n > 0);         /* ha MOVIMENTO neste frame */
   int64_t ia_now     = esp_timer_get_time();
@@ -252,11 +228,6 @@ void loop() {
       ia_bursts   = 1;
       ia_max_gap  = 0;
       ia_massa_inicio = g_motion_mass;  /* abre a fase de entrada */
-      /* 1a amostra da trajetoria = ponto de ENTRADA (lado pessoa) */
-      ia_buf_cx[0] = (uint8_t)g_cx;
-      ia_buf_cy[0] = (uint8_t)g_cy;
-      ia_buf_m [0] = (uint16_t)g_motion_mass;
-      ia_buf_n     = 1;
     }
   } else {
     if (ia_present) {                   /* movimento agora: estende o cacho */
@@ -271,56 +242,39 @@ void loop() {
       /* fase de ENTRADA: pico nos primeiros IA_PHASE_US do cacho */
       if ((ia_now - ia_t_first) < IA_PHASE_US &&
           g_motion_mass > ia_massa_inicio) ia_massa_inicio = g_motion_mass;
-      /* grava a trajetoria (centroide + massa) p/ separar ida/volta no fim */
-      if (ia_buf_n < IA_BUF_MAX) {
-        ia_buf_cx[ia_buf_n] = (uint8_t)g_cx;
-        ia_buf_cy[ia_buf_n] = (uint8_t)g_cy;
-        ia_buf_m [ia_buf_n] = (uint16_t)g_motion_mass;
-        ia_buf_n++;
-      }
     } else {                            /* sem movimento agora */
       ia_in_burst = false;
       if ((ia_now - ia_t_last) >= IA_END_GAP_US) {   /* cena estatica: fecha */
-        long ms        = (long)((ia_t_last - ia_t_first) / 1000);
-        long maxgap_ms = (long)(ia_max_gap / 1000);
-        /* VIRADA = frame de maxima distancia do ponto de entrada (buf[0]) =
-         * ponto mais fundo, rumo a porta. Separa IDA (ate a virada) de VOLTA
-         * (apos). Orientacao-agnostico (distancia euclidiana). Roda 1x no
-         * fechamento, FORA das janelas de WCET. */
-        int  x0 = ia_buf_cx[0], y0 = ia_buf_cy[0];
-        int  virada = 0;
-        long dmax = -1;
-        for (int i = 0; i < ia_buf_n; i++) {
-          int  dx = (int)ia_buf_cx[i] - x0, dy = (int)ia_buf_cy[i] - y0;
-          long d2 = (long)dx*dx + (long)dy*dy;
-          if (d2 > dmax) { dmax = d2; virada = i; }
-        }
-        /* IDA inclui a virada (ponto mais fundo); VOLTA comeca DEPOIS dela,
-         * p/ o pico no fundo nao vazar p/ a volta. Se a virada for o ultimo
-         * frame, a volta fica vazia (massa_volta=0) — amostra degenerada. */
-        long massa_ida = 0, massa_volta = 0;
-        for (int i = 0;        i <= virada;   i++) if (ia_buf_m[i] > massa_ida)   massa_ida   = ia_buf_m[i];
-        for (int i = virada+1; i < ia_buf_n;  i++) if (ia_buf_m[i] > massa_volta) massa_volta = ia_buf_m[i];
-        Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld frames=%d "
-                      "virada=%d massa_inicio=%ld massa_ida=%ld massa_volta=%ld "
-                      "pico=%ld\n",
-                      ms, ia_bursts, maxgap_ms, ia_buf_n, virada,
-                      ia_massa_inicio, massa_ida, massa_volta, ia_peak);
-        /* DIAGNOSTICO (removivel): perfil de massa por frame, p/ ver ONDE esta
-         * a massa do objeto (ida vs volta) e confirmar a separacao da virada. */
-        Serial.print("TRAJ_M=");
-        for (int i = 0; i < ia_buf_n; i++) Serial.printf("%u,", (unsigned)ia_buf_m[i]);
-        Serial.println();
-        ia_active = false;
+        /* ACAO por INTENCAO DE ENTRADA: massa na entrada discrimina mao vazia
+         * (vai PEGAR) vs cheia (vai DEIXAR). Saida e irrecuperavel da camera. */
+        em_ms      = (long)((ia_t_last - ia_t_first) / 1000);
+        em_maxgap  = (long)(ia_max_gap / 1000);
+        em_acao    = (ia_massa_inicio >= MASSA_LIMIAR_CHEIO) ? "DEIXOU" : "PEGOU";
+        em_massa   = ia_massa_inicio;
+        em_pico    = ia_peak;
+        em_rajadas = ia_bursts;
+        ia_emit    = true;
+        ia_active  = false;
       }
     }
     /* teto de seguranca: cacho longo demais (ex.: limpeza da geladeira) */
     if (ia_active && (ia_now - ia_t_first) > IA_MAX_US) {
-      Serial.println("INTERACAO_DESCARTADA=excedeu_max");
+      ia_desc   = true;
       ia_active = false;
     }
   }
-  /* =========== fim INSTRUMENTACAO DE COLETA — duracao da interacao ==== */
+
+  uint32_t dt_cls = (uint32_t)(esp_timer_get_time() - t_cls);
+  if (dt_cls > wc_classify) wc_classify = dt_cls;
+
+  /* relatorio/atuacao FORA da janela C_classify (Serial = E/S, nao CPU) */
+  if (ia_emit)
+    Serial.printf("INTERACAO=%ld rajadas=%d maior_pausa=%ld massa_inicio=%ld "
+                  "pico=%ld acao=%s\n",
+                  em_ms, em_rajadas, em_maxgap, em_massa, em_pico, em_acao);
+  if (ia_desc)
+    Serial.println("INTERACAO_DESCARTADA=excedeu_max");
+  /* =========== fim DURACAO + CLASSIFICACAO ==== */
 
   /* -- C_update(N): WCET do update inteiro, indexado pelo N do frame -- */
   int64_t t1 = esp_timer_get_time();
@@ -359,8 +313,8 @@ void loop() {
   int64_t now = esp_timer_get_time();
   if (now - last > 5000000) {
     last = now;
-    Serial.printf("=== WCET[us] ===  Cdetect=%u  Cfeedback=%u\n",
-                  wc_detect, wc_feedback);
+    Serial.printf("=== WCET[us] ===  Cdetect=%u  Cclassify=%u  Cfeedback=%u\n",
+                  wc_detect, wc_classify, wc_feedback);
     Serial.print("  C_update(N) por N: ");
     for (int k = 0; k <= ARGUS_MAX_TRACKS; k++) {
       Serial.printf("[%d]=%u ", k, wc_update[k]);
