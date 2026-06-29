@@ -36,12 +36,9 @@
  * ESBMC verifica diretamente.
  * ===================================================================== */
 
-#ifndef __ESBMC__
-  #include <assert.h>
-  #define __ESBMC_assert(c,m) assert(c)
-  #define __ESBMC_assume(c)   ((void)0)
-  static unsigned nondet_uint(void){ return 8u; } /* pior caso p/ gcc */
-#endif
+/* nondet_uint(): o ESBMC fornece a implementacao (valor nao-deterministico).
+ * Apenas declaramos aqui. */
+unsigned int nondet_uint(void);
 
 #define ARGUS_MAX_TRACKS 8u
 
@@ -56,23 +53,23 @@
  *             parte (os delays de UI do beep() ficam fora da medicao).
  * C_UPDATE[N]: WCET de argus_update() para N tracks ativos (matching +
  *             tracking + classificacao + criacao de tracks). */
-#define C_DETECT     3041u   /* medido */
-#define C_FEEDBACK      3u   /* medido (so despacho do evento) */
+#define C_DETECT     3528u   /* medido (dominante) */
+#define C_CLASSIFY      6u   /* medido (classificacao de massa/acao) */
+#define C_FEEDBACK      5u   /* medido (so despacho do evento) */
 #define D_ERGO     800000u   /* deadline ergonomico = 800 ms (Nielsen) */
 
-/* C_update(N) medido por N (indices 0..8). Maximos observados:
- * [0]=18 [1]=5 [2]=4 [3]=4 [4]=4 [5]=6 [6]=4 [7]=10 [8]=18  (us) */
+/* tabela de WCET medido por N; defensiva contra N > MAX.
+ * Maximos observados: [0]=18 [1]=6 [2]=8 [3]=9 [4]=11 [5]=14 [6]=12 [7]=14 [8]=19 */
 static unsigned int c_update(unsigned int N) {
-    /* tabela de WCET medido por N; defensiva contra N > MAX */
     if (N == 0u) return 18u;
-    if (N == 1u) return 5u;
-    if (N == 2u) return 4u;
-    if (N == 3u) return 4u;
-    if (N == 4u) return 4u;
-    if (N == 5u) return 6u;
-    if (N == 6u) return 4u;
-    if (N == 7u) return 10u;
-    return 18u;               /* N >= 8 */
+    if (N == 1u) return 6u;
+    if (N == 2u) return 8u;
+    if (N == 3u) return 9u;
+    if (N == 4u) return 11u;
+    if (N == 5u) return 14u;
+    if (N == 6u) return 12u;
+    if (N == 7u) return 14u;
+    return 19u;               /* N >= 8 */
 }
 
 /* Ctotal(N) = C_detect + C_update(N) + C_feedback */
@@ -85,6 +82,7 @@ static unsigned long ctotal(unsigned int N) {
      * forma em C puro equivalente: */
     unsigned long t = 0;
     t += C_DETECT;
+    t += C_CLASSIFY;
     t += c_update(N);
     t += C_FEEDBACK;
     return t;
