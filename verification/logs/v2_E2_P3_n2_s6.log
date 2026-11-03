@@ -1,0 +1,3 @@
+# esbmc verification/esbmc/argus_harness.c firmware_v2/argus_fsm.c -I/Users/paulodelima/development/GitHub/argus-esp32-real-time/firmware_v2 -DARGUS_V2 -DENV_E2 -DSTEPS=6 -DMAX_DETS=2 -DNO_P4 -DNO_P5 --no-bounds-check --no-pointer-check --no-align-check --bitwuzla --unwind 9 --timeout 15m
+verification/esbmc/run_rapido.sh: line 13:  3674 Killed: 9               esbmc --version
+# tempo_s=2

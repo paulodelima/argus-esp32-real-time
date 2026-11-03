@@ -1,0 +1,26 @@
+== Referência: firmware corrigido (todas devem PASSAR)
+v2     P3   PASSA             36s  
+v2     P4   PASSA             63s  
+v2     P5   PASSA            147s  
+v2     E1   PASSA             52s  
+== Mutantes (MORTO se FALHA)
+-- M1: ev_push nao incrementa ev_count
+M1     P3   FALHA            118s  P3: ev_tail consistente
+-- M2: argus_poll_event nao decrementa ev_count
+M2     P4   FALHA             77s  P4: todo evento e entregue, pendente ou contado como descartado
+-- M3: finalize nao decrementa n_tracks
+M3     P3   FALHA             64s  P3: n_tracks == slots ativos
+-- M4: finalize nao enfileira o evento (bip perdido)
+M4     P4   FALHA             47s  P4: todo evento e entregue, pendente ou contado como descartado
+-- M5: encerra o track um frame antes (esperado: sobrevive)
+M5     P5   PASSA            199s  
+-- M6: TRACKING vai direto a FEEDBACK
+M6     P5   FALHA            300s  P5: transicao fora da Figura 3
+-- M7: remove a checagem de ponteiro nulo
+M7     E1   FALHA              3s  dereference failure: NULL pointer
+-- M8: remove a validacao de coordenadas
+M8     E1   FALHA             57s  arithmetic overflow on sub
+-- M9: volta ao next_id++ (esperado: sobrevive no BMC)
+M9     E1   PASSA             67s  
+-- M10: DECIDING vai para IDLE, sem FEEDBACK
+M10    P5   FALHA            264s  P5: transicao fora da Figura 3

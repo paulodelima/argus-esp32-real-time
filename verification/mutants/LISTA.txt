@@ -1,0 +1,10 @@
+M1|P3|ev_push nao incrementa ev_count
+M2|P4|argus_poll_event nao decrementa ev_count
+M3|P3|finalize nao decrementa n_tracks
+M4|P4|finalize nao enfileira o evento (bip perdido)
+M5|P5|encerra o track um frame antes (esperado: sobrevive)
+M6|P5|TRACKING vai direto a FEEDBACK
+M7|E1|remove a checagem de ponteiro nulo
+M8|E1|remove a validacao de coordenadas
+M9|E1|volta ao next_id++ (esperado: sobrevive no BMC)
+M10|P5|DECIDING vai para IDLE, sem FEEDBACK

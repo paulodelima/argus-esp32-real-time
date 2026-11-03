@@ -1,0 +1,551 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing verification/mutants/M7/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.109s
+GOTO program processing time: 0.002s
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 2   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 3   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 4   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 5   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 6   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 7   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 8   file verification/mutants/M7/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M7/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 9 iteration 1   file verification/mutants/M7/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M7/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M7/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M7/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M7/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M7/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 3   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 4   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 5   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 6   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 7   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 8   file verification/mutants/M7/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M7/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Symex completed in: 0.331s (5391 assignments)
+Caching time: 0.002s (removed 295 assertions)
+Slicing time: 0.251s (removed 1197 assignments)
+Generated 5866 VCC(s), 735 remaining after simplification (3899 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.441s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 1.035s
+Building error trace
+
+[Counterexample]
+
+
+State 1 file verification/esbmc/argus_harness.c line 75 column 5 function main thread 0
+----------------------------------------------------
+  c = { .state=0, .frame_w=0, .frame_h=0, .center_x=0, .next_id=0,
+    .n_tracks=0, .tracks=nil, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0, .ev_tail=0,
+    .ev_count=0, .last_event=0, .ev_dropped=0 }
+
+State 2 file verification/esbmc/argus_harness.c line 76 column 5 function main thread 0
+----------------------------------------------------
+  dets = { { .x = 0 } }
+
+State 12 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 1 (00000000 00000000 00000000 00000001)
+
+State 14 file verification/esbmc/argus_harness.c line 120 column 9 function main thread 0
+----------------------------------------------------
+  p = &dets[0]
+
+State 17 file verification/mutants/M7/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 30 file verification/mutants/M7/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 44 file verification/mutants/M7/argus_fsm.c line 162 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].start_x = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=0, .tracks={ .active=1, .id=1, .start_x=(c:argus_harness.c@3100@F@main@dets WITH [0:=c:argus_harness.c@3100@F@main@dets[0] WITH [x:=nondet_symbol(symex::nondet12)] WITH [y:=nondet_symbol(symex::nondet13)]])[(unsigned long int)(((unsigned _ExtInt(67))(POINTER_OFFSET(c:argus_fsm.c@3648@F@argus_update@dets)) * 8) / 64)].x, .last_x=2147483647,
+    .last_y=0, .age=-3, .missed=78260905 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0, .ev_tail=0,
+    .ev_count=0, .last_event=0, .ev_dropped=0 }
+
+State 45 file verification/mutants/M7/argus_fsm.c line 163 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_x = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=0, .tracks={ .active=1, .id=1, .start_x=139, .last_x=(c:argus_harness.c@3100@F@main@dets WITH [0:=c:argus_harness.c@3100@F@main@dets[0] WITH [x:=nondet_symbol(symex::nondet12)] WITH [y:=nondet_symbol(symex::nondet13)]])[(unsigned long int)(((unsigned _ExtInt(67))(POINTER_OFFSET(c:argus_fsm.c@3648@F@argus_update@dets)) * 8) / 64)].x, .last_y=0,
+    .age=-3, .missed=78260905 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0, .ev_tail=0,
+    .ev_count=0, .last_event=0, .ev_dropped=0 }
+
+State 47 file verification/mutants/M7/argus_fsm.c line 164 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_y = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=0, .tracks={ .active=1, .id=1, .start_x=139, .last_x=139, .last_y=(c:argus_harness.c@3100@F@main@dets WITH [0:=c:argus_harness.c@3100@F@main@dets[0] WITH [x:=nondet_symbol(symex::nondet12)] WITH [y:=nondet_symbol(symex::nondet13)]])[(unsigned long int)(((unsigned _ExtInt(67))(POINTER_OFFSET(c:argus_fsm.c@3648@F@argus_update@dets)) * 8 + 32) / 64)].y,
+    .age=-3,
+    .missed=78260905 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0, .ev_tail=0,
+    .ev_count=0, .last_event=0, .ev_dropped=0 }
+
+State 49 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 1 (00000000 00000000 00000000 00000001)
+
+State 51 file verification/esbmc/argus_harness.c line 120 column 9 function main thread 0
+----------------------------------------------------
+  p = 0
+
+State 54 file verification/mutants/M7/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 55 file verification/mutants/M7/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 58 file verification/mutants/M7/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+Violated property:
+  file verification/mutants/M7/argus_fsm.c line 106 column 9 function argus_update
+  dereference failure: NULL pointer
+  CWE: CWE-476
+
+
+** Results:
+verification/esbmc/argus_harness.c, function main
+  NOT CHECKED  [main.arithmetic-overflow.1]                line  94  arithmetic overflow on add
+  NOT CHECKED  [main.arithmetic-overflow.2]                line 106  arithmetic overflow on add
+  PASSED       [main.array-bounds-violated.1]              line 107  array bounds violated: array `dets' lower bound
+  PASSED       [main.array-bounds-violated.2]              line 107  array bounds violated: array `dets' upper bound
+  PASSED       [main.array-bounds-violated.3]              line 111  array bounds violated: array `dets' lower bound
+  PASSED       [main.array-bounds-violated.4]              line 111  array bounds violated: array `dets' upper bound
+  NOT CHECKED  [main.arithmetic-overflow.3]                line 126  arithmetic overflow on add
+  PASSED       [main.array-bounds-violated.5]              line 127  array bounds violated: array `was_active' lower bound
+  PASSED       [main.array-bounds-violated.6]              line 127  array bounds violated: array `was_active' upper bound
+  PASSED       [main.array-bounds-violated.7]              line 128  array bounds violated: array `was_id' lower bound
+  PASSED       [main.array-bounds-violated.8]              line 128  array bounds violated: array `was_id' upper bound
+  NOT CHECKED  [main.arithmetic-overflow.4]                line 163  arithmetic overflow on add
+  PASSED       [main.array-bounds-violated.9]              line 164  array bounds violated: array `was_active' lower bound
+  PASSED       [main.array-bounds-violated.10]             line 164  array bounds violated: array `was_active' upper bound
+  PASSED       [main.array-bounds-violated.11]             line 164  array bounds violated: array lower bound [(_Bool)(was_active[(signed long int)i]) => (signed long int)i >= 0]
+  PASSED       [main.array-bounds-violated.12]             line 164  array bounds violated: array lower bound [(_Bool)(was_active[(signed long int)i]) && (_Bool)c.tracks[(signed long int)i].active => (signed long int)i >= 0]
+  PASSED       [main.array-bounds-violated.13]             line 164  array bounds violated: array upper bound [(_Bool)(was_active[(signed long int)i]) => (signed long int)i < 8]
+  PASSED       [main.array-bounds-violated.14]             line 164  array bounds violated: array upper bound [(_Bool)(was_active[(signed long int)i]) && (_Bool)c.tracks[(signed long int)i].active => (signed long int)i < 8]
+  NOT CHECKED  [main.arithmetic-overflow.5]                line 172  arithmetic overflow on add
+verification/mutants/M7/argus_fsm.c, function argus_init
+  PASSED       [argus_init.object-out-of-bounds.1]         line  72  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.1]                    line  72  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.2]         line  73  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.2]                    line  73  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.3]         line  74  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.3]                    line  74  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_init.arithmetic-overflow.1]          line  75  arithmetic overflow on div
+  PASSED       [argus_init.object-out-of-bounds.4]         line  75  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.4]                    line  75  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.5]         line  76  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.5]                    line  76  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.6]         line  77  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.6]                    line  77  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.7]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.7]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.8]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.8]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.9]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.9]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.10]        line  79  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.10]                   line  79  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.11]        line  80  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.11]                   line  80  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_init.arithmetic-overflow.2]          line  81  arithmetic overflow on add
+  PASSED       [argus_init.array-bounds-violated.1]        line  81  array bounds violated: array lower bound
+  PASSED       [argus_init.array-bounds-violated.2]        line  81  array bounds violated: array upper bound
+  PASSED       [argus_init.object-out-of-bounds.12]        line  81  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.12]                   line  81  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function argus_poll_event
+  PASSED       [argus_poll_event.object-out-of-bounds.1]   line  87  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.1]              line  87  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_poll_event.array-bounds-violated.1]  line  88  array bounds violated: array lower bound
+  NOT CHECKED  [argus_poll_event.array-bounds-violated.2]  line  88  array bounds violated: array upper bound
+  PASSED       [argus_poll_event.object-out-of-bounds.2]   line  88  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.2]              line  88  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_poll_event.arithmetic-overflow.1]    line  89  arithmetic overflow on add
+  NOT CHECKED  [argus_poll_event.arithmetic-overflow.2]    line  89  arithmetic overflow on modulus
+  PASSED       [argus_poll_event.object-out-of-bounds.3]   line  89  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.3]              line  89  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_poll_event.arithmetic-overflow.3]    line  90  arithmetic overflow on sub
+  PASSED       [argus_poll_event.object-out-of-bounds.4]   line  90  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.4]              line  90  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function argus_update
+  NOT CHECKED  [argus_update.arithmetic-overflow.1]        line  97  arithmetic overflow on div
+  NOT CHECKED  [argus_update.arithmetic-overflow.2]        line  97  arithmetic overflow on mul
+  PASSED       [argus_update.object-out-of-bounds.1]       line  97  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.1]                  line  97  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.3]        line 105  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.1]      line 106  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.2]      line 106  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.object-out-of-bounds.2]       line 106  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.2]                  line 106  dereference failure: Incorrect alignment when accessing data object
+  FAILED       [argus_update.null-pointer-dereference.1]   line 106  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.3]      line 106  dereference failure: array bounds violated
+  NOT CHECKED  [argus_update.arithmetic-overflow.4]        line 108  arithmetic overflow on add
+  NOT CHECKED  [argus_update.arithmetic-overflow.5]        line 108  arithmetic overflow on neg
+  PASSED       [argus_update.array-bounds-violated.4]      line 108  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.5]      line 108  array bounds violated: array `matched_det' upper bound
+  NOT CHECKED  [argus_update.arithmetic-overflow.6]        line 111  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.6]      line 112  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.7]      line 112  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.3]       line 112  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.3]                  line 112  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.7]        line 113  arithmetic overflow on add
+  NOT CHECKED  [argus_update.arithmetic-overflow.8]        line 113  arithmetic overflow on neg
+  NOT CHECKED  [argus_update.arithmetic-overflow.9]        line 114  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.8]      line 115  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.9]      line 115  array bounds violated: array `det_used' upper bound
+  NOT CHECKED  [argus_update.arithmetic-overflow.10]       line 116  arithmetic overflow on add
+  NOT CHECKED  [argus_update.arithmetic-overflow.11]       line 116  arithmetic overflow on sub
+  PASSED       [argus_update.array-bounds-violated.10]     line 116  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.11]     line 116  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.4]       line 116  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.4]                  line 116  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.2]   line 116  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.12]     line 116  dereference failure: array bounds violated
+  NOT CHECKED  [argus_update.arithmetic-overflow.12]       line 117  arithmetic overflow on sub
+  PASSED       [argus_update.array-bounds-violated.13]     line 117  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.14]     line 117  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.5]       line 117  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.5]                  line 117  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.3]   line 117  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.15]     line 117  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.16]     line 121  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.17]     line 121  array bounds violated: array `matched_det' upper bound
+  NOT CHECKED  [argus_update.array-bounds-violated.18]     line 122  array bounds violated: array `det_used' lower bound
+  NOT CHECKED  [argus_update.array-bounds-violated.19]     line 122  array bounds violated: array `det_used' upper bound
+  NOT CHECKED  [argus_update.arithmetic-overflow.13]       line 127  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.20]     line 128  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.21]     line 128  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.6]       line 128  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.6]                  line 128  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.14]       line 129  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.22]     line 129  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.23]     line 129  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.7]       line 129  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.7]                  line 129  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.24]     line 130  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.25]     line 130  array bounds violated: array `matched_det' upper bound
+  PASSED       [argus_update.array-bounds-violated.26]     line 131  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.27]     line 131  array bounds violated: array `matched_det' upper bound
+  PASSED       [argus_update.array-bounds-violated.28]     line 132  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.29]     line 132  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.8]       line 132  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.8]                  line 132  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.4]   line 132  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.30]     line 132  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.31]     line 133  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.32]     line 133  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.9]       line 133  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.9]                  line 133  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.5]   line 133  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.33]     line 133  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.34]     line 134  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.35]     line 134  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.10]      line 134  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.10]                 line 134  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.15]       line 136  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.36]     line 136  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.37]     line 136  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.11]      line 136  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.11]                 line 136  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.38]     line 139  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.39]     line 139  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.12]      line 139  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.12]                 line 139  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.13]      line 141  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.13]                 line 141  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.40]     line 142  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.41]     line 142  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.14]      line 142  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.14]                 line 142  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.15]      line 143  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.15]                 line 143  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.16]       line 143  arithmetic overflow on sub
+  PASSED       [argus_update.object-out-of-bounds.16]      line 143  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.16]                 line 143  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.17]       line 144  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.42]     line 148  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.43]     line 148  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.17]      line 148  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.17]                 line 148  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.18]       line 150  arithmetic overflow on add
+  NOT CHECKED  [argus_update.arithmetic-overflow.19]       line 155  arithmetic overflow on add
+  PASSED       [argus_update.array-bounds-violated.44]     line 156  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.45]     line 156  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.array-bounds-violated.46]     line 159  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.47]     line 159  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.18]      line 159  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.18]                 line 159  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.48]     line 160  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.49]     line 160  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.19]      line 160  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.19]                 line 160  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.20]       line 161  arithmetic overflow on add
+  PASSED       [argus_update.object-out-of-bounds.20]      line 161  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.20]                 line 161  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.50]     line 162  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.51]     line 162  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.21]      line 162  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.21]                 line 162  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.6]   line 162  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.52]     line 162  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.53]     line 163  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.54]     line 163  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.22]      line 163  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.22]                 line 163  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.7]   line 163  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.55]     line 163  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.56]     line 164  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.57]     line 164  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.23]      line 164  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.23]                 line 164  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.null-pointer-dereference.8]   line 164  dereference failure: NULL pointer
+  NOT CHECKED  [argus_update.array-bounds-violated.58]     line 164  dereference failure: array bounds violated
+  PASSED       [argus_update.array-bounds-violated.59]     line 165  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.60]     line 165  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.24]      line 165  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.24]                 line 165  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.61]     line 166  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.62]     line 166  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.25]      line 166  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.25]                 line 166  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_update.arithmetic-overflow.21]       line 167  arithmetic overflow on add
+  PASSED       [argus_update.object-out-of-bounds.26]      line 167  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.26]                 line 167  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.27]      line 177  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.27]                 line 177  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.28]      line 179  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.28]                 line 179  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.29]      line 179  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.29]                 line 179  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.30]      line 182  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.30]                 line 182  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.31]      line 185  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.31]                 line 185  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.32]      line 189  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.32]                 line 189  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.33]      line 190  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.33]                 line 190  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.34]      line 193  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.34]                 line 193  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function classify
+  NOT CHECKED  [classify.arithmetic-overflow.1]            line  31  arithmetic overflow on sub
+  PASSED       [classify.object-out-of-bounds.1]           line  31  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.1]                      line  31  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [classify.arithmetic-overflow.2]            line  32  arithmetic overflow on div
+  NOT CHECKED  [classify.arithmetic-overflow.3]            line  32  arithmetic overflow on mul
+  PASSED       [classify.object-out-of-bounds.2]           line  32  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.2]                      line  32  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.3]           line  37  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.3]                      line  37  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.4]           line  38  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.4]                      line  38  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.5]           line  39  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.5]                      line  39  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.6]           line  40  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.6]                      line  40  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function ev_push
+  PASSED       [ev_push.object-out-of-bounds.1]            line  14  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.1]                       line  14  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.object-out-of-bounds.2]            line  15  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.2]                       line  15  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [ev_push.arithmetic-overflow.1]             line  15  arithmetic overflow on add
+  PASSED       [ev_push.object-out-of-bounds.3]            line  15  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.3]                       line  15  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.array-bounds-violated.1]           line  18  array bounds violated: array lower bound
+  PASSED       [ev_push.array-bounds-violated.2]           line  18  array bounds violated: array upper bound
+  PASSED       [ev_push.object-out-of-bounds.4]            line  18  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.4]                       line  18  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [ev_push.arithmetic-overflow.2]             line  19  arithmetic overflow on add
+  NOT CHECKED  [ev_push.arithmetic-overflow.3]             line  19  arithmetic overflow on modulus
+  PASSED       [ev_push.object-out-of-bounds.5]            line  19  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.5]                       line  19  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [ev_push.arithmetic-overflow.4]             line  20  arithmetic overflow on add
+  PASSED       [ev_push.object-out-of-bounds.6]            line  20  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.6]                       line  20  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function finalize
+  PASSED       [finalize.object-out-of-bounds.1]           line  51  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.1]                      line  51  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [finalize.array-bounds-violated.1]          line  52  array bounds violated: array lower bound
+  PASSED       [finalize.array-bounds-violated.2]          line  52  array bounds violated: array upper bound
+  PASSED       [finalize.object-out-of-bounds.2]           line  52  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.2]                      line  52  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [finalize.object-out-of-bounds.3]           line  53  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.3]                      line  53  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [finalize.arithmetic-overflow.1]            line  53  arithmetic overflow on sub
+  PASSED       [finalize.object-out-of-bounds.4]           line  53  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.4]                      line  53  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M7/argus_fsm.c, function free_slot
+  NOT CHECKED  [free_slot.arithmetic-overflow.1]           line  58  arithmetic overflow on add
+  PASSED       [free_slot.array-bounds-violated.1]         line  59  array bounds violated: array lower bound
+  PASSED       [free_slot.array-bounds-violated.2]         line  59  array bounds violated: array upper bound
+  PASSED       [free_slot.object-out-of-bounds.1]          line  59  dereference failure: Access to object out of bounds
+  PASSED       [free_slot.assertion.1]                     line  59  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [free_slot.arithmetic-overflow.2]           line  60  arithmetic overflow on neg
+verification/mutants/M7/argus_fsm.c, function iabs
+  NOT CHECKED  [iabs.arithmetic-overflow.1]                line   9  arithmetic overflow on neg
+
+** 1 of 270 properties failed, 208 passed, 61 not checked
+   (this mode stops at the first violation; use --multi-property for a verdict on every property)
+
+VERIFICATION FAILED
+ESBMC version 8.6.0 64-bit aarch64 macos

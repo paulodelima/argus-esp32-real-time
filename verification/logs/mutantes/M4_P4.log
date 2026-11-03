@@ -1,0 +1,757 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing verification/mutants/M4/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.083s
+GOTO program processing time: 0.001s
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 2   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 3   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 4   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 5   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 6   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 7   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 3 iteration 8   file verification/mutants/M4/argus_fsm.c line 80 column 5 function argus_init
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M4/argus_fsm.c line 104 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 9 iteration 1   file verification/mutants/M4/argus_fsm.c line 154 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M4/argus_fsm.c line 104 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 3   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 4   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 5   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 6   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 7   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 8   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M4/argus_fsm.c line 154 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M4/argus_fsm.c line 104 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 3   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 4   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 5   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 6   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 7   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 8   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M4/argus_fsm.c line 154 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 14 iteration 3   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M4/argus_fsm.c line 104 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 3   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 4   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 5   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 6   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 7   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 8   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M4/argus_fsm.c line 154 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 14 iteration 4   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 106 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_harness.c line 126 column 9 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/mutants/M4/argus_fsm.c line 104 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M4/argus_fsm.c line 107 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M4/argus_fsm.c line 113 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M4/argus_fsm.c line 110 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M4/argus_fsm.c line 126 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 3   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 4   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 5   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 6   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 7   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 15 iteration 8   file verification/mutants/M4/argus_fsm.c line 57 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M4/argus_fsm.c line 154 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_harness.c line 163 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 172 column 13 function main
+Unwinding loop 14 iteration 5   file verification/esbmc/argus_harness.c line 94 column 5 function main
+Symex completed in: 0.763s (12605 assignments)
+Caching time: 0.000s (removed 0 assertions)
+Slicing time: 0.764s (removed 3562 assignments)
+Generated 10 VCC(s), 8 remaining after simplification (9043 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 1.346s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 42.943s
+Building error trace
+
+[Counterexample]
+
+
+State 1 file verification/esbmc/argus_harness.c line 75 column 5 function main thread 0
+----------------------------------------------------
+  c = { .state=0, .frame_w=0, .frame_h=0, .center_x=0, .next_id=0,
+    .n_tracks=0, .tracks=nil, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 2 file verification/esbmc/argus_harness.c line 76 column 5 function main thread 0
+----------------------------------------------------
+  dets = { { .x = 0 } }
+
+State 3 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 1 (00000000 00000000 00000000 00000001)
+
+State 6 file verification/mutants/M4/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 7 file verification/mutants/M4/argus_fsm.c line 105 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 8 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 1 (00000000 00000000 00000000 00000001)
+
+State 11 file verification/mutants/M4/argus_fsm.c line 97 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 12 file verification/mutants/M4/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 13 file verification/mutants/M4/argus_fsm.c line 105 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 14 file verification/mutants/M4/argus_fsm.c line 115 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 46 (00000000 00000000 00000000 00101110)
+
+State 15 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=c?1!0&0#34.state, .frame_w=160, .frame_h=120,
+    .center_x=80, .next_id=c?1!0&0#34.next_id, .n_tracks=c?1!0&0#34.n_tracks,
+    .tracks=c?1!0&0#34.tracks WITH [0:=c?1!0&0#34.tracks[0] WITH [age:=c?1!0&0#34.tracks[0].age + 1]], .ev_q=c?1!0&0#34.ev_q,
+    .ev_head=0, .ev_tail=0, .ev_count=0,
+    .last_event=0, .ev_dropped=0 }
+
+State 16 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=c?1!0&0#34.state, .frame_w=160, .frame_h=120,
+    .center_x=80, .next_id=c?1!0&0#34.next_id, .n_tracks=c?1!0&0#34.n_tracks,
+    .tracks=c?1!0&0#675.tracks WITH [0:=c?1!0&0#675.tracks[0] WITH [missed:=c?1!0&0#675.tracks[0].missed + 1]], .ev_q=c?1!0&0#34.ev_q,
+    .ev_head=0, .ev_tail=0, .ev_count=0,
+    .last_event=0, .ev_dropped=0 }
+
+State 17 file verification/mutants/M4/argus_fsm.c line 156 column 9 function argus_update thread 0
+----------------------------------------------------
+  slot = 1 (00000000 00000000 00000000 00000001)
+
+State 18 file verification/mutants/M4/argus_fsm.c line 158 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].active = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=3999904, .last_x=419104322, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 19 file verification/mutants/M4/argus_fsm.c line 159 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].id = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=3999904, .last_x=419104322, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 20 file verification/mutants/M4/argus_fsm.c line 160 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->next_id = 3 (00000000 00000000 00000000 00000011)
+
+State 21 file verification/mutants/M4/argus_fsm.c line 161 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].start_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=419104322, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 22 file verification/mutants/M4/argus_fsm.c line 162 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 23 file verification/mutants/M4/argus_fsm.c line 163 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_y = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 24 file verification/mutants/M4/argus_fsm.c line 164 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=1, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 25 file verification/mutants/M4/argus_fsm.c line 165 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=1, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 26 file verification/mutants/M4/argus_fsm.c line 166 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->n_tracks = 2 (00000000 00000000 00000000 00000010)
+
+State 29 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 0 (00000000 00000000 00000000 00000000)
+
+State 32 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 33 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=3, .missed=c.tracks[0].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 34 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=c.tracks[1].age + 1, .missed=0 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 35 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=2, .missed=c.tracks[1].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 38 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 0 (00000000 00000000 00000000 00000000)
+
+State 41 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=2 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 42 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=4, .missed=c.tracks[0].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 43 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=c.tracks[1].age + 1, .missed=1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 44 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=3, .missed=c.tracks[1].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 47 file verification/esbmc/argus_harness.c line 104 column 13 function main thread 0
+----------------------------------------------------
+  n = 0 (00000000 00000000 00000000 00000000)
+
+State 50 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=3 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 51 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=2, .tracks={ .active=1, .id=1, .start_x=86, .last_x=86, .last_y=60,
+    .age=5, .missed=c.tracks[0].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 52 file verification/mutants/M4/argus_fsm.c line 31 column 5 function classify thread 0
+----------------------------------------------------
+  travel = 0 (00000000 00000000 00000000 00000000)
+
+State 53 file verification/mutants/M4/argus_fsm.c line 32 column 5 function classify thread 0
+----------------------------------------------------
+  min_travel = 32 (00000000 00000000 00000000 00100000)
+
+State 54 file verification/mutants/M4/argus_fsm.c line 49 column 5 function finalize thread 0
+----------------------------------------------------
+  e = 3 (00000000 00000000 00000000 00000011)
+
+State 55 file verification/mutants/M4/argus_fsm.c line 52 column 26 function finalize thread 0
+----------------------------------------------------
+  c->n_tracks = 1 (00000000 00000000 00000000 00000001)
+
+State 56 file verification/mutants/M4/argus_fsm.c line 128 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=c.tracks[1].age + 1, .missed=2 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=3,
+    .ev_dropped=0 }
+
+State 57 file verification/mutants/M4/argus_fsm.c line 135 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+    .n_tracks=1, .tracks={ .active=1, .id=2, .start_x=132, .last_x=132, .last_y=60,
+    .age=4, .missed=c.tracks[1].missed + 1 }, .ev_q={ 4294573864, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=3,
+    .ev_dropped=0 }
+
+State 58 file verification/esbmc/argus_harness.c line 165 column 17 function main thread 0
+----------------------------------------------------
+  finalized = 1 (00000000 00000000 00000000 00000000 00000000 00000000 00000000 00000001)
+
+State 59 file verification/esbmc/argus_harness.c line 192 column 9 function main thread 0
+----------------------------------------------------
+Violated property:
+  file verification/esbmc/argus_harness.c line 192 column 9 function main
+  P4: todo evento e entregue, pendente ou contado como descartado
+  finalized == polled + (unsigned long int)c.ev_count + (unsigned long int)c.ev_dropped
+
+
+** Results:
+verification/esbmc/argus_harness.c, function main
+  FAILED       [main.assertion.1]  line 192  P4: todo evento e entregue, pendente ou contado como descartado
+  PASSED       [main.assertion.2]  line 195  P4: com o host drenando, nenhum evento e descartado
+
+** 1 of 2 properties failed, 1 passed
+
+VERIFICATION FAILED
+ESBMC version 8.6.0 64-bit aarch64 macos

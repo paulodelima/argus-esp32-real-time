@@ -1,0 +1,208 @@
+/* =====================================================================
+ * argus_harness.c -- harness de ambiente para verificar argus_fsm.c
+ *
+ * Verifica O CODIGO do nucleo (nao o modelo de custo). O firmware e
+ * chamado em laco com entradas nao deterministicas; o ESBMC explora
+ * todas as entradas ate o limite de desenrolamento.
+ *
+ * Ambientes (escolher UM com -D):
+ *   -DENV_E1  irrestrito: coordenadas sao int quaisquer, o ponteiro
+ *             pode ser NULL, o host pode nao drenar a fila. n_dets em
+ *             [0,8] (o buffer da camada de visao tem 8 centroides; o
+ *             codigo aceita ate 64, mas isso so alonga o laco).
+ *   -DENV_E2  realista: 0<=x<160, 0<=y<120, 0<=n_dets<=8, ponteiro
+ *             valido, host drena a fila a cada ciclo (como o .ino).
+ *
+ * Propriedades (todas ativas por padrao; -DNO_P3 etc. desliga):
+ *   P1 memoria   : checagens embutidas do ESBMC (bounds, pointer)
+ *   P2 overflow  : --overflow-check
+ *   P3 invariantes: 0<=n_tracks<=8 e == slots ativos;
+ *                  0<=ev_count<=8; ev_tail == (ev_head+ev_count) % 8
+ *   P4 sem perda : finalizados == entregues ao host + pendentes na fila
+ *   P5 transicoes: monitor da maquina IDLE->TRACKING->DECIDING->
+ *                  FEEDBACK->IDLE (Figura 3; laços proprios permitidos)
+ *
+ * Laco principal: -DSTEPS=n frames (BMC) ou -DUNBOUNDED (k-inducao).
+ * -DFIX_Y: y fixo em 60 (so x simbolico). -DCONCRETE_TRACE: traco concreto
+ *           de reserva (sem entrada simbolica; nao e prova).
+ * -DARGUS_V2: usa o contrato da v2 (ev_dropped contado em P4 e provado 0
+ *             em E2; FEEDBACK->TRACKING admitido em P5).
+ * ===================================================================== */
+#include "argus_fsm.h"
+
+#ifdef CHECK_WITH_GCC   /* so para conferir sintaxe com gcc */
+#include <stdlib.h>
+#include <assert.h>
+static int __VERIFIER_nondet_int(void) { return rand(); }
+#define __ESBMC_assume(c) do { if (!(c)) exit(0); } while (0)
+#define __ESBMC_assert(c, m) assert((c) && (m))
+#else
+int __VERIFIER_nondet_int(void);
+void __ESBMC_assume(_Bool);
+void __ESBMC_assert(_Bool, const char *);
+#endif
+
+#ifndef STEPS
+#define STEPS 4
+#endif
+
+#if !defined(ENV_E1) && !defined(ENV_E2)
+#error "defina -DENV_E1 ou -DENV_E2"
+#endif
+
+/* Detecções por frame. Padrão 8 (limite da câmera). Para instâncias
+ * menores, mais rápidas: -DMAX_DETS=1 ou 2 (hipótese declarada no resultado). */
+#ifndef MAX_DETS
+#define MAX_DETS 8
+#endif
+
+static const char *S_NAME[4] = {"IDLE", "TRACKING", "DECIDING", "FEEDBACK"};
+
+/* P5: transicoes permitidas pela Figura 3 (linear, com laco proprio). */
+static int p5_allowed(argus_state_t a, argus_state_t b) {
+    if (a == b) return 1;
+    if (a == ARGUS_IDLE     && b == ARGUS_TRACKING) return 1;
+    if (a == ARGUS_TRACKING && b == ARGUS_DECIDING) return 1;
+    if (a == ARGUS_DECIDING && b == ARGUS_FEEDBACK) return 1;
+    if (a == ARGUS_FEEDBACK && b == ARGUS_IDLE)     return 1;
+#ifdef ARGUS_V2
+    if (a == ARGUS_FEEDBACK && b == ARGUS_TRACKING) return 1; /* varios objetos */
+#endif
+    return 0;
+}
+
+int main(void) {
+    argus_ctx_t c;
+    argus_point_t dets[MAX_DETS];
+    const argus_point_t *p;
+    int n, d, i;
+#ifndef UNBOUNDED
+    int step;
+#endif
+    argus_state_t prev;
+
+    /* contadores de P4 (unsigned: sem overflow com sinal) */
+    unsigned long finalized = 0, polled = 0;
+    int was_active[ARGUS_MAX_TRACKS], was_id[ARGUS_MAX_TRACKS];
+
+    argus_init(&c, 160, 120);
+    prev = c.state;
+
+#ifdef UNBOUNDED
+    while (1) {
+#else
+    for (step = 0; step < STEPS; step++) {
+#endif
+        /* ---------- ambiente: um frame de deteccoes ---------- */
+#if defined(CONCRETE_TRACE) && !defined(UNBOUNDED)
+        /* RESERVA: traco concreto (o mesmo da sondagem dinamica): um objeto
+         * entra no frame 0 em x=20 e some. Nao ha entrada simbolica; o ESBMC
+         * apenas checa P5 neste traco. NAO e prova sobre todas as entradas. */
+        n = (step == 0) ? 1 : 0;
+        for (d = 0; d < MAX_DETS; d++) { dets[d].x = 20; dets[d].y = 60; }
+#else
+        n = __VERIFIER_nondet_int();
+        __ESBMC_assume(n >= 0 && n <= MAX_DETS);
+        for (d = 0; d < MAX_DETS; d++) {
+            dets[d].x = __VERIFIER_nondet_int();
+#ifdef FIX_Y
+            dets[d].y = 60;   /* y fixo: o firmware so classifica por x */
+#else
+            dets[d].y = __VERIFIER_nondet_int();
+#endif
+#ifdef ENV_E2
+            __ESBMC_assume(dets[d].x >= 0 && dets[d].x < 160);
+            __ESBMC_assume(dets[d].y >= 0 && dets[d].y < 120);
+#endif
+        }
+#endif
+#ifdef ENV_E1
+        p = __VERIFIER_nondet_int() ? dets : (const argus_point_t *)0;
+#else
+        p = dets;
+#endif
+
+        /* fotografia dos slots antes do frame (para P4) */
+        for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+            was_active[i] = c.tracks[i].active;
+            was_id[i]     = c.tracks[i].id;
+        }
+
+        /* ---------- sistema sob verificacao ----------
+         * n e simbolico, mas a chamada e feita com n CONSTANTE em cada ramo:
+         * assim o ESBMC desenrola os lacos internos de argus_update so ate n,
+         * em vez de ate --unwind. Mesmo comportamento, formula muito menor. */
+        if (n == 0) argus_update(&c, p, 0);
+#if MAX_DETS >= 1
+        else if (n == 1) argus_update(&c, p, 1);
+#endif
+#if MAX_DETS >= 2
+        else if (n == 2) argus_update(&c, p, 2);
+#endif
+#if MAX_DETS >= 3
+        else if (n == 3) argus_update(&c, p, 3);
+#endif
+#if MAX_DETS >= 4
+        else if (n == 4) argus_update(&c, p, 4);
+#endif
+#if MAX_DETS >= 5
+        else if (n == 5) argus_update(&c, p, 5);
+#endif
+#if MAX_DETS >= 6
+        else if (n == 6) argus_update(&c, p, 6);
+#endif
+#if MAX_DETS >= 7
+        else if (n == 7) argus_update(&c, p, 7);
+#endif
+#if MAX_DETS >= 8
+        else argus_update(&c, p, 8);
+#endif
+
+        /* finalizado = estava ativo e (ficou inativo OU o slot foi
+         * reutilizado por um track novo no mesmo frame) */
+        for (i = 0; i < ARGUS_MAX_TRACKS; i++)
+            if (was_active[i] && (!c.tracks[i].active || c.tracks[i].id != was_id[i]))
+                finalized++;
+
+        /* ---------- host ---------- */
+#ifdef ENV_E1
+        if (__VERIFIER_nondet_int())
+#endif
+        {
+            for (i = 0; i < ARGUS_MAX_EVENTS; i++) {
+                if (argus_poll_event(&c) == ARGUS_EVENT_NONE) break;
+                polled++;
+            }
+        }
+
+        /* ---------- propriedades ---------- */
+#ifndef NO_P3
+        {
+            int ativos = 0;
+            for (i = 0; i < ARGUS_MAX_TRACKS; i++) ativos += (c.tracks[i].active != 0);
+            __ESBMC_assert(c.n_tracks >= 0 && c.n_tracks <= ARGUS_MAX_TRACKS, "P3: 0 <= n_tracks <= 8");
+            __ESBMC_assert(c.n_tracks == ativos, "P3: n_tracks == slots ativos");
+            __ESBMC_assert(c.ev_count >= 0 && c.ev_count <= ARGUS_MAX_EVENTS, "P3: 0 <= ev_count <= 8");
+            __ESBMC_assert(c.ev_head >= 0 && c.ev_head < ARGUS_MAX_EVENTS, "P3: ev_head no intervalo");
+            __ESBMC_assert(c.ev_tail == (c.ev_head + c.ev_count) % ARGUS_MAX_EVENTS, "P3: ev_tail consistente");
+        }
+#endif
+#ifndef NO_P4
+#ifdef ARGUS_V2
+        __ESBMC_assert(finalized == polled + (unsigned long)c.ev_count + (unsigned long)c.ev_dropped,
+                       "P4: todo evento e entregue, pendente ou contado como descartado");
+#ifdef ENV_E2
+        __ESBMC_assert(c.ev_dropped == 0, "P4: com o host drenando, nenhum evento e descartado");
+#endif
+#else
+        __ESBMC_assert(finalized == polled + (unsigned long)c.ev_count, "P4: nenhum evento perdido");
+#endif
+#endif
+#ifndef NO_P5
+        __ESBMC_assert(p5_allowed(prev, c.state), "P5: transicao fora da Figura 3");
+#endif
+        prev = c.state;
+    }
+    (void)S_NAME;
+    return 0;
+}

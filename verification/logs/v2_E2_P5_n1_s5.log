@@ -1,0 +1,10 @@
+# esbmc verification/esbmc/argus_harness.c firmware_v2/argus_fsm.c -I/Users/paulodelima/development/GitHub/argus-esp32-real-time/firmware_v2 -DARGUS_V2 -DENV_E2 -DSTEPS=5 -DMAX_DETS=1 -DNO_P3 -DNO_P4 --no-bounds-check --no-pointer-check --no-align-check --bitwuzla --unwind 9 --timeout 10m
+ESBMC version 8.6.0 64-bit aarch64 macos
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+verification/esbmc/argus_harness.c:29:10: fatal error: 'argus_fsm.h' file not found
+   29 | #include "argus_fsm.h"
+      |          ^~~~~~~~~~~~~
+ERROR: PARSING ERROR
+ESBMC version 8.6.0 64-bit aarch64 macos
+# tempo_s=0
