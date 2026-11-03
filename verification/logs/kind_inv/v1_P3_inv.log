@@ -1,0 +1,460 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing firmware/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.235s
+GOTO program processing time: 0.006s
+Checking base case, k = 1
+Starting Bounded Model Checking
+Not unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.001s (42 assignments)
+Slicing time: 0.000s (removed 40 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (2 assignments)
+BMC program time: 0.001s
+No bug has been found in the base case
+Checking forward condition, k = 1
+Starting Bounded Model Checking
+Not unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.001s (42 assignments)
+Slicing time: 0.000s (removed 40 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (2 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.000s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 0.000s
+The forward condition is unable to prove the property
+Checking base case, k = 2
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.000s (44 assignments)
+Slicing time: 0.000s (removed 42 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (2 assignments)
+BMC program time: 0.000s
+No bug has been found in the base case
+Checking forward condition, k = 2
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.001s (44 assignments)
+Slicing time: 0.000s (removed 42 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (2 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.000s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 0.000s
+The forward condition is unable to prove the property
+Checking inductive step, k = 2
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Not unwinding loop 10 iteration 2   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Not unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Not unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Not unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Not unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 15 iteration 1   file verification/esbmc/argus_harness.c line 135 column 5 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Not unwinding loop 10 iteration 2   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Not unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Not unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Not unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Not unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 15 iteration 2   file verification/esbmc/argus_harness.c line 135 column 5 function main
+Symex completed in: 2.681s (8776 assignments)
+Slicing time: 1.212s (removed 4949 assignments)
+Generated 12 VCC(s), 12 remaining after simplification (3827 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 1.413s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 187.664s
+The inductive step is unable to prove the property
+Checking base case, k = 3
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 3   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.001s (46 assignments)
+Slicing time: 0.001s (removed 44 assignments)
+Generated 0 VCC(s), 0 remaining after simplification (2 assignments)
+BMC program time: 0.002s
+No bug has been found in the base case
+Checking forward condition, k = 3
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 3   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Symex completed in: 0.000s (46 assignments)
+Slicing time: 0.000s (removed 44 assignments)
+Generated 1 VCC(s), 1 remaining after simplification (2 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.000s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 0.000s
+The forward condition is unable to prove the property
+Checking inductive step, k = 3
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Unwinding loop 3 iteration 2   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Not unwinding loop 3 iteration 3   file firmware/argus_fsm.c line 68 column 5 function argus_init
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 10 iteration 2   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Not unwinding loop 10 iteration 3   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Not unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Not unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Not unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Not unwinding loop 14 iteration 3   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 15 iteration 1   file verification/esbmc/argus_harness.c line 135 column 5 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 10 iteration 2   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Not unwinding loop 10 iteration 3   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Not unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Not unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Not unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Not unwinding loop 14 iteration 3   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 15 iteration 2   file verification/esbmc/argus_harness.c line 135 column 5 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 10 iteration 2   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Not unwinding loop 10 iteration 3   file verification/esbmc/argus_harness.c line 156 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Not unwinding loop 11 iteration 3   file verification/esbmc/argus_harness.c line 176 column 9 function main
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 4 iteration 1   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 4 iteration 2   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Not unwinding loop 4 iteration 3   file firmware/argus_fsm.c line 88 column 5 function argus_update
+Unwinding loop 5 iteration 1   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 5 iteration 2   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Not unwinding loop 5 iteration 3   file firmware/argus_fsm.c line 89 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 1   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 7 iteration 2   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 6 iteration 1   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Unwinding loop 6 iteration 2   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 6 iteration 3   file firmware/argus_fsm.c line 95 column 9 function argus_update
+Not unwinding loop 7 iteration 3   file firmware/argus_fsm.c line 92 column 5 function argus_update
+Unwinding loop 8 iteration 1   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 8 iteration 2   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Not unwinding loop 8 iteration 3   file firmware/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 1   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 9 iteration 2   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 16 iteration 1   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Unwinding loop 16 iteration 2   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 16 iteration 3   file firmware/argus_fsm.c line 52 column 5 function free_slot
+Not unwinding loop 9 iteration 3   file firmware/argus_fsm.c line 134 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Not unwinding loop 12 iteration 3   file verification/esbmc/argus_harness.c line 213 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Not unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 222 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Not unwinding loop 14 iteration 3   file verification/esbmc/argus_harness.c line 232 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 17 iteration 3   file verification/esbmc/argus_harness.c line 91 column 5 function inv_ok
+Not unwinding loop 15 iteration 3   file verification/esbmc/argus_harness.c line 135 column 5 function main
+Symex completed in: 6.151s (19624 assignments)
+Slicing time: 3.775s (removed 9524 assignments)
+Generated 18 VCC(s), 18 remaining after simplification (10100 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 5.061s
+Solving with solver Boolector 3.2.4
+ERROR: Timed out

@@ -33,7 +33,18 @@
 #ifdef CHECK_WITH_GCC   /* so para conferir sintaxe com gcc */
 #include <stdlib.h>
 #include <assert.h>
+#ifdef FUZZ
+#include <unistd.h>
+#include <time.h>
+static int fuzz_seeded = 0;
+static int fuzz_rand(int m) {
+    if (!fuzz_seeded) { srand((unsigned)(getpid() ^ time(0))); fuzz_seeded = 1; }
+    return rand() % m;
+}
+static int __VERIFIER_nondet_int(void) { return fuzz_rand(160); }
+#else
 static int __VERIFIER_nondet_int(void) { return rand(); }
+#endif
 #define __ESBMC_assume(c) do { if (!(c)) exit(0); } while (0)
 #define __ESBMC_assert(c, m) assert((c) && (m))
 #else
@@ -59,6 +70,38 @@ void __ESBMC_assert(_Bool, const char *);
 static const char *S_NAME[4] = {"IDLE", "TRACKING", "DECIDING", "FEEDBACK"};
 
 /* P5: transicoes permitidas pela Figura 3 (linear, com laco proprio). */
+#ifdef INV
+/* Invariante indutiva para a k-inducao (-DINV, so faz sentido com ENV_E2).
+ * Vale no estado inicial e e preservada por um frame; o harness a ASSUME no
+ * inicio de cada volta (restringe o estado arbitrario do passo indutivo) e a
+ * AFIRMA no fim (assim a prova continua valida). */
+static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
+    int i, ativos = 0;
+    if (prev != c->state) return 0;
+    if (c->state < ARGUS_IDLE || c->state > ARGUS_FEEDBACK) return 0;
+    if (c->frame_w != 160 || c->frame_h != 120 || c->center_x != 80) return 0;
+    if (c->n_tracks < 0 || c->n_tracks > ARGUS_MAX_TRACKS) return 0;
+    if (c->ev_count != 0) return 0;                       /* host drenou */
+    if (c->ev_head < 0 || c->ev_head >= ARGUS_MAX_EVENTS) return 0;
+    if (c->ev_tail != c->ev_head) return 0;
+    if (c->next_id < 1 || c->next_id > 0x3FFFFFFF) return 0;
+#ifdef ARGUS_V2
+    if (c->ev_dropped != 0) return 0;
+#endif
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        ativos++;
+        if (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160) return 0;
+        if (c->tracks[i].last_x  < 0 || c->tracks[i].last_x  >= 160) return 0;
+        if (c->tracks[i].last_y  < 0 || c->tracks[i].last_y  >= 120) return 0;
+        if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+        if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+    }
+    if (ativos != c->n_tracks) return 0;
+    return 1;
+}
+#endif
+
 static int p5_allowed(argus_state_t a, argus_state_t b) {
     if (a == b) return 1;
     if (a == ARGUS_IDLE     && b == ARGUS_TRACKING) return 1;
@@ -93,6 +136,9 @@ int main(void) {
 #else
     for (step = 0; step < STEPS; step++) {
 #endif
+#ifdef INV
+        __ESBMC_assume(inv_ok(&c, prev));    /* hipotese indutiva */
+#endif
         /* ---------- ambiente: um frame de deteccoes ---------- */
 #if defined(CONCRETE_TRACE) && !defined(UNBOUNDED)
         /* RESERVA: traco concreto (o mesmo da sondagem dinamica): um objeto
@@ -101,7 +147,11 @@ int main(void) {
         n = (step == 0) ? 1 : 0;
         for (d = 0; d < MAX_DETS; d++) { dets[d].x = 20; dets[d].y = 60; }
 #else
+#ifdef FUZZ
+        n = fuzz_rand(MAX_DETS + 1);
+#else
         n = __VERIFIER_nondet_int();
+#endif
         __ESBMC_assume(n >= 0 && n <= MAX_DETS);
         for (d = 0; d < MAX_DETS; d++) {
             dets[d].x = __VERIFIER_nondet_int();
@@ -202,6 +252,9 @@ int main(void) {
         __ESBMC_assert(p5_allowed(prev, c.state), "P5: transicao fora da Figura 3");
 #endif
         prev = c.state;
+#ifdef INV
+        __ESBMC_assert(inv_ok(&c, prev), "INV: invariante preservada");
+#endif
     }
     (void)S_NAME;
     return 0;
