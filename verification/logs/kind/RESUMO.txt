@@ -1,1 +1,4 @@
 v2_P5_kind     Timed out                    601s  k = 4
+v2_P3_kind     Timed out                    602s  k = 4
+v1_P3_kind     Timed out                    601s  k = 4
+v1_P5_kind     Timed out                    601s  k = 4

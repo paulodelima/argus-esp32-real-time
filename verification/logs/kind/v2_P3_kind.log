@@ -970,3 +970,4 @@ Generated 20 VCC(s), 20 remaining after simplification (19871 assignments)
 Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
 Encoding to solver time: 8.443s
 Solving with solver Boolector 3.2.4
+ERROR: Timed out
