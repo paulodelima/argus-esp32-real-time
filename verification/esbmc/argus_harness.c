@@ -27,6 +27,17 @@
  *           de reserva (sem entrada simbolica; nao e prova).
  * -DARGUS_V2: usa o contrato da v2 (ev_dropped contado em P4 e provado 0
  *             em E2; FEEDBACK->TRACKING admitido em P5).
+ * -DLOOP_INV (com -DUNBOUNDED -DENV_E2): anota inv_ok (+ contadores de P4)
+ *       como invariante do laco para --loop-invariant-check / --loop-invariant
+ *       (ESBMC: base, havoc + assume, passo indutivo de uma volta).
+ * -DP6 (so com ENV_E2): prazo ponta a ponta de 800 ms, do ultimo frame em
+ *       que o objeto foi visto ate o inicio do seu bip. Modelo de tempo com
+ *       variavel auxiliar t (us), como em Barreto, Cordeiro e Fischer:
+ *       cada volta do loop() = espera do quadro (T_FRAME_US, HIPOTESE) +
+ *       C_detect + C_classify + C_update(N) (WCET medidos no trabalho
+ *       anterior) + por evento: C_feedback + bip bloqueante (beep(): 180 ms
+ *       por pulso; AMBIGUOUS = 2 pulsos, IN/OUT = 1). -DT_FRAME_US=n.
+ *       Hipotese: STEPS < ARGUS_MAX_AGE (o encerramento por idade nao ocorre).
  * ===================================================================== */
 #include "argus_fsm.h"
 
@@ -46,6 +57,7 @@ static int __VERIFIER_nondet_int(void) { return fuzz_rand(160); }
 static int __VERIFIER_nondet_int(void) { return rand(); }
 #endif
 #define __ESBMC_assume(c) do { if (!(c)) exit(0); } while (0)
+#define __ESBMC_loop_invariant(c) ((void)0)
 #define __ESBMC_assert(c, m) assert((c) && (m))
 #else
 int __VERIFIER_nondet_int(void);
@@ -70,7 +82,7 @@ void __ESBMC_assert(_Bool, const char *);
 static const char *S_NAME[4] = {"IDLE", "TRACKING", "DECIDING", "FEEDBACK"};
 
 /* P5: transicoes permitidas pela Figura 3 (linear, com laco proprio). */
-#ifdef INV
+#if defined(INV) || defined(LOOP_INV)
 /* Invariante indutiva para a k-inducao (-DINV, so faz sentido com ENV_E2).
  * Vale no estado inicial e e preservada por um frame; o harness a ASSUME no
  * inicio de cada volta (restringe o estado arbitrario do passo indutivo) e a
@@ -102,6 +114,24 @@ static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
 }
 #endif
 
+#ifdef P6
+#ifndef ENV_E2
+#error "P6 exige -DENV_E2 (host drena a fila a cada volta, como o .ino)"
+#endif
+#ifndef T_FRAME_US
+#define T_FRAME_US 50000UL      /* HIPOTESE: periodo do quadro (nao medido) */
+#endif
+#define C_DETECT_US    3709UL   /* medidos no trabalho anterior (Tabela 2) */
+#define C_CLASSIFY_US     6UL
+#define C_FEEDBACK_US     5UL
+#define BEEP_PULSE_US 180000UL  /* beep(): tone 80 ms; delay(120) + delay(60) */
+#define D_ERGO_US     800000UL
+static unsigned long c_update_us(int N) {
+    static const unsigned long tab[9] = {18, 6, 8, 9, 11, 14, 12, 14, 19};
+    return (N >= 0 && N <= 8) ? tab[N] : 19UL;
+}
+#endif
+
 static int p5_allowed(argus_state_t a, argus_state_t b) {
     if (a == b) return 1;
     if (a == ARGUS_IDLE     && b == ARGUS_TRACKING) return 1;
@@ -127,11 +157,28 @@ int main(void) {
     /* contadores de P4 (unsigned: sem overflow com sinal) */
     unsigned long finalized = 0, polled = 0;
     int was_active[ARGUS_MAX_TRACKS], was_id[ARGUS_MAX_TRACKS];
+#ifdef P6
+    /* t: relogio auxiliar (us). seen[i]: instante de captura do ultimo
+     * quadro em que o objeto do slot i foi visto. q_seen: fila-sombra,
+     * na mesma ordem da fila de eventos do firmware. */
+    unsigned long t = 0, t_cap, lat;
+    unsigned long seen[ARGUS_MAX_TRACKS], seen_prev[ARGUS_MAX_TRACKS];
+    unsigned long q_seen[ARGUS_MAX_EVENTS];
+    int q_h = 0, q_n = 0, n_before, e;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) seen[i] = 0;
+#endif
 
     argus_init(&c, 160, 120);
     prev = c.state;
 
 #ifdef UNBOUNDED
+#ifdef LOOP_INV
+#if defined(ARGUS_V2) && !defined(NO_P4)
+    __ESBMC_loop_invariant(inv_ok(&c, prev) && finalized == polled);
+#else
+    __ESBMC_loop_invariant(inv_ok(&c, prev));
+#endif
+#endif
     while (1) {
 #else
     for (step = 0; step < STEPS; step++) {
@@ -139,8 +186,20 @@ int main(void) {
 #ifdef INV
         __ESBMC_assume(inv_ok(&c, prev));    /* hipotese indutiva */
 #endif
+#ifdef P6
+        t += T_FRAME_US;                 /* espera/captura do quadro */
+        t_cap = t;
+        for (i = 0; i < ARGUS_MAX_TRACKS; i++) seen_prev[i] = seen[i];
+        n_before = c.n_tracks;
+#endif
         /* ---------- ambiente: um frame de deteccoes ---------- */
-#if defined(CONCRETE_TRACE) && !defined(UNBOUNDED)
+#if defined(P6_TRACE) && !defined(UNBOUNDED)
+        /* P6, traco concreto: P6_TRACE objetos aparecem juntos no frame 0
+         * (x = 10, 60, 110: longe entre si) e somem. Sem entrada simbolica:
+         * o ESBMC executa o codigo real neste cenario e checa P6. */
+        n = (step == 0) ? P6_TRACE : 0;
+        for (d = 0; d < MAX_DETS; d++) { dets[d].x = 10 + 50 * (d % 3); dets[d].y = 60; }
+#elif defined(CONCRETE_TRACE) && !defined(UNBOUNDED)
         /* RESERVA: traco concreto (o mesmo da sondagem dinamica): um objeto
          * entra no frame 0 em x=20 e some. Nao ha entrada simbolica; o ESBMC
          * apenas checa P5 neste traco. NAO e prova sobre todas as entradas. */
@@ -211,8 +270,22 @@ int main(void) {
         /* finalizado = estava ativo e (ficou inativo OU o slot foi
          * reutilizado por um track novo no mesmo frame) */
         for (i = 0; i < ARGUS_MAX_TRACKS; i++)
-            if (was_active[i] && (!c.tracks[i].active || c.tracks[i].id != was_id[i]))
+            if (was_active[i] && (!c.tracks[i].active || c.tracks[i].id != was_id[i])) {
                 finalized++;
+#ifdef P6
+                if (q_n < ARGUS_MAX_EVENTS) {          /* mesma ordem do ev_push */
+                    q_seen[(q_h + q_n) % ARGUS_MAX_EVENTS] = seen_prev[i];
+                    q_n++;
+                }
+#endif
+            }
+#ifdef P6
+        t += C_DETECT_US + C_CLASSIFY_US + c_update_us(n_before);
+        for (i = 0; i < ARGUS_MAX_TRACKS; i++)
+            if (c.tracks[i].active && c.tracks[i].missed == 0)
+                seen[i] = t_cap;                       /* visto neste quadro */
+        __ESBMC_assert(q_n == c.ev_count, "P6-aux: fila-sombra alinhada com a fila");
+#endif
 
         /* ---------- host ---------- */
 #ifdef ENV_E1
@@ -220,8 +293,19 @@ int main(void) {
 #endif
         {
             for (i = 0; i < ARGUS_MAX_EVENTS; i++) {
+#ifdef P6
+                e = argus_poll_event(&c);
+                if (e == ARGUS_EVENT_NONE) break;
+                polled++;
+                t += C_FEEDBACK_US;
+                lat = t - q_seen[q_h];                 /* do ultimo quadro visto ao bip */
+                __ESBMC_assert(lat <= D_ERGO_US, "P6: bip em ate 800 ms apos o objeto sair");
+                q_h = (q_h + 1) % ARGUS_MAX_EVENTS; q_n--;
+                t += (e == ARGUS_EVENT_AMBIGUOUS ? 2UL : 1UL) * BEEP_PULSE_US;
+#else
                 if (argus_poll_event(&c) == ARGUS_EVENT_NONE) break;
                 polled++;
+#endif
             }
         }
 

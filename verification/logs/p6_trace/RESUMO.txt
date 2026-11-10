@@ -1,0 +1,5 @@
+objetos=1 T_frame=50000us  PASSA            0s
+objetos=2 T_frame=50000us  PASSA            0s
+objetos=3 T_frame=50000us  FALHA            0s
+objetos=2 T_frame=100000us  PASSA            1s
+objetos=2 T_frame=120000us  FALHA            0s

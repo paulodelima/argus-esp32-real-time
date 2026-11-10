@@ -1,0 +1,6 @@
+A    frames=5 objetos/frame=1 T_frame=50000us  PASSA          443s  
+C    frames=5 objetos/frame=3 T_frame=50000us  SEM_VEREDICTO  602s  
+B    frames=5 objetos/frame=2 T_frame=50000us  SEM_VEREDICTO  603s  
+D    frames=7 objetos/frame=1 T_frame=50000us  SEM_VEREDICTO  601s  
+E    frames=5 objetos/frame=2 T_frame=100000us  SEM_VEREDICTO  601s  
+F    frames=5 objetos/frame=2 T_frame=120000us  SEM_VEREDICTO  601s  

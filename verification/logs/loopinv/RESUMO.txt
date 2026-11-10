@@ -1,0 +1,3 @@
+P3_chk     SEM_VEREDICTO              600s  
+P5_chk     SEM_VEREDICTO              601s  
+P4_chk     SEM_VEREDICTO              601s  
