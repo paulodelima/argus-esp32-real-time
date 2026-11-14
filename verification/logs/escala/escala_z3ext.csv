@@ -1,0 +1,10 @@
+solver,frames,objetos_por_frame,veredicto,tempo_total_s,vccs,tempo_solver_s
+z3ext,2,1,PASSA,25,10,0.961
+z3ext,3,1,SEM_VEREDICTO,300,15,
+z3ext,4,1,SEM_VEREDICTO,300,20,
+z3ext,5,1,SEM_VEREDICTO,300,25,
+z3ext,6,1,SEM_VEREDICTO,300,30,
+z3ext,7,1,SEM_VEREDICTO,300,35,
+z3ext,4,2,SEM_VEREDICTO,301,20,
+z3ext,4,3,SEM_VEREDICTO,300,20,
+z3ext,4,4,SEM_VEREDICTO,300,20,

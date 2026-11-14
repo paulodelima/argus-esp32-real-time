@@ -1,0 +1,3 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+ERROR: The cvc4 solver has not been built into this version of ESBMC, sorry
+ESBMC version 8.6.0 64-bit aarch64 macos

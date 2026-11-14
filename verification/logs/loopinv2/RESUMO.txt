@@ -1,0 +1,12 @@
+P3_chk  SEM_VEREDICTO             601s
+    Processing 1 loop invariant
+    WARNING: loop invariant at file verification/esbmc/argus_harness.c line 192 column 28 function main not checked beyond its base case: the loop writes through a pointer the havoc cannot cover
+    Processing 1 loop invariant
+P5_chk  SEM_VEREDICTO             601s
+    Processing 1 loop invariant
+    WARNING: loop invariant at file verification/esbmc/argus_harness.c line 192 column 28 function main not checked beyond its base case: the loop writes through a pointer the havoc cannot cover
+    Processing 1 loop invariant
+P4_chk  SEM_VEREDICTO             600s
+    Processing 1 loop invariant
+    WARNING: loop invariant at file verification/esbmc/argus_harness.c line 190 column 28 function main not checked beyond its base case: the loop writes through a pointer the havoc cannot cover
+    Processing 1 loop invariant

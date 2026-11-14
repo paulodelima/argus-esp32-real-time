@@ -1,0 +1,62 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing verification/abs/k2/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.129s
+GOTO program processing time: 0.002s
+Starting Bounded Model Checking
+Unwinding loop 16 iteration 1   file verification/esbmc/argus_harness.c line 126 column 13 function inv_ok
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 103 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 103 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 272 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 292 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 292 column 9 function main
+Unwinding loop 5 iteration 1   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/abs/k2/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/abs/k2/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/abs/k2/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 15 iteration 1   file verification/abs/k2/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 15 iteration 2   file verification/abs/k2/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/abs/k2/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 329 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 329 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 352 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 228 column 5 function main
+Symex completed in: 0.093s (1735 assignments)
+Caching time: 0.000s (removed 0 assertions)
+Slicing time: 0.047s (removed 546 assignments)
+Generated 2 VCC(s), 2 remaining after simplification (1189 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.074s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 11.079s
+BMC program time: 11.295s
+
+** Results:
+verification/esbmc/argus_harness.c, function main
+  PASSED       [main.assertion.1]  line 383  P4: todo evento e entregue, pendente ou contado como descartado
+  PASSED       [main.assertion.2]  line 386  P4: com o host drenando, nenhum evento e descartado
+
+** 0 of 2 properties failed, 2 passed
+
+VERIFICATION SUCCESSFUL
+ESBMC version 8.6.0 64-bit aarch64 macos

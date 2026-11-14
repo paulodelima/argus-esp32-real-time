@@ -1,0 +1,5 @@
+S1  entrada=1 frame(s) ate 2 objetos  frames=5 T=50000us  PASSA           15s
+S2  entrada=1 frame(s) ate 3 objetos  frames=5 T=50000us  FALHA           18s
+S3  entrada=1 frame(s) ate 2 objetos  frames=5 T=100000us  PASSA           14s
+S4  entrada=1 frame(s) ate 2 objetos  frames=5 T=120000us  FALHA           14s
+S5  entrada=2 frame(s) ate 1 objetos  frames=6 T=50000us  PASSA           20s

@@ -1,0 +1,10 @@
+base       PASSA            0s  
+passo_P3   SEM_VEREDICTO  900s  
+passo_P5   SEM_VEREDICTO  900s  
+passo_P4   FALHA          109s  P4: todo evento e entregue, pendente ou contado como descartado
+passo_P4_ids FALHA          188s  INV: invariante preservada
+passo_P4_ids SEM_VEREDICTO  900s  
+so_bip_perdido   SEM_VEREDICTO  900s  
+so_invariante    SEM_VEREDICTO  900s  
+so_bip_bitwuzla  SEM_VEREDICTO  900s  
+so_inv_bitwuzla  SEM_VEREDICTO  900s  

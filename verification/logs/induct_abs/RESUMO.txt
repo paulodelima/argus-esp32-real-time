@@ -1,0 +1,4 @@
+k2_bip   PASSA           12s  
+k2_inv   PASSA           16s  
+k4_bip   PASSA          161s  
+k4_inv   PASSA          756s  

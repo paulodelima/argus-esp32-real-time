@@ -1,0 +1,10 @@
+solver,frames,objetos_por_frame,veredicto,tempo_total_s,vccs,tempo_solver_s
+yices,2,1,PASSA,7,10,0.282
+yices,3,1,PASSA,41,15,7.582
+yices,4,1,PASSA,106,20,19.503
+yices,5,1,SEM_VEREDICTO,300,25,
+yices,6,1,SEM_VEREDICTO,300,30,
+yices,7,1,SEM_VEREDICTO,300,35,
+yices,4,2,SEM_VEREDICTO,301,20,
+yices,4,3,SEM_VEREDICTO,301,20,
+yices,4,4,SEM_VEREDICTO,300,20,

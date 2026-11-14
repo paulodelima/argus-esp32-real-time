@@ -108,6 +108,25 @@ static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
         if (c->tracks[i].last_y  < 0 || c->tracks[i].last_y  >= 120) return 0;
         if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
         if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+#ifdef INV_IDS
+        /* ids dos objetos ativos: validos, distintos entre si e diferentes
+         * do proximo id (um objeto vive <= 60 frames; o contador so daria a
+         * volta depois de ~1e9 objetos). */
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        {
+            /* "idade" do id: quantos ids foram dados depois dele, contando a
+             * volta do contador (1..0x3FFFFFFF). No maximo MAX_DETS por frame
+             * de vida do objeto, entao 1 <= dist <= age * MAX_DETS. */
+            int dist = c->next_id - c->tracks[i].id;   /* cabe em int: |dif| < 2^30 */
+            if (dist <= 0) dist += 0x3FFFFFFF;
+            if (dist < 1 || dist > c->tracks[i].age * MAX_DETS) return 0;
+        }
+        {
+            int j;
+            for (j = i + 1; j < ARGUS_MAX_TRACKS; j++)
+                if (c->tracks[j].active && c->tracks[j].id == c->tracks[i].id) return 0;
+        }
+#endif
     }
     if (ativos != c->n_tracks) return 0;
     return 1;
@@ -144,19 +163,32 @@ static int p5_allowed(argus_state_t a, argus_state_t b) {
     return 0;
 }
 
+#ifdef GLOBAL_STATE
+/* -DGLOBAL_STATE: o estado que o laco altera fica em variaveis globais,
+ * em vez de locais de main. O firmware continua recebendo &c, mas agora
+ * &c e um endereco fixo e conhecido (para --loop-invariant-check). */
+argus_ctx_t c;
+argus_point_t dets[MAX_DETS];
+const argus_point_t *p;
+argus_state_t prev;
+unsigned long finalized, polled;
+int was_active[ARGUS_MAX_TRACKS], was_id[ARGUS_MAX_TRACKS];
+#endif
+
 int main(void) {
-    argus_ctx_t c;
-    argus_point_t dets[MAX_DETS];
-    const argus_point_t *p;
     int n, d, i;
 #ifndef UNBOUNDED
     int step;
 #endif
+#ifndef GLOBAL_STATE
+    argus_ctx_t c;
+    argus_point_t dets[MAX_DETS];
+    const argus_point_t *p;
     argus_state_t prev;
-
-    /* contadores de P4 (unsigned: sem overflow com sinal) */
-    unsigned long finalized = 0, polled = 0;
+    unsigned long finalized, polled;    /* contadores de P4 */
     int was_active[ARGUS_MAX_TRACKS], was_id[ARGUS_MAX_TRACKS];
+#endif
+    finalized = 0; polled = 0;
 #ifdef P6
     /* t: relogio auxiliar (us). seen[i]: instante de captura do ultimo
      * quadro em que o objeto do slot i foi visto. q_seen: fila-sombra,
@@ -168,8 +200,20 @@ int main(void) {
     for (i = 0; i < ARGUS_MAX_TRACKS; i++) seen[i] = 0;
 #endif
 
+#ifdef INDUCT_STEP
+    /* Passo indutivo escrito a mao (sem laco): c e prev ficam SEM valor
+     * inicial = valores quaisquer para o ESBMC. Com -DINV -DSTEPS=1, o
+     * harness assume inv_ok no inicio da volta, executa UM frame e afirma
+     * inv_ok e as propriedades no fim. Junto com o caso base, prova por
+     * inducao que valem para qualquer numero de frames. */
+    prev = (argus_state_t)__VERIFIER_nondet_int();
+#else
     argus_init(&c, 160, 120);
     prev = c.state;
+#ifdef INV
+    __ESBMC_assert(inv_ok(&c, prev), "INV: vale no estado inicial (caso base)");
+#endif
+#endif
 
 #ifdef UNBOUNDED
 #ifdef LOOP_INV
@@ -193,7 +237,20 @@ int main(void) {
         n_before = c.n_tracks;
 #endif
         /* ---------- ambiente: um frame de deteccoes ---------- */
-#if defined(P6_TRACE) && !defined(UNBOUNDED)
+#if defined(P6_SYM) && !defined(UNBOUNDED)
+        /* P6, busca simbolica: nos P6_SYM primeiros frames entram de 0 a
+         * MAX_DETS objetos em posicoes x QUAISQUER (y fixo); depois nenhum.
+         * O ESBMC prova (ou refuta) P6 para todas essas entradas. */
+        if (step < P6_SYM) {
+            n = __VERIFIER_nondet_int();
+            __ESBMC_assume(n >= 0 && n <= MAX_DETS);
+        } else n = 0;
+        for (d = 0; d < MAX_DETS; d++) {
+            dets[d].x = __VERIFIER_nondet_int();
+            __ESBMC_assume(dets[d].x >= 0 && dets[d].x < 160);
+            dets[d].y = 60;
+        }
+#elif defined(P6_TRACE) && !defined(UNBOUNDED)
         /* P6, traco concreto: P6_TRACE objetos aparecem juntos no frame 0
          * (x = 10, 60, 110: longe entre si) e somem. Sem entrada simbolica:
          * o ESBMC executa o codigo real neste cenario e checa P6. */
@@ -337,7 +394,9 @@ int main(void) {
 #endif
         prev = c.state;
 #ifdef INV
+#ifndef NO_INV_ASSERT
         __ESBMC_assert(inv_ok(&c, prev), "INV: invariante preservada");
+#endif
 #endif
     }
     (void)S_NAME;
