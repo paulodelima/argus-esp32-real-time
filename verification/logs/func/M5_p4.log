@@ -1,0 +1,971 @@
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_func.c
+Parsing verification/mutants/M5/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.089s
+GOTO program processing time: 0.001s
+Starting Bounded Model Checking
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_func.c line 57 column 5 function main
+Unwinding loop 10 iteration 2   file verification/esbmc/argus_func.c line 57 column 5 function main
+Unwinding loop 10 iteration 3   file verification/esbmc/argus_func.c line 57 column 5 function main
+Unwinding loop 10 iteration 4   file verification/esbmc/argus_func.c line 57 column 5 function main
+Unwinding loop 3 iteration 1   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 2   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 3   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 4   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 5   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 6   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 7   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 8   file verification/mutants/M5/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 4 iteration 1   file verification/mutants/M5/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 9 iteration 1   file verification/mutants/M5/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 4 iteration 1   file verification/mutants/M5/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 13 iteration 1   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 2   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 3   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 4   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 5   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 6   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 7   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 8   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M5/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 4 iteration 1   file verification/mutants/M5/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 13 iteration 1   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 2   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 3   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 4   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 5   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 6   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 7   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 8   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M5/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 3   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 4 iteration 1   file verification/mutants/M5/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/mutants/M5/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 13 iteration 1   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 2   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 3   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 4   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 5   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 6   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 7   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 13 iteration 8   file verification/mutants/M5/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/mutants/M5/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 4   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 5   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 6   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 7   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 8   file verification/esbmc/argus_func.c line 64 column 5 function main
+Unwinding loop 5 iteration 1   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 3   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 4   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 5   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 6   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 7   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 8   file verification/mutants/M5/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 3   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 4   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 5   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 6   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 7   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 8   file verification/mutants/M5/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 3   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 4   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 5   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 6   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 7   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 8   file verification/mutants/M5/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 3   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 4   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 5   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 6   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 7   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 8   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 11 iteration 9   file verification/esbmc/argus_func.c line 69 column 9 function main
+Not unwinding loop 11 iteration 10   file verification/esbmc/argus_func.c line 69 column 9 function main
+Unwinding loop 12 iteration 9   file verification/esbmc/argus_func.c line 64 column 5 function main
+Symex completed in: 1.309s (19097 assignments)
+Caching time: 0.002s (removed 60 assertions)
+Slicing time: 1.444s (removed 3907 assignments)
+Generated 16125 VCC(s), 1051 remaining after simplification (15130 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 2.571s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 40.170s
+Building error trace
+
+[Counterexample]
+
+
+State 1 file verification/esbmc/argus_func.c line 52 column 5 function main thread 0
+----------------------------------------------------
+  c = { .state=0, .frame_w=0, .frame_h=0, .center_x=0, .next_id=0,
+    .n_tracks=0, .tracks=nil, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 9 file verification/mutants/M5/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 10 file verification/mutants/M5/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 11 file verification/mutants/M5/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 12 file verification/mutants/M5/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 13 file verification/mutants/M5/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 14 file verification/mutants/M5/argus_fsm.c line 116 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 33 (00000000 00000000 00000000 00100001)
+
+State 17 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=c?1!0&0#32.state, .frame_w=160, .frame_h=120,
+    .center_x=80, .next_id=c?1!0&0#32.next_id, .n_tracks=c?1!0&0#32.n_tracks,
+    .tracks=c?1!0&0#32.tracks WITH [0:=c?1!0&0#32.tracks[0] WITH [age:=c?1!0&0#32.tracks[0].age + 1]], .ev_q=c?1!0&0#32.ev_q,
+    .ev_head=0, .ev_tail=0, .ev_count=0,
+    .last_event=0, .ev_dropped=0 }
+
+State 18 file verification/mutants/M5/argus_fsm.c line 131 column 13 function argus_update thread 0
+----------------------------------------------------
+  d2 = 0 (00000000 00000000 00000000 00000000)
+
+State 22 file verification/mutants/M5/argus_fsm.c line 132 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_x = { .state=c?1!0&0#32.state, .frame_w=160, .frame_h=120,
+    .center_x=80, .next_id=c?1!0&0#32.next_id, .n_tracks=c?1!0&0#32.n_tracks,
+    .tracks=c?1!0&0#33.tracks WITH [0:=c?1!0&0#33.tracks[0] WITH [last_x:=(unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 >= 32 && (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 < 64 ? (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 == 32 ? 60 : symex::invalid_object191&0#0 : (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 < 32 ? (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 == 0 ? nondet_symbol(symex::nondet8) : symex::invalid_object190&0#0 : symex::invalid_object189&0#0]], .ev_q=c?1!0&0#32.ev_q,
+    .ev_head=0, .ev_tail=0, .ev_count=0,
+    .last_event=0, .ev_dropped=0 }
+
+State 25 file verification/mutants/M5/argus_fsm.c line 133 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_y = { .state=c?1!0&0#32.state, .frame_w=160, .frame_h=120,
+    .center_x=80, .next_id=c?1!0&0#32.next_id, .n_tracks=c?1!0&0#32.n_tracks,
+    .tracks=c?1!0&0#34.tracks WITH [0:=c?1!0&0#34.tracks[0] WITH [last_y:=(unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 + 32 >= 32 && (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 + 32 < 64 ? (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 == 0 ? 60 : symex::invalid_object194&0#0 : (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 + 32 < 32 ? (unsigned _ExtInt(67))((signed long int)d2?2!0&0#1 * 8) * 8 + 32 == 0 ? nondet_symbol(symex::nondet8) : symex::invalid_object193&0#0 : symex::invalid_object192&0#0]], .ev_q=c?1!0&0#32.ev_q,
+    .ev_head=0, .ev_tail=0, .ev_count=0,
+    .last_event=0, .ev_dropped=0 }
+
+State 26 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 27 file verification/mutants/M5/argus_fsm.c line 97 column 5 function argus_update thread 0
+----------------------------------------------------
+  gate = 40 (00000000 00000000 00000000 00101000)
+
+State 28 file verification/mutants/M5/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 29 file verification/mutants/M5/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 30 file verification/mutants/M5/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 31 file verification/mutants/M5/argus_fsm.c line 113 column 9 function argus_update thread 0
+----------------------------------------------------
+  best_dist = 41 (00000000 00000000 00000000 00101001)
+
+State 32 file verification/mutants/M5/argus_fsm.c line 116 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 37 (00000000 00000000 00000000 00100101)
+
+State 35 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=94, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 36 file verification/mutants/M5/argus_fsm.c line 131 column 13 function argus_update thread 0
+----------------------------------------------------
+  d2 = 0 (00000000 00000000 00000000 00000000)
+
+State 40 file verification/mutants/M5/argus_fsm.c line 132 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=131, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 43 file verification/mutants/M5/argus_fsm.c line 133 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_y = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=131, .last_y=60,
+    .age=3, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 44 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 45 file verification/mutants/M5/argus_fsm.c line 97 column 5 function argus_update thread 0
+----------------------------------------------------
+  gate = 40 (00000000 00000000 00000000 00101000)
+
+State 46 file verification/mutants/M5/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 47 file verification/mutants/M5/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 48 file verification/mutants/M5/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 49 file verification/mutants/M5/argus_fsm.c line 113 column 9 function argus_update thread 0
+----------------------------------------------------
+  best_dist = 41 (00000000 00000000 00000000 00101001)
+
+State 50 file verification/mutants/M5/argus_fsm.c line 116 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 40 (00000000 00000000 00000000 00101000)
+
+State 53 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=131, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 54 file verification/mutants/M5/argus_fsm.c line 131 column 13 function argus_update thread 0
+----------------------------------------------------
+  d2 = 0 (00000000 00000000 00000000 00000000)
+
+State 58 file verification/mutants/M5/argus_fsm.c line 132 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=4, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 61 file verification/mutants/M5/argus_fsm.c line 133 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].last_y = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=4, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 62 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 63 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=0 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 64 file verification/mutants/M5/argus_fsm.c line 136 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=5, .missed=c.tracks[0].missed + 1 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 65 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 66 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=1 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 67 file verification/mutants/M5/argus_fsm.c line 136 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=6, .missed=c.tracks[0].missed + 1 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 68 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 69 file verification/mutants/M5/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=c.tracks[0].age + 1, .missed=2 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 70 file verification/mutants/M5/argus_fsm.c line 136 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks={ .active=1, .id=1, .start_x=127, .last_x=91, .last_y=60,
+    .age=7, .missed=c.tracks[0].missed + 1 }, .ev_q={ 16, 1073741824, 0, 0, 0, 0, 0, 0 },
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 71 file verification/mutants/M5/argus_fsm.c line 31 column 5 function classify thread 0
+----------------------------------------------------
+  travel = 36 (00000000 00000000 00000000 00100100)
+
+State 72 file verification/mutants/M5/argus_fsm.c line 32 column 5 function classify thread 0
+----------------------------------------------------
+  min_travel = 32 (00000000 00000000 00000000 00100000)
+
+State 73 file verification/mutants/M5/argus_fsm.c line 37 column 5 function classify thread 0
+----------------------------------------------------
+  started_door = (signed int)(c.tracks[0].start_x < 80)
+
+State 74 file verification/mutants/M5/argus_fsm.c line 38 column 5 function classify thread 0
+----------------------------------------------------
+  ended_interior = (signed int)(c.tracks[0].last_x > 80)
+
+State 75 file verification/mutants/M5/argus_fsm.c line 39 column 5 function classify thread 0
+----------------------------------------------------
+  started_interior = (signed int)(c.tracks[0].start_x > 80)
+
+State 76 file verification/mutants/M5/argus_fsm.c line 40 column 5 function classify thread 0
+----------------------------------------------------
+  ended_door = (signed int)(c.tracks[0].last_x < 80)
+
+State 77 file verification/mutants/M5/argus_fsm.c line 49 column 5 function finalize thread 0
+----------------------------------------------------
+  e = 3 (00000000 00000000 00000000 00000011)
+
+State 82 file verification/mutants/M5/argus_fsm.c line 18 column 5 function ev_push thread 0
+----------------------------------------------------
+  c:argus_fsm.c@694@F@ev_push@c->ev_q[(signed long int)(&c:argus_func.c@1997@F@main@c)->ev_tail] = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=2,
+    .n_tracks=1, .tracks=nil, .ev_q=c.ev_q WITH [(unsigned long int)((32 * (unsigned _ExtInt(67))((signed long int)c.ev_tail)) / 32):=e],
+    .ev_head=0,
+    .ev_tail=0, .ev_count=0, .last_event=0,
+    .ev_dropped=0 }
+
+State 83 file verification/mutants/M5/argus_fsm.c line 19 column 5 function ev_push thread 0
+----------------------------------------------------
+  c->ev_tail = 1 (00000000 00000000 00000000 00000001)
+
+State 84 file verification/mutants/M5/argus_fsm.c line 20 column 5 function ev_push thread 0
+----------------------------------------------------
+  c->ev_count = 1 (00000000 00000000 00000000 00000001)
+
+State 85 file verification/mutants/M5/argus_fsm.c line 53 column 26 function finalize thread 0
+----------------------------------------------------
+  c->n_tracks = 0 (00000000 00000000 00000000 00000000)
+
+State 90 file verification/mutants/M5/argus_fsm.c line 88 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  e = 3 (00000000 00000000 00000000 00000011)
+
+State 91 file verification/mutants/M5/argus_fsm.c line 89 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  c->ev_head = 1 (00000000 00000000 00000000 00000001)
+
+State 92 file verification/mutants/M5/argus_fsm.c line 90 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  c->ev_count = 0 (00000000 00000000 00000000 00000000)
+
+State 93 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 3 (00000000 00000000 00000000 00000011)
+
+State 94 file verification/esbmc/argus_func.c line 70 column 13 function main thread 0
+----------------------------------------------------
+  n_events = 1 (00000000 00000000 00000000 00000001)
+
+State 95 file verification/esbmc/argus_func.c line 71 column 13 function main thread 0
+----------------------------------------------------
+  ev_type = 3 (00000000 00000000 00000000 00000011)
+
+State 96 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 97 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 98 file verification/mutants/M5/argus_fsm.c line 190 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->state = 0 (00000000 00000000 00000000 00000000)
+
+State 99 file verification/esbmc/argus_func.c line 69 column 16 function main thread 0
+----------------------------------------------------
+  e = 0 (00000000 00000000 00000000 00000000)
+
+State 100 file verification/esbmc/argus_func.c line 77 column 9 function main thread 0
+----------------------------------------------------
+  s = 127 (00000000 00000000 00000000 01111111)
+
+State 101 file verification/esbmc/argus_func.c line 77 column 9 function main thread 0
+----------------------------------------------------
+  f = 91 (00000000 00000000 00000000 01011011)
+
+State 104 file verification/esbmc/argus_func.c line 86 column 9 function main thread 0
+----------------------------------------------------
+Violated property:
+  file verification/esbmc/argus_func.c line 86 column 9 function main
+  P8: bip no 4o quadro sem o objeto
+  n_events == 0 || ev_step == 4 - 1 + 4
+
+
+** Results:
+verification/esbmc/argus_func.c, function main
+  PASSED       [main.array-bounds-violated.1]              line  58  array bounds violated: array `x' lower bound
+  PASSED       [main.array-bounds-violated.2]              line  58  array bounds violated: array `x' upper bound
+  PASSED       [main.array-bounds-violated.3]              line  59  array bounds violated: array `x' lower bound [(signed long int)k >= 0]
+  PASSED       [main.array-bounds-violated.4]              line  59  array bounds violated: array `x' lower bound [x[(signed long int)k] >= 0 => (signed long int)k >= 0]
+  PASSED       [main.array-bounds-violated.5]              line  59  array bounds violated: array `x' upper bound [(signed long int)k < 4]
+  PASSED       [main.array-bounds-violated.6]              line  59  array bounds violated: array `x' upper bound [x[(signed long int)k] >= 0 => (signed long int)k < 4]
+  PASSED       [main.array-bounds-violated.7]              line  60  array bounds violated: array `x' lower bound [(signed long int)k >= 0]
+  PASSED       [main.array-bounds-violated.8]              line  60  array bounds violated: array `x' lower bound [(signed long int)(k - 1) >= 0]
+  PASSED       [main.array-bounds-violated.9]              line  60  array bounds violated: array `x' upper bound [(signed long int)k < 4]
+  PASSED       [main.array-bounds-violated.10]             line  60  array bounds violated: array `x' upper bound [(signed long int)(k - 1) < 4]
+  PASSED       [main.array-bounds-violated.11]             line  66  array bounds violated: array `x' lower bound
+  PASSED       [main.array-bounds-violated.12]             line  66  array bounds violated: array `x' upper bound
+  NOT CHECKED  [main.assertion.1]                          line  69  unwinding assertion loop 11
+  NOT CHECKED  [main.assertion.2]                          line  82  P7: exatamente um bip por objeto
+  NOT CHECKED  [main.assertion.3]                          line  83  P7: tipo do bip corresponde a trajetoria
+  FAILED       [main.assertion.4]                          line  86  P8: bip no 4o quadro sem o objeto
+verification/mutants/M5/argus_fsm.c, function argus_init
+  PASSED       [argus_init.object-out-of-bounds.1]         line  72  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.1]                    line  72  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.2]         line  73  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.2]                    line  73  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.3]         line  74  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.3]                    line  74  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.4]         line  75  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.4]                    line  75  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.5]         line  76  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.5]                    line  76  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.6]         line  77  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.6]                    line  77  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.7]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.7]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.8]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.8]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.9]         line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.9]                    line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.10]        line  79  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.10]                   line  79  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.11]        line  80  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.11]                   line  80  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.array-bounds-violated.1]        line  81  array bounds violated: array lower bound
+  PASSED       [argus_init.array-bounds-violated.2]        line  81  array bounds violated: array upper bound
+  PASSED       [argus_init.object-out-of-bounds.12]        line  81  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.12]                   line  81  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function argus_poll_event
+  PASSED       [argus_poll_event.object-out-of-bounds.1]   line  87  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.1]              line  87  dereference failure: Incorrect alignment when accessing data object
+  NOT CHECKED  [argus_poll_event.array-bounds-violated.1]  line  88  array bounds violated: array lower bound
+  NOT CHECKED  [argus_poll_event.array-bounds-violated.2]  line  88  array bounds violated: array upper bound
+  PASSED       [argus_poll_event.object-out-of-bounds.2]   line  88  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.2]              line  88  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_poll_event.object-out-of-bounds.3]   line  89  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.3]              line  89  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_poll_event.object-out-of-bounds.4]   line  90  dereference failure: Access to object out of bounds
+  PASSED       [argus_poll_event.assertion.4]              line  90  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function argus_update
+  PASSED       [argus_update.object-out-of-bounds.1]       line  97  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.1]                  line  97  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.1]      line 106  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.2]      line 106  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.object-out-of-bounds.2]       line 106  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.2]                  line 106  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.3]      line 108  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.4]      line 108  array bounds violated: array `matched_det' upper bound
+  PASSED       [argus_update.array-bounds-violated.5]      line 112  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.6]      line 112  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.3]       line 112  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.3]                  line 112  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.7]      line 115  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.8]      line 115  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.array-bounds-violated.9]      line 116  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.10]     line 116  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.4]       line 116  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.4]                  line 116  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.11]     line 117  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.12]     line 117  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.5]       line 117  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.5]                  line 117  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.13]     line 121  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.14]     line 121  array bounds violated: array `matched_det' upper bound
+  NOT CHECKED  [argus_update.array-bounds-violated.15]     line 122  array bounds violated: array `det_used' lower bound
+  NOT CHECKED  [argus_update.array-bounds-violated.16]     line 122  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.array-bounds-violated.17]     line 128  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.18]     line 128  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.6]       line 128  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.6]                  line 128  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.19]     line 129  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.20]     line 129  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.7]       line 129  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.7]                  line 129  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.21]     line 130  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.22]     line 130  array bounds violated: array `matched_det' upper bound
+  PASSED       [argus_update.array-bounds-violated.23]     line 131  array bounds violated: array `matched_det' lower bound
+  PASSED       [argus_update.array-bounds-violated.24]     line 131  array bounds violated: array `matched_det' upper bound
+  PASSED       [argus_update.array-bounds-violated.25]     line 132  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.26]     line 132  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.8]       line 132  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.8]                  line 132  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.27]     line 133  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.28]     line 133  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.9]       line 133  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.9]                  line 133  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.29]     line 134  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.30]     line 134  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.10]      line 134  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.10]                 line 134  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.31]     line 136  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.32]     line 136  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.11]      line 136  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.11]                 line 136  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.33]     line 139  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.34]     line 139  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.12]      line 139  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.12]                 line 139  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.13]      line 141  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.13]                 line 141  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.35]     line 142  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.36]     line 142  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.14]      line 142  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.14]                 line 142  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.15]      line 143  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.15]                 line 143  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.16]      line 143  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.16]                 line 143  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.37]     line 148  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.38]     line 148  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.17]      line 148  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.17]                 line 148  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.39]     line 156  array bounds violated: array `det_used' lower bound
+  PASSED       [argus_update.array-bounds-violated.40]     line 156  array bounds violated: array `det_used' upper bound
+  PASSED       [argus_update.array-bounds-violated.41]     line 159  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.42]     line 159  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.18]      line 159  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.18]                 line 159  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.43]     line 160  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.44]     line 160  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.19]      line 160  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.19]                 line 160  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.20]      line 161  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.20]                 line 161  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.45]     line 162  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.46]     line 162  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.21]      line 162  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.21]                 line 162  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.47]     line 163  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.48]     line 163  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.22]      line 163  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.22]                 line 163  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.49]     line 164  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.50]     line 164  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.23]      line 164  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.23]                 line 164  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.51]     line 165  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.52]     line 165  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.24]      line 165  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.24]                 line 165  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.array-bounds-violated.53]     line 166  array bounds violated: array lower bound
+  PASSED       [argus_update.array-bounds-violated.54]     line 166  array bounds violated: array upper bound
+  PASSED       [argus_update.object-out-of-bounds.25]      line 166  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.25]                 line 166  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.26]      line 167  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.26]                 line 167  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.27]      line 177  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.27]                 line 177  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.28]      line 179  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.28]                 line 179  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.29]      line 179  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.29]                 line 179  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.30]      line 182  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.30]                 line 182  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.31]      line 185  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.31]                 line 185  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.32]      line 189  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.32]                 line 189  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.33]      line 190  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.33]                 line 190  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_update.object-out-of-bounds.34]      line 193  dereference failure: Access to object out of bounds
+  PASSED       [argus_update.assertion.34]                 line 193  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function classify
+  PASSED       [classify.object-out-of-bounds.1]           line  31  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.1]                      line  31  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.2]           line  32  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.2]                      line  32  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.3]           line  37  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.3]                      line  37  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.4]           line  38  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.4]                      line  38  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.5]           line  39  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.5]                      line  39  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [classify.object-out-of-bounds.6]           line  40  dereference failure: Access to object out of bounds
+  PASSED       [classify.assertion.6]                      line  40  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function ev_push
+  PASSED       [ev_push.object-out-of-bounds.1]            line  14  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.1]                       line  14  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.object-out-of-bounds.2]            line  15  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.2]                       line  15  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.object-out-of-bounds.3]            line  15  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.3]                       line  15  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.array-bounds-violated.1]           line  18  array bounds violated: array lower bound
+  PASSED       [ev_push.array-bounds-violated.2]           line  18  array bounds violated: array upper bound
+  PASSED       [ev_push.object-out-of-bounds.4]            line  18  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.4]                       line  18  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.object-out-of-bounds.5]            line  19  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.5]                       line  19  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [ev_push.object-out-of-bounds.6]            line  20  dereference failure: Access to object out of bounds
+  PASSED       [ev_push.assertion.6]                       line  20  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function finalize
+  PASSED       [finalize.object-out-of-bounds.1]           line  51  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.1]                      line  51  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [finalize.array-bounds-violated.1]          line  52  array bounds violated: array lower bound
+  PASSED       [finalize.array-bounds-violated.2]          line  52  array bounds violated: array upper bound
+  PASSED       [finalize.object-out-of-bounds.2]           line  52  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.2]                      line  52  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [finalize.object-out-of-bounds.3]           line  53  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.3]                      line  53  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [finalize.object-out-of-bounds.4]           line  53  dereference failure: Access to object out of bounds
+  PASSED       [finalize.assertion.4]                      line  53  dereference failure: Incorrect alignment when accessing data object
+verification/mutants/M5/argus_fsm.c, function free_slot
+  PASSED       [free_slot.array-bounds-violated.1]         line  59  array bounds violated: array lower bound
+  PASSED       [free_slot.array-bounds-violated.2]         line  59  array bounds violated: array upper bound
+  PASSED       [free_slot.object-out-of-bounds.1]          line  59  dereference failure: Access to object out of bounds
+  PASSED       [free_slot.assertion.1]                     line  59  dereference failure: Incorrect alignment when accessing data object
+
+** 1 of 214 properties failed, 206 passed, 7 not checked
+   (this mode stops at the first violation; use --multi-property for a verdict on every property)
+
+VERIFICATION FAILED
+ESBMC version 8.6.0 64-bit aarch64 macos

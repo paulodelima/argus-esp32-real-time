@@ -1,0 +1,10 @@
+solver,frames,objetos_por_frame,veredicto,tempo_total_s,vccs,tempo_solver_s
+mathsat,2,1,PASSA,19,10,3.333
+mathsat,3,1,SEM_VEREDICTO,300,15,
+mathsat,4,1,SEM_VEREDICTO,300,20,
+mathsat,5,1,SEM_VEREDICTO,300,25,
+mathsat,6,1,SEM_VEREDICTO,300,30,
+mathsat,7,1,SEM_VEREDICTO,300,35,
+mathsat,4,2,SEM_VEREDICTO,301,20,
+mathsat,4,3,SEM_VEREDICTO,300,20,
+mathsat,4,4,SEM_VEREDICTO,300,20,

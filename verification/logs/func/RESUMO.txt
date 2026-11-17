@@ -1,0 +1,9 @@
+v2   objeto em 2 frames  PASSA           25s  
+v2   objeto em 3 frames  PASSA           36s  
+M5   objeto em 2 frames  FALHA           29s  P8: bip no 4o quadro sem o objeto
+v2   objeto em 4 frames  PASSA           49s  
+M5   objeto em 3 frames  FALHA           31s  P8: bip no 4o quadro sem o objeto
+v1   objeto em 2 frames  PASSA           18s  
+M5   objeto em 4 frames  FALHA           49s  P8: bip no 4o quadro sem o objeto
+v1   objeto em 3 frames  PASSA           24s  
+v1   objeto em 4 frames  PASSA           28s  

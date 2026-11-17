@@ -1,0 +1,10 @@
+solver,frames,objetos_por_frame,veredicto,tempo_total_s,vccs,tempo_solver_s
+cvc5,2,1,PASSA,91,10,66.476
+cvc5,3,1,SEM_VEREDICTO,300,15,
+cvc5,4,1,SEM_VEREDICTO,300,20,
+cvc5,5,1,SEM_VEREDICTO,300,25,
+cvc5,6,1,SEM_VEREDICTO,300,30,
+cvc5,7,1,SEM_VEREDICTO,300,35,
+cvc5,4,2,SEM_VEREDICTO,300,20,
+cvc5,4,3,SEM_VEREDICTO,301,20,
+cvc5,4,4,SEM_VEREDICTO,300,20,
