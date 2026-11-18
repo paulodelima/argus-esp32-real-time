@@ -1,0 +1,435 @@
+Voce e um especialista em verificacao formal de software embarcado em C.
+
+Firmware (argus_fsm.h):
+```c
+/* =====================================================================
+ * argus_fsm.h  --  Maquina de estados do firmware ARGUS  (v2, candidata)
+ *
+ * v2: mudancas guiadas por verificacao (ver firmware_v2/CHANGES.md).
+ *
+ * NUCLEO independente de hardware. O MESMO arquivo .c eh usado por:
+ *   (a) o firmware ESP32-CAM (argus_esp32cam.ino)
+ *   (b) os testes unitarios em PC (tests/test_fsm.c)
+ *   (c) a verificacao formal no ESBMC (verification/argus_wcet.c)
+ *
+ * A camada de visao (deteccao de pixels de movimento -> centroides)
+ * fica FORA daqui, de proposito: este modulo so consome centroides.
+ * Essa separacao eh o que torna a logica testavel e verificavel.
+ *
+ * Estados (Figura 3 da proposta):
+ *   IDLE -> TRACKING -> DECIDING -> FEEDBACK -> IDLE
+ * ===================================================================== */
+#ifndef ARGUS_FSM_H
+#define ARGUS_FSM_H
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
+/* --------------------- parametros de projeto --------------------- */
+#define ARGUS_MAX_TRACKS    8   /* limite fisico de tracks simultaneos  */
+#define ARGUS_MAX_MISSED    3   /* frames sem casar antes de finalizar   */
+#define ARGUS_MAX_EVENTS    8   /* fila de eventos pendentes de feedback */
+
+/* Distancia (em % da largura) para casar deteccao->track. Acima disso,
+ * a deteccao vira um track novo. */
+#define ARGUS_GATE_PCT      25
+
+/* Deslocamento horizontal minimo (em % da largura) para considerar a
+ * trajetoria valida. Abaixo disso -> AMBIGUOUS (bip duplo). */
+#define ARGUS_MIN_TRAVEL_PCT 20
+
+/* Idade maxima de um track (frames) antes de declarar tracking perdido.
+ * Transicao tracejada da Figura 3 -> AMBIGUOUS. */
+#define ARGUS_MAX_AGE       60
+
+/* --------------------------- tipos ------------------------------ */
+typedef enum {
+    ARGUS_IDLE = 0,
+    ARGUS_TRACKING,
+    ARGUS_DECIDING,
+    ARGUS_FEEDBACK
+} argus_state_t;
+
+typedef enum {
+    ARGUS_EVENT_NONE = 0,
+    ARGUS_EVENT_IN,        /* bip simples */
+    ARGUS_EVENT_OUT,       /* bip simples */
+    ARGUS_EVENT_AMBIGUOUS  /* bip duplo   */
+} argus_event_t;
+
+typedef struct { int x; int y; } argus_point_t;
+
+typedef struct {
+    int active;
+    int id;
+    int start_x;   /* x na primeira deteccao */
+    int last_x;    /* x na deteccao mais recente */
+    int last_y;
+    int age;       /* frames vivos */
+    int missed;    /* frames consecutivos sem casar */
+} argus_track_t;
+
+typedef struct {
+    argus_state_t state;
+    int frame_w, frame_h;
+    int center_x;        /* eixo de classificacao (porta | interior) */
+    int next_id;
+    int n_tracks;        /* tracks ATIVOS == o N do modelo de custo */
+
+    argus_track_t tracks[ARGUS_MAX_TRACKS];
+
+    /* fila circular de eventos prontos para feedback */
+    argus_event_t ev_q[ARGUS_MAX_EVENTS];
+    int ev_head, ev_tail, ev_count;
+
+    argus_event_t last_event; /* ultimo evento despachado (debug) */
+
+    /* v2: eventos descartados por fila cheia. Nunca mais e silencioso:
+     * o host pode ler e decidir (log, bip de erro, aumentar a fila). */
+    int ev_dropped;
+} argus_ctx_t;
+
+/* ----------------------------- API ------------------------------ */
+
+/* Inicializa o contexto. center_x default = w/2 (eixo central). */
+void argus_init(argus_ctx_t *ctx, int w, int h);
+
+/* Processa as deteccoes de UM frame. `dets` tem `n_dets` centroides.
+ * Atualiza tracks, finaliza os que sairam e enfileira eventos.
+ * Retorna o estado resultante.
+ * v2, contrato de entrada: dets==NULL ou n_dets<=0 vale como frame vazio;
+ * n_dets e limitado a 64; deteccoes fora de [0,w)x[0,h) sao ignoradas. */
+argus_state_t argus_update(argus_ctx_t *ctx,
+                           const argus_point_t *dets, int n_dets);
+
+/* Retira um evento da fila (ARGUS_EVENT_NONE se vazia). O loop do host
+ * chama isto para acionar o buzzer. */
+argus_event_t argus_poll_event(argus_ctx_t *ctx);
+
+/* Numero de tracks ativos = N corrente do modelo Ctotal(N). */
+int argus_active_tracks(const argus_ctx_t *ctx);
+
+#ifdef __cplusplus
+}
+#endif
+#endif /* ARGUS_FSM_H */
+
+```
+
+Firmware (argus_fsm.c):
+```c
+/* =====================================================================
+ * argus_fsm.c  --  Implementacao da maquina de estados ARGUS  (v2, candidata)
+ * Sem dependencia de hardware, sem malloc, sem float obrigatorio.
+ * Mudancas em relacao a v1 marcadas com "v2:".
+ * ===================================================================== */
+#include "argus_fsm.h"
+
+/* abs inteiro local (evita depender de stdlib no embarcado) */
+static int iabs(int v) { return v < 0 ? -v : v; }
+
+/* --------------------------- helpers ---------------------------- */
+/* v2: retorna 1 se enfileirou; 0 se a fila estava cheia (e conta). */
+static int ev_push(argus_ctx_t *c, argus_event_t e) {
+    if (c->ev_count >= ARGUS_MAX_EVENTS) {
+        if (c->ev_dropped < 0x7FFFFFFF) c->ev_dropped++;   /* v2: observavel */
+        return 0;
+    }
+    c->ev_q[c->ev_tail] = e;
+    c->ev_tail = (c->ev_tail + 1) % ARGUS_MAX_EVENTS;
+    c->ev_count++;
+    return 1;
+}
+
+/* Classifica uma trajetoria finalizada comparando inicio x fim em
+ * relacao ao eixo central. Convencao (ver Figura 2): a PORTA fica do
+ * lado x < center_x; o INTERIOR fica do lado x > center_x.
+ *   porta -> interior  => IN  (entrando)
+ *   interior -> porta  => OUT (saindo)
+ * Deslocamento pequeno ou sem cruzar o eixo => AMBIGUOUS. */
+static argus_event_t classify(const argus_ctx_t *c, const argus_track_t *t) {
+    int travel = iabs(t->last_x - t->start_x);
+    int min_travel = (c->frame_w * ARGUS_MIN_TRAVEL_PCT) / 100;
+
+    if (travel < min_travel)
+        return ARGUS_EVENT_AMBIGUOUS;          /* mexeu de leve / ruido */
+
+    int started_door    = (t->start_x < c->center_x);
+    int ended_interior  = (t->last_x  > c->center_x);
+    int started_interior= (t->start_x > c->center_x);
+    int ended_door      = (t->last_x  < c->center_x);
+
+    if (started_door && ended_interior)  return ARGUS_EVENT_IN;
+    if (started_interior && ended_door)  return ARGUS_EVENT_OUT;
+    return ARGUS_EVENT_AMBIGUOUS;               /* nao cruzou o eixo */
+}
+
+/* Finaliza um track: classifica, enfileira evento, desativa. */
+static void finalize(argus_ctx_t *c, int idx) {
+    argus_event_t e = classify(c, &c->tracks[idx]);
+    ev_push(c, e);
+    c->last_event = e;
+    c->tracks[idx].active = 0;
+    if (c->n_tracks > 0) c->n_tracks--;
+}
+
+/* Encontra slot livre; -1 se nao houver. */
+static int free_slot(const argus_ctx_t *c) {
+    for (int i = 0; i < ARGUS_MAX_TRACKS; i++)
+        if (!c->tracks[i].active) return i;
+    return -1;
+}
+
+/* ----------------------------- API ------------------------------ */
+#define ARGUS_MAX_DIM 4096   /* v2: limite de resolucao (evita overflow) */
+
+void argus_init(argus_ctx_t *c, int w, int h) {
+    int i;
+    if (w < 2) w = 2;                                   /* v2: limites */
+    if (w > ARGUS_MAX_DIM) w = ARGUS_MAX_DIM;
+    if (h < 2) h = 2;
+    if (h > ARGUS_MAX_DIM) h = ARGUS_MAX_DIM;
+    c->state = ARGUS_IDLE;
+    c->frame_w = w;
+    c->frame_h = h;
+    c->center_x = w / 2;
+    c->next_id = 1;
+    c->n_tracks = 0;
+    c->ev_head = c->ev_tail = c->ev_count = 0;
+    c->last_event = ARGUS_EVENT_NONE;
+    c->ev_dropped = 0;                                             /* v2 */
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) c->tracks[i].active = 0;
+}
+
+int argus_active_tracks(const argus_ctx_t *c) { return c->n_tracks; }
+
+argus_event_t argus_poll_event(argus_ctx_t *c) {
+    if (c->ev_count == 0) return ARGUS_EVENT_NONE;
+    argus_event_t e = c->ev_q[c->ev_head];
+    c->ev_head = (c->ev_head + 1) % ARGUS_MAX_EVENTS;
+    c->ev_count--;
+    return e;
+}
+
+argus_state_t argus_update(argus_ctx_t *c,
+                           const argus_point_t *dets, int n_dets) {
+    int i, d;
+    int gate = (c->frame_w * ARGUS_GATE_PCT) / 100;
+    int matched_det[ARGUS_MAX_TRACKS]; /* indice da deteccao casada, -1 nao */
+    int det_used[64];                  /* deteccoes ja consumidas           */
+    int finalized_now = 0;             /* v2: tracks encerrados neste frame */
+
+    /* v2: contrato de entrada */
+    if (dets == 0 || n_dets < 0) n_dets = 0;
+    if (n_dets > 64) n_dets = 64;
+    for (d = 0; d < n_dets; d++)
+        det_used[d] = (dets[d].x < 0 || dets[d].x >= c->frame_w ||
+                       dets[d].y < 0 || dets[d].y >= c->frame_h);   /* ignora */
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) matched_det[i] = -1;
+
+    /* --- 1. casamento guloso vizinho-mais-proximo track<-deteccao --- */
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        int best = -1, best_dist = gate + 1;
+        for (d = 0; d < n_dets && d < 64; d++) {
+            if (det_used[d]) continue;
+            int dist = iabs(dets[d].x - c->tracks[i].last_x)
+                     + iabs(dets[d].y - c->tracks[i].last_y); /* L1 */
+            if (dist <= gate && dist < best_dist) { best_dist = dist; best = d; }
+        }
+        if (best >= 0) {
+            matched_det[i] = best;
+            det_used[best] = 1;
+        }
+    }
+
+    /* --- 2. atualiza tracks (casados ou perdidos) --- */
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        c->tracks[i].age++;
+        if (matched_det[i] >= 0) {
+            int d2 = matched_det[i];
+            c->tracks[i].last_x = dets[d2].x;
+            c->tracks[i].last_y = dets[d2].y;
+            c->tracks[i].missed = 0;
+        } else {
+            c->tracks[i].missed++;
+        }
+        /* tracking perdido por idade -> falha (bip duplo) */
+        if (c->tracks[i].age > ARGUS_MAX_AGE) {
+            ev_push(c, ARGUS_EVENT_AMBIGUOUS);
+            c->last_event = ARGUS_EVENT_AMBIGUOUS;
+            c->tracks[i].active = 0;
+            if (c->n_tracks > 0) c->n_tracks--;
+            finalized_now++;                                       /* v2 */
+            continue;
+        }
+        /* saiu do campo (missed demais) -> finaliza e classifica */
+        if (c->tracks[i].missed > ARGUS_MAX_MISSED) {
+            finalize(c, i);
+            finalized_now++;                                       /* v2 */
+        }
+    }
+
+    /* --- 3. deteccoes nao casadas viram tracks novos --- */
+    for (d = 0; d < n_dets && d < 64; d++) {
+        if (det_used[d]) continue;
+        int slot = free_slot(c);
+        if (slot < 0) break; /* saturacao de carga */
+        c->tracks[slot].active  = 1;
+        c->tracks[slot].id      = c->next_id;
+        c->next_id = (c->next_id >= 0x3FFFFFFF) ? 1 : c->next_id + 1;  /* v2 */
+        c->tracks[slot].start_x = dets[d].x;
+        c->tracks[slot].last_x  = dets[d].x;
+        c->tracks[slot].last_y  = dets[d].y;
+        c->tracks[slot].age     = 1;
+        c->tracks[slot].missed  = 0;
+        c->n_tracks++;
+    }
+
+    /* --- 4. transicao de estado --- v2: explicita, por estado atual.
+     *   IDLE     -> TRACKING  quando ha tracks ativos
+     *   TRACKING -> DECIDING  quando algum track foi encerrado neste frame
+     *   DECIDING -> FEEDBACK  no frame seguinte (decisao = evento na fila)
+     *   FEEDBACK -> IDLE      quando o host esvaziou a fila e nao ha tracks
+     *   FEEDBACK -> TRACKING  quando esvaziou a fila mas ainda ha tracks
+     * (refinamento da Figura 3 para multiplos objetos) */
+    switch (c->state) {
+    case ARGUS_IDLE:
+        if (c->n_tracks > 0) c->state = ARGUS_TRACKING;
+        break;
+    case ARGUS_TRACKING:
+        if (finalized_now > 0) c->state = ARGUS_DECIDING;
+        break;
+    case ARGUS_DECIDING:
+        c->state = ARGUS_FEEDBACK;
+        break;
+    case ARGUS_FEEDBACK:
+    default:
+        if (c->ev_count == 0)
+            c->state = (c->n_tracks > 0) ? ARGUS_TRACKING : ARGUS_IDLE;
+        break;
+    }
+    return c->state;
+}
+
+```
+
+Contexto da prova: o harness executa um frame por volta: entrada realista
+(ate MAX_DETS=1 deteccoes por frame, x em [0,160), y fixo), chama
+argus_update e depois o host drena a fila de eventos (argus_poll_event).
+Estado inicial: argus_init(&c, 160, 120). next_id volta de 0x3FFFFFFF para 1.
+Prova por inducao: caso base (o estado inicial satisfaz a invariante) e passo
+(de QUALQUER estado que satisfaz a invariante, um frame a preserva e as
+propriedades valem). A invariante e  inv_ok(c, prev) && inv_extra(c).
+
+inv_ok atual (fixa, nao reescreva):
+```c
+static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
+    int i, ativos = 0;
+    if (prev != c->state) return 0;
+    if (c->state < ARGUS_IDLE || c->state > ARGUS_FEEDBACK) return 0;
+    if (c->frame_w != 160 || c->frame_h != 120 || c->center_x != 80) return 0;
+    if (c->n_tracks < 0 || c->n_tracks > ARGUS_MAX_TRACKS) return 0;
+    if (c->ev_count != 0) return 0;                       /* host drenou */
+    if (c->ev_head < 0 || c->ev_head >= ARGUS_MAX_EVENTS) return 0;
+    if (c->ev_tail != c->ev_head) return 0;
+    if (c->next_id < 1 || c->next_id > 0x3FFFFFFF) return 0;
+#ifdef ARGUS_V2
+    if (c->ev_dropped != 0) return 0;
+#endif
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        ativos++;
+        if (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160) return 0;
+        if (c->tracks[i].last_x  < 0 || c->tracks[i].last_x  >= 160) return 0;
+        if (c->tracks[i].last_y  < 0 || c->tracks[i].last_y  >= 120) return 0;
+        if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+        if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+#ifdef INV_IDS
+        /* ids dos objetos ativos: validos, distintos entre si e diferentes
+         * do proximo id (um objeto vive <= 60 frames; o contador so daria a
+         * volta depois de ~1e9 objetos). */
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        {
+            /* "idade" do id: quantos ids foram dados depois dele, contando a
+             * volta do contador (1..0x3FFFFFFF). No maximo MAX_DETS por frame
+             * de vida do objeto, entao 1 <= dist <= age * MAX_DETS. */
+            int dist = c->next_id - c->tracks[i].id;   /* cabe em int: |dif| < 2^30 */
+            if (dist <= 0) dist += 0x3FFFFFFF;
+            if (dist < 1 || dist > c->tracks[i].age * MAX_DETS) return 0;
+        }
+        {
+            int j;
+            for (j = i + 1; j < ARGUS_MAX_TRACKS; j++)
+                if (c->tracks[j].active && c->tracks[j].id == c->tracks[i].id) return 0;
+        }
+#endif
+    }
+    if (ativos != c->n_tracks) return 0;
+#ifdef INV_LLM
+    if (!inv_extra(c)) return 0;
+#endif
+    return 1;
+}
+
+```
+
+inv_extra atual:
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, active = 0;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active) {
+            active++;
+            if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+            if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+            if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+        }
+    }
+    if (active != c->n_tracks) return 0;
+    return 1;
+}
+
+```
+
+A proposta anterior REPETE uma versao ja testada e rejeitada. Ela nao exclui o estado de partida do contraexemplo. Compare campo a campo esse estado com o que uma execucao real a partir de argus_init poderia produzir.
+Estado de partida: c = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+c = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+c->tracks[(signed long int)i].age = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+.n_tracks=1, .tracks={ .active=2, .id=3, .start_x=12, .last_x=28, .last_y=115,
+c->tracks[(signed long int)i].missed = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+.n_tracks=1, .tracks={ .active=2, .id=3, .start_x=12, .last_x=28, .last_y=115,
+c:argus_fsm.c@643@F@ev_push@c->ev_q[(signed long int)(&c:argus_harness.c@8169@F@main@c)->ev_tail] = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+c->tracks[(signed long int)slot].active = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=12, .last_x=28, .last_y=115,
+c->tracks[(signed long int)slot].id = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=3,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=12, .last_x=28, .last_y=115,
+c->next_id = 4 (00000000 00000000 00000000 00000100)
+c->tracks[(signed long int)slot].start_x = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=4,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=156, .last_x=28, .last_y=115,
+c->tracks[(signed long int)slot].last_x = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=4,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=156, .last_x=156, .last_y=115,
+c->tracks[(signed long int)slot].last_y = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=4,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=156, .last_x=156, .last_y=60,
+c->tracks[(signed long int)slot].age = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=4,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=156, .last_x=156, .last_y=60,
+c->tracks[(signed long int)slot].missed = { .state=3, .frame_w=160, .frame_h=120, .center_x=80, .next_id=4,
+.n_tracks=0, .tracks={ .active=1, .id=3, .start_x=156, .last_x=156, .last_y=60,
+ativos = (signed int)(c.tracks[0].active != 0)
+ativos = 1 + ((signed int)(c.tracks[1].active != 0))
+Violated property:
+file verification/esbmc/argus_harness.c line 392 column 9 function main
+P4: todo evento e entregue, pendente ou contado como descartado
+finalized == polled + (unsigned long int)c.ev_count + (unsigned long int)c.ev_dropped
+
+Tarefa: escreva uma NOVA versao de inv_extra que exclua o estado de partida
+acima SE ele for inalcancavel a partir de argus_init, e que continue
+verdadeira em TODA execucao real. Seja minimo. Regras:
+- assinatura exata: static int inv_extra(const argus_ctx_t *c)
+- devolve 1 se o estado e aceito, 0 caso contrario
+- use apenas campos de c, macros ARGUS_* e MAX_DETS; lacos so ate ARGUS_MAX_TRACKS
+- nada de printf, malloc, chamadas a outras funcoes ou variaveis globais
+Responda com UM unico bloco ```c contendo apenas a funcao, e depois, em ate
+3 frases, por que ela se preserva em um frame.

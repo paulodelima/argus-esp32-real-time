@@ -1,0 +1,23 @@
+Estado de partida: c = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+c = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+c->tracks[(signed long int)slot].active = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=8388628, .last_x=-1073741798,
+c->tracks[(signed long int)slot].id = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=8388628, .last_x=-1073741798,
+c->next_id = 1 (00000000 00000000 00000000 00000001)
+c->tracks[(signed long int)slot].start_x = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=90, .last_x=-1073741798,
+c->tracks[(signed long int)slot].last_x = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=90, .last_x=90,
+c->tracks[(signed long int)slot].last_y = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=90, .last_x=90,
+c->tracks[(signed long int)slot].age = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=90, .last_x=90,
+c->tracks[(signed long int)slot].missed = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=0, .tracks={ .active=1, .id=1073741823, .start_x=90, .last_x=90,
+ativos = (signed int)(c.tracks[0].active != 0)
+ativos = 1 + ((signed int)(c.tracks[1].active != 0))
+Violated property:
+file verification/esbmc/argus_harness.c line 407 column 9 function main
+INV: invariante preservada
+(_Bool)return_value$_inv_ok$5

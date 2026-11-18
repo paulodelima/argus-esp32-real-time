@@ -1,0 +1,10 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    for (int i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active && c->tracks[i].id < 1) return 0;
+    }
+    return 1;
+}
+```
+
+Esta nova versão de `inv_extra` exclui o estado de partida problemático ao verificar que todos os `id`s de rastreamento ativos são maiores que zero. Isso se preserva em um frame porque `argus_init` garante que `next_id` começa em 1 e nunca é menor que 1, e `argus_update` não permite que `id`s de rastreamento sejam criados com valores menores que 1.

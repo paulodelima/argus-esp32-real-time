@@ -1,0 +1,21 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, active = 0;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active) {
+            active++;
+            if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+            if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+            if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+        }
+    }
+    if (active != c->n_tracks) return 0;
+    return 1;
+}
+```
+
+Esta versão de `inv_extra` verifica que todas as tracks ativas têm IDs válidos, idades e faltas dentro dos limites permitidos. Ela também garante que o número de tracks ativas seja igual ao valor de `n_tracks`. Essas verificações se preservam em um frame porque:
+
+1. As IDs das tracks são mantidas dentro dos limites permitidos, garantindo que não haja IDs inválidos.
+2. As idades das tracks são mantidas dentro dos limites permitidos, garantindo que não haja idades inválidas.
+3. O número de tracks ativas é mantido igual ao valor de `n_tracks`, garantindo que não haja inconsistências entre o número de tracks ativas e o valor de `n_tracks`.

@@ -1,0 +1,22 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, finalized = 0, polled = 0;
+    for (i = 0; i < c->ev_count; i++) {
+        if (c->ev_q[(c->ev_head + i) % ARGUS_MAX_EVENTS] != ARGUS_EVENT_NONE) {
+            finalized++;
+        }
+    }
+    while (c->ev_count > 0) {
+        if (argus_poll_event((argus_ctx_t *)c) != ARGUS_EVENT_NONE) {
+            polled++;
+        }
+    }
+    return finalized == polled + c->ev_dropped;
+}
+```
+
+Esta versão de `inv_extra` mantém a invariante em todas as execuções reais, excluindo o estado de partida que é inalcancável a partir de `argus_init`. A invariante se preserva em um frame porque:
+
+1. A função `argus_update` garante que a fila de eventos seja drenada antes de qualquer novo evento ser enfileirado.
+2. A função `argus_poll_event` garante que todos os eventos enfileirados sejam processados antes de qualquer novo evento ser enfileirado.
+3. A função `argus_update` garante que o estado do contexto seja atualizado corretamente após o processamento de cada frame, mantendo a invariante.

@@ -87,6 +87,12 @@ static const char *S_NAME[4] = {"IDLE", "TRACKING", "DECIDING", "FEEDBACK"};
  * Vale no estado inicial e e preservada por um frame; o harness a ASSUME no
  * inicio de cada volta (restringe o estado arbitrario do passo indutivo) e a
  * AFIRMA no fim (assim a prova continua valida). */
+#ifdef INV_LLM
+/* -DINV_LLM: reforco proposto pelo LLM, em inv_llm_current.h, com a forma
+ *   static int inv_extra(const argus_ctx_t *c) { ... return 1; }
+ * (gerado por verification/inv_llm/qwen_inv.py). */
+#include "inv_llm_current.h"
+#endif
 static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
     int i, ativos = 0;
     if (prev != c->state) return 0;
@@ -129,6 +135,9 @@ static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
 #endif
     }
     if (ativos != c->n_tracks) return 0;
+#ifdef INV_LLM
+    if (!inv_extra(c)) return 0;
+#endif
     return 1;
 }
 #endif

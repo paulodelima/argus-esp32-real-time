@@ -1,0 +1,14 @@
+{
+  "model": "qwen2.5-coder:7b",
+  "ollama": "http://localhost:11434",
+  "rounds": 8,
+  "slots": 2,
+  "max_dets": 1,
+  "fuzz_runs": 300,
+  "esbmc_min": 10,
+  "temperature": 0.2,
+  "llm_timeout": 900,
+  "dry_run": false,
+  "skip_esbmc": false,
+  "inicio": "20261118-093203"
+}

@@ -1,0 +1,14 @@
+Estado de partida: c = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+c = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+c->tracks[(signed long int)i].age = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1073741824, .id=536870914, .start_x=128, .last_x=116,
+c->tracks[(signed long int)i].last_x = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1073741824, .id=536870914, .start_x=128, .last_x=(dets WITH [0:=dets[0] WITH [x:=nondet_symbol(symex::nondet15)] WITH [y:=60]])[(unsigned long int)(((unsigned _ExtInt(67))((signed long int)
+c->tracks[(signed long int)i].last_y = { .state=0, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1073741824, .id=536870914, .start_x=128, .last_x=124,
+ativos = (signed int)(c.tracks[0].active != 0)
+ativos = (signed int)(c.tracks[1].active != 0)
+Violated property:
+file verification/esbmc/argus_harness.c line 407 column 9 function main
+INV: invariante preservada
+(_Bool)return_value$_inv_ok$5

@@ -1,0 +1,22 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, finalized = 0, polled = 0;
+    for (i = 0; i < c->ev_count; i++) {
+        if (c->ev_q[(c->ev_head + i) % ARGUS_MAX_EVENTS] != ARGUS_EVENT_NONE) {
+            finalized++;
+        }
+    }
+    while (c->ev_count > 0) {
+        if (argus_poll_event((argus_ctx_t *)c) != ARGUS_EVENT_NONE) {
+            polled++;
+        }
+    }
+    return finalized == polled + c->ev_dropped;
+}
+```
+
+Esta versão de `inv_extra` mantém a mesma lógica original, verificando se todos os eventos enfileirados foram entregues ou contados como descartados. Ela se preserva em um frame porque:
+
+1. A função `argus_poll_event` é chamada até que a fila esteja vazia, garantindo que todos os eventos enfileirados sejam processados.
+2. A contagem de eventos finalizados e processados é feita corretamente, considerando eventos descartados.
+3. A função não depende de estados iniciais inválidos ou de condições que não possam ocorrer após uma chamada a `argus_init`.

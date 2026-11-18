@@ -1,0 +1,6 @@
+A5  ate 1 objeto(s) em QUALQUER frame  frames=5 T=50000us  SEM_VEREDICTO  901s
+A6  ate 1 objeto(s) em QUALQUER frame  frames=6 T=50000us  SEM_VEREDICTO  901s
+A7  ate 1 objeto(s) em QUALQUER frame  frames=7 T=50000us  SEM_VEREDICTO  901s
+A8  ate 1 objeto(s) em QUALQUER frame  frames=8 T=50000us  SEM_VEREDICTO  902s
+B6  ate 2 objeto(s) em QUALQUER frame  frames=6 T=50000us  SEM_VEREDICTO  902s
+B5  ate 2 objeto(s) em QUALQUER frame  frames=5 T=50000us  SEM_VEREDICTO  903s
