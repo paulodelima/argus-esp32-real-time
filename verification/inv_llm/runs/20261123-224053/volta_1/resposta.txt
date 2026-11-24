@@ -1,0 +1,26 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, j;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        int dist;
+        if (c->tracks[i].active != 0 && c->tracks[i].active != 1) return 0;
+        if (!c->tracks[i].active) continue;
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        /* distancia ciclica: quantos ids foram emitidos depois deste */
+        dist = c->next_id - c->tracks[i].id;
+        if (dist <= 0) dist += 0x3FFFFFFF;
+        if (dist < 1 || dist > c->tracks[i].age * MAX_DETS) return 0;
+        for (j = i + 1; j < ARGUS_MAX_TRACKS; j++)
+            if (c->tracks[j].active == 1 && c->tracks[j].id == c->tracks[i].id)
+                return 0;
+    }
+    return 1;
+}
+```
+
+**Por que o contraexemplo é inalcançável.** O estado de partida tem `active = -2147483648`, valor que o firmware nunca escreve. Ele também tem um track ativo com `id == next_id`, então o próximo track criado recebe um id duplicado e a contagem de finalizações do harness (P4) se perde.
+
+**Por que a invariante se preserva em um frame:**
+- **Campo `active`:** o firmware só escreve 0 ou 1 nele.
+- **Distância cíclica:** cada track recebe o id `next_id` com `age = 1`, e em seguida `next_id` avança. A cada frame, `age` sobe exatamente 1 e `next_id` avança no máximo `MAX_DETS` posições, igual ao número de tracks novos. Logo `1 ≤ dist ≤ age*MAX_DETS` se mantém, e ela fica muito abaixo de 0x3FFFFFFF, o que torna o wrap inofensivo.
+- **Ids distintos:** os tracks antigos deslocam todos a sua distância pelo mesmo `k` (número de tracks novos), ficando com `dist ≥ k+1`. Os `k` tracks novos ocupam as distâncias 1..k. Assim os ids ativos continuam distintos, e nenhum deles coincide com `next_id`.

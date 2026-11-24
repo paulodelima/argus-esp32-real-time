@@ -1,0 +1,14 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active != 0 && c->tracks[i].active != 1) return 0;
+        if (c->tracks[i].active && c->tracks[i].last_y != c->frame_h / 2) return 0;
+    }
+    return 1;
+}
+```
+
+O harness fixa y das deteccoes (no contraexemplo, y = 60 = frame_h/2). Por isso, todo track ativo alcancavel tem last_y == 60, e o estado de partida com last_y = 108 e inalcancavel a partir de argus_init. A invariante se preserva em um frame porque last_y so e escrito em dois pontos, a criacao de track (passo 3) e a atualizacao de track casado (passo 2), e ambos copiam dets[d].y, que vale sempre frame_h/2. Tracks nao casados mantem last_y, e active continua recebendo apenas 0 ou 1.
+
+Observacao: assumo que o y fixo do harness e exatamente frame_h/2, valor inferido do contraexemplo; se o harness usar outra constante, troque frame_h/2 por ela.

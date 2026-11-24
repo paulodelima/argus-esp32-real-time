@@ -1,0 +1,20 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, j;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active != 0 && c->tracks[i].active != 1) return 0;
+        if (!c->tracks[i].active) continue;
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        {
+            int dist = c->next_id - c->tracks[i].id;
+            if (dist <= 0) dist += 0x3FFFFFFF;
+            if (dist < 1 || dist > c->tracks[i].age * MAX_DETS) return 0;
+        }
+        for (j = i + 1; j < ARGUS_MAX_TRACKS; j++)
+            if (c->tracks[j].active && c->tracks[j].id == c->tracks[i].id) return 0;
+    }
+    return 1;
+}
+```
+
+O estado de partida tem um track ativo com id=1 e next_id=1. Isso dá dist = 0x3FFFFFFF > age*MAX_DETS, então ele é excluído; e é inalcançável, porque todo id ativo foi emitido antes de next_id avançar. Num frame, cada track ativo envelhece 1 e next_id avança no máximo MAX_DETS (módulo 0x3FFFFFFF), logo `1 <= dist <= age*MAX_DETS` se mantém. Um track novo nasce com age=1 e dist=1, e seu id (o next_id antigo) difere de todos os ids ativos justamente porque dist>=1, o que preserva a distinção e impede o reuso de id que mascarava a finalização em P4.

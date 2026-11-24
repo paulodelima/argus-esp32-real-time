@@ -1,0 +1,10 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    for (int i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active && (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160)) return 0;
+    }
+    return 1;
+}
+```
+
+Esta nova versão de `inv_extra` exclui o estado de partida problemático ao verificar que todas as coordenadas `start_x` dos rastreamentos ativos estão dentro dos limites válidos (0 a 159). Isso garante que o estado inicial seja alcançável e válido após a inicialização. A verificação é realizada em um único loop até `ARGUS_MAX_TRACKS`, respeitando as regras fornecidas.

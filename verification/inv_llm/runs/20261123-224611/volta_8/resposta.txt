@@ -1,0 +1,23 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i, ativos = 0;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        ativos++;
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        if (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160) return 0;
+        if (c->tracks[i].last_x  < 0 || c->tracks[i].last_x  >= 160) return 0;
+        if (c->tracks[i].last_y  < 0 || c->tracks[i].last_y  >= 120) return 0;
+        if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+        if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+    }
+    if (ativos != c->n_tracks) return 0;
+    return 1;
+}
+```
+
+Esta versão de `inv_extra` exclui o estado de partida inalcancável a partir de `argus_init` porque:
+
+1. O estado de partida tem `n_tracks` igual a 1, o que é impossível em uma execução real a partir de `argus_init`, pois `n_tracks` começa em 0 e só aumenta quando uma nova detecção é processada.
+2. O estado de partida tem `tracks[0].active` igual a 1, o que também é impossível em uma execução real, pois `tracks[0].active` começa em 0 e só muda quando uma nova detecção é processada.
+3. O estado de partida tem `next_id` igual a 128, o que é possível em uma execução real, mas é o único valor que pode ser alcançado a partir de `argus_init` e ainda manter a invariante.

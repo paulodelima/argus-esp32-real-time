@@ -34,3 +34,26 @@ se preserva em um frame.
 ## O que não foi automatizado
 
 A chamada ao LLM foi feita na sessão de trabalho (copiar o contraexemplo e colar a resposta), não por script. O ciclo é o mesmo; automatizá-lo é trabalho futuro.
+
+## Comparação controlada (23/11/2026)
+
+Mesmo script (`qwen_inv.py`), mesmo prompt, 2 slots, até 8 voltas, MAX_DETS=1.
+Claude via API (`--backend anthropic --model claude-opus-5-5`, sem temperatura: a API recusou o parâmetro).
+
+Correções no script antes das rodadas válidas:
+1. `inv_ok_text()` passou a retirar o bloco `#ifdef INV_IDS` do prompt (era a invariante já provada).
+2. `rule_violations()` passou a ignorar comentários (texto como `ciclica (no anel)` virava "chamada de função").
+Rodadas afetadas guardadas em `runs/_invalidas/`.
+
+| Rodada | LLM | Resultado | Propostas até a prova |
+|---|---|---|---|
+| 20261123-224053 | Claude | PROVA | 1 |
+| 20261123-224158 | Claude | PROVA | 4 (1 sem código) |
+| 20261123-224441 | Claude | PROVA | 1 |
+| 20261123-224611 | Qwen 7B | sem prova | volta 1 rejeitada (escreve em `c->ev_head`, usa `while`); 2 testadas; repetidas desde a volta 4 |
+| 20261123-225138 | Qwen 14B | sem prova | 8 testadas; passo falhou em todas (P4 6x, INV 2x) |
+
+Invariantes aceitas (nenhuma usa `last_y`, logo nenhuma depende de FIX_Y):
+- 224053 e 224441: ids válidos, recentes (`dist <= age*MAX_DETS`, com volta do contador) e distintos.
+- 224158: recência dos ids + `missed <= age-1` + coerência estado/n_tracks + no máximo MAX_DETS objetos com a mesma idade
+  e com o mesmo `missed`. Depende de MAX_DETS, que já é hipótese do ambiente.

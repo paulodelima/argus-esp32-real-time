@@ -1,0 +1,14 @@
+static int inv_extra(const argus_ctx_t *c) {
+    int i, ativos = 0;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (!c->tracks[i].active) continue;
+        ativos++;
+        if (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160) return 0;
+        if (c->tracks[i].last_x  < 0 || c->tracks[i].last_x  >= 160) return 0;
+        if (c->tracks[i].last_y  < 0 || c->tracks[i].last_y  >= 120) return 0;
+        if (c->tracks[i].age < 1 || c->tracks[i].age > ARGUS_MAX_AGE) return 0;
+        if (c->tracks[i].missed < 0 || c->tracks[i].missed > ARGUS_MAX_MISSED) return 0;
+    }
+    if (ativos != c->n_tracks) return 0;
+    return 1;
+}

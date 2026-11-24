@@ -1,0 +1,1 @@
+escreve em campos de c; usa while (so for ate ARGUS_MAX_TRACKS e permitido)

@@ -1,0 +1,24 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        int dist;
+        if (c->tracks[i].active != 0 && c->tracks[i].active != 1) return 0;
+        if (!c->tracks[i].active) continue;
+        if (c->tracks[i].missed >= c->tracks[i].age) return 0;
+        if (c->tracks[i].id < 1 || c->tracks[i].id > 0x3FFFFFFF) return 0;
+        /* ids emitidos depois deste track, contados no anel [1, 0x3FFFFFFF] */
+        dist = c->next_id - c->tracks[i].id;
+        if (dist <= 0) dist += 0x3FFFFFFF;
+        if (dist < 1 || dist > c->tracks[i].age * MAX_DETS) return 0;
+    }
+    return 1;
+}
+```
+
+**Por que o estado de partida é excluído:** o contraexemplo tem um track ativo com `id == next_id == 0x3FFFFFFF`. Isso faz `dist = 0x3FFFFFFF`, muito maior que `age*MAX_DETS`. O mesmo vale para o outro track, com `id = 316988`. Esse estado é inalcançável: quando o slot é reutilizado, o novo track recebe o mesmo id do track finalizado e a finalização some da contagem de P4.
+
+**Por que se preserva em um frame:**
+1. Um track recém-criado recebe `id = next_id`, que em seguida avança. Ele nasce com `age = 1` e `dist` entre 1 e `MAX_DETS`, pois é no máximo o k-ésimo de até `MAX_DETS` criados no frame.
+2. Um track que sobrevive ganha `age+1`, e seu `dist` cresce no máximo `MAX_DETS` (um por track novo criado no frame). Logo `dist ≤ age*MAX_DETS` continua valendo, e `dist ≥ 1` também, porque `age ≤ ARGUS_MAX_AGE` impede que `dist` dê a volta no anel de `0x3FFFFFFF` ids.
+3. `missed < age` se mantém porque `age` e `missed` crescem juntos, ou `missed` volta a 0.

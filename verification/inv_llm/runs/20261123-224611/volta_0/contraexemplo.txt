@@ -1,0 +1,29 @@
+Estado de partida: c = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+c = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=2, .tracks={ .active=-2147483648, .id=1476788224, .start_x=128, .last_x=61,
+c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=2, .tracks={ .active=-2147483648, .id=1476788224, .start_x=128, .last_x=61,
+c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=2, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=2, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+c:argus_fsm.c@643@F@ev_push@c->ev_q[(signed long int)(&c:argus_harness.c@8169@F@main@c)->ev_tail] = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+c->tracks[(signed long int)slot].active = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+c->tracks[(signed long int)slot].id = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+c->next_id = 1 (00000000 00000000 00000000 00000001)
+c->tracks[(signed long int)slot].start_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=30,
+c->tracks[(signed long int)slot].last_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+c->tracks[(signed long int)slot].last_y = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+c->tracks[(signed long int)slot].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+.n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+c->tracks[(signed long int)slot].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+Violated property:
+file verification/esbmc/argus_harness.c line 392 column 9 function main
+P4: todo evento e entregue, pendente ou contado como descartado
+finalized == polled + (unsigned long int)c.ev_count + (unsigned long int)c.ev_dropped

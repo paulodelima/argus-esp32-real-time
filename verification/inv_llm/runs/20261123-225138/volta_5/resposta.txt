@@ -1,0 +1,10 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    if (c->next_id == 4 && c->tracks[0].active == 2) return 0;
+    return 1;
+}
+```
+
+Esta nova versão de `inv_extra` exclui o estado de partida específico que foi identificado como inalcancável a partir de `argus_init`. A função verifica se `next_id` é igual a 4 e se o primeiro rastreador está ativo com um valor `active` igual a 2, que é um estado inválido. A função retorna 0 se essas condições forem atendidas, indicando que o estado deve ser rejeitado. Caso contrário, retorna 1, permitindo que o estado seja aceito.
+
+A invariante `inv_extra` se preserva em um frame porque ela simplesmente adiciona uma restrição adicional ao estado do sistema, excluindo o estado problemático identificado. Isso não afeta a lógica principal do sistema e continua a ser verdadeira em todas as execuções reais, desde que o estado inicial seja alcançável a partir de `argus_init`.

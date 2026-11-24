@@ -1,0 +1,1 @@
+chama funcoes (next_id)

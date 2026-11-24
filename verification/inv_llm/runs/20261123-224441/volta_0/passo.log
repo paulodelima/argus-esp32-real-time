@@ -1,0 +1,285 @@
+esbmc verification/esbmc/argus_harness.c verification/abs/k2/argus_fsm.c -I"/Users/paulodelima/development/GitHub/argus-esp32-real-time/verification/abs/k2" -I"/Users/paulodelima/development/GitHub/argus-esp32-real-time/verification/inv_llm" -DARGUS_V2 -DENV_E2 -DINV -DINV_LLM -DMAX_DETS=1 -DFIX_Y -DINDUCT_STEP -DSTEPS=1 --no-bounds-check --no-pointer-check --no-align-check --boolector --unwind 9 --timeout 10m
+
+ESBMC version 8.6.0 64-bit aarch64 macos
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing verification/abs/k2/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.070s
+GOTO program processing time: 0.001s
+Starting Bounded Model Checking
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Unwinding loop 10 iteration 1   file verification/esbmc/argus_harness.c line 281 column 9 function main
+Unwinding loop 11 iteration 1   file verification/esbmc/argus_harness.c line 301 column 9 function main
+Unwinding loop 11 iteration 2   file verification/esbmc/argus_harness.c line 301 column 9 function main
+Unwinding loop 5 iteration 1   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 7 iteration 1   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 7 iteration 2   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 4 iteration 1   file verification/abs/k2/argus_fsm.c line 105 column 5 function argus_update
+Unwinding loop 5 iteration 1   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 5 iteration 2   file verification/abs/k2/argus_fsm.c line 108 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/abs/k2/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 1   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 6 iteration 1   file verification/abs/k2/argus_fsm.c line 114 column 9 function argus_update
+Unwinding loop 7 iteration 2   file verification/abs/k2/argus_fsm.c line 111 column 5 function argus_update
+Unwinding loop 8 iteration 1   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 8 iteration 2   file verification/abs/k2/argus_fsm.c line 127 column 5 function argus_update
+Unwinding loop 16 iteration 1   file verification/abs/k2/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 16 iteration 2   file verification/abs/k2/argus_fsm.c line 58 column 5 function free_slot
+Unwinding loop 9 iteration 1   file verification/abs/k2/argus_fsm.c line 155 column 5 function argus_update
+Unwinding loop 12 iteration 1   file verification/esbmc/argus_harness.c line 338 column 9 function main
+Unwinding loop 12 iteration 2   file verification/esbmc/argus_harness.c line 338 column 9 function main
+Unwinding loop 13 iteration 1   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 2   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 3   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 4   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 5   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 6   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 7   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 13 iteration 8   file verification/esbmc/argus_harness.c line 361 column 13 function main
+Unwinding loop 14 iteration 1   file verification/esbmc/argus_harness.c line 382 column 13 function main
+Unwinding loop 14 iteration 2   file verification/esbmc/argus_harness.c line 382 column 13 function main
+Unwinding loop 17 iteration 1   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Unwinding loop 17 iteration 2   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Unwinding loop 15 iteration 1   file verification/esbmc/argus_harness.c line 237 column 5 function main
+Symex completed in: 0.091s (1865 assignments)
+Caching time: 0.000s (removed 0 assertions)
+Slicing time: 0.047s (removed 624 assignments)
+Generated 9 VCC(s), 9 remaining after simplification (1241 assignments)
+Encoding remaining VCC(s) using bit-vector/floating-point arithmetic
+Encoding to solver time: 0.076s
+Solving with solver Boolector 3.2.4
+Runtime decision procedure: 2.149s
+Building error trace
+
+[Counterexample]
+
+
+State 1 file verification/esbmc/argus_harness.c line 193 column 5 function main thread 0
+----------------------------------------------------
+  c = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks=nil, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=4, .ev_tail=4,
+    .ev_count=0, .last_event=4294967295, .ev_dropped=0 }
+
+State 2 file verification/esbmc/argus_harness.c line 194 column 5 function main thread 0
+----------------------------------------------------
+  dets = { { .x = 0 } }
+
+State 3 file verification/esbmc/argus_harness.c line 218 column 5 function main thread 0
+----------------------------------------------------
+  prev = 1 (00000000 00000000 00000000 00000001)
+
+State 4 file verification/esbmc/argus_harness.c line 111 column 9 function inv_ok thread 0
+----------------------------------------------------
+  ativos = 2 (00000000 00000000 00000000 00000010)
+
+State 6 file verification/esbmc/argus_harness.c line 278 column 13 function main thread 0
+----------------------------------------------------
+  n = 1 (00000000 00000000 00000000 00000001)
+
+State 9 file verification/abs/k2/argus_fsm.c line 97 column 5 function argus_update thread 0
+----------------------------------------------------
+  gate = 40 (00000000 00000000 00000000 00101000)
+
+State 10 file verification/abs/k2/argus_fsm.c line 98 column 5 function argus_update thread 0
+----------------------------------------------------
+  matched_det = { 0, 0 }
+
+State 11 file verification/abs/k2/argus_fsm.c line 99 column 5 function argus_update thread 0
+----------------------------------------------------
+  det_used = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 }
+
+State 12 file verification/abs/k2/argus_fsm.c line 106 column 9 function argus_update thread 0
+----------------------------------------------------
+  det_used[0] = 0 (00000000 00000000 00000000 00000000)
+
+State 13 file verification/abs/k2/argus_fsm.c line 113 column 9 function argus_update thread 0
+----------------------------------------------------
+  best_dist = 41 (00000000 00000000 00000000 00101001)
+
+State 14 file verification/abs/k2/argus_fsm.c line 116 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 44 (00000000 00000000 00000000 00101100)
+
+State 15 file verification/abs/k2/argus_fsm.c line 113 column 9 function argus_update thread 0
+----------------------------------------------------
+  best_dist = 41 (00000000 00000000 00000000 00101001)
+
+State 16 file verification/abs/k2/argus_fsm.c line 116 column 13 function argus_update thread 0
+----------------------------------------------------
+  dist = 49 (00000000 00000000 00000000 00110001)
+
+State 17 file verification/abs/k2/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks={ .active=-2147483648, .id=1476788224, .start_x=128, .last_x=61,
+    .last_y=60, .age=c.tracks[0].age + 1, .missed=1 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=4, .ev_tail=4,
+    .ev_count=0, .last_event=4294967295, .ev_dropped=0 }
+
+State 18 file verification/abs/k2/argus_fsm.c line 136 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks={ .active=-2147483648, .id=1476788224, .start_x=128, .last_x=61,
+    .last_y=60, .age=59, .missed=c.tracks[0].missed + 1 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=4, .ev_tail=4,
+    .ev_count=0, .last_event=4294967295, .ev_dropped=0 }
+
+State 19 file verification/abs/k2/argus_fsm.c line 129 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+    .last_y=96, .age=c.tracks[1].age + 1, .missed=3 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=4, .ev_tail=4,
+    .ev_count=0, .last_event=4294967295, .ev_dropped=0 }
+
+State 20 file verification/abs/k2/argus_fsm.c line 136 column 13 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+    .last_y=96, .age=61, .missed=c.tracks[1].missed + 1 }, .ev_q={ 0, 0, 0, 0, 0, 0, 0, 0 },
+    .ev_head=4, .ev_tail=4,
+    .ev_count=0, .last_event=4294967295, .ev_dropped=0 }
+
+State 21 file verification/abs/k2/argus_fsm.c line 18 column 5 function ev_push thread 0
+----------------------------------------------------
+  c:argus_fsm.c@643@F@ev_push@c->ev_q[(signed long int)(&c:argus_harness.c@8169@F@main@c)->ev_tail] = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=2, .tracks=nil, .ev_q=c.ev_q WITH [(unsigned long int)((32 * (unsigned _ExtInt(67))((signed long int)c.ev_tail)) / 32):=3],
+    .ev_head=4,
+    .ev_tail=4, .ev_count=0, .last_event=4294967295,
+    .ev_dropped=0 }
+
+State 22 file verification/abs/k2/argus_fsm.c line 19 column 5 function ev_push thread 0
+----------------------------------------------------
+  c->ev_tail = 5 (00000000 00000000 00000000 00000101)
+
+State 23 file verification/abs/k2/argus_fsm.c line 20 column 5 function ev_push thread 0
+----------------------------------------------------
+  c->ev_count = 1 (00000000 00000000 00000000 00000001)
+
+State 24 file verification/abs/k2/argus_fsm.c line 143 column 34 function argus_update thread 0
+----------------------------------------------------
+  c->n_tracks = 1 (00000000 00000000 00000000 00000001)
+
+State 25 file verification/abs/k2/argus_fsm.c line 144 column 13 function argus_update thread 0
+----------------------------------------------------
+  finalized_now = 1 (00000000 00000000 00000000 00000001)
+
+State 26 file verification/abs/k2/argus_fsm.c line 157 column 9 function argus_update thread 0
+----------------------------------------------------
+  slot = 1 (00000000 00000000 00000000 00000001)
+
+State 27 file verification/abs/k2/argus_fsm.c line 159 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].active = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+    .last_y=96, .age=61, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 28 file verification/abs/k2/argus_fsm.c line 160 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].id = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1073741823,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=2, .last_x=30,
+    .last_y=96, .age=61, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 29 file verification/abs/k2/argus_fsm.c line 161 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->next_id = 1 (00000000 00000000 00000000 00000001)
+
+State 30 file verification/abs/k2/argus_fsm.c line 162 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].start_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=30,
+    .last_y=96, .age=61, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 31 file verification/abs/k2/argus_fsm.c line 163 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_x = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+    .last_y=96, .age=61, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 32 file verification/abs/k2/argus_fsm.c line 164 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].last_y = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+    .last_y=60, .age=61, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 33 file verification/abs/k2/argus_fsm.c line 165 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+    .last_y=60, .age=1, .missed=4 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 34 file verification/abs/k2/argus_fsm.c line 166 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->tracks[(signed long int)slot].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=1,
+    .n_tracks=1, .tracks={ .active=1, .id=1073741823, .start_x=17, .last_x=17,
+    .last_y=60, .age=1, .missed=0 }, .ev_q={ 0, 0, 0, 0, 3, 0, 0, 0 },
+    .ev_head=4, .ev_tail=5,
+    .ev_count=1, .last_event=3, .ev_dropped=0 }
+
+State 35 file verification/abs/k2/argus_fsm.c line 167 column 9 function argus_update thread 0
+----------------------------------------------------
+  c->n_tracks = 2 (00000000 00000000 00000000 00000010)
+
+State 36 file verification/abs/k2/argus_fsm.c line 88 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  e = 3 (00000000 00000000 00000000 00000011)
+
+State 37 file verification/abs/k2/argus_fsm.c line 89 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  c->ev_head = 5 (00000000 00000000 00000000 00000101)
+
+State 38 file verification/abs/k2/argus_fsm.c line 90 column 5 function argus_poll_event thread 0
+----------------------------------------------------
+  c->ev_count = 0 (00000000 00000000 00000000 00000000)
+
+State 39 file verification/esbmc/argus_harness.c line 382 column 52 function main thread 0
+----------------------------------------------------
+  ativos = (signed int)(c.tracks[0].active != 0)
+
+State 40 file verification/esbmc/argus_harness.c line 382 column 52 function main thread 0
+----------------------------------------------------
+  ativos = 1 + ((signed int)(c.tracks[1].active != 0))
+
+State 46 file verification/esbmc/argus_harness.c line 392 column 9 function main thread 0
+----------------------------------------------------
+Violated property:
+  file verification/esbmc/argus_harness.c line 392 column 9 function main
+  P4: todo evento e entregue, pendente ou contado como descartado
+  finalized == polled + (unsigned long int)c.ev_count + (unsigned long int)c.ev_dropped
+
+
+** Results:
+verification/esbmc/argus_harness.c, function main
+  NOT CHECKED  [main.assertion.1]  line 383  P3: 0 <= n_tracks <= 8
+  NOT CHECKED  [main.assertion.2]  line 384  P3: n_tracks == slots ativos
+  NOT CHECKED  [main.assertion.3]  line 385  P3: 0 <= ev_count <= 8
+  NOT CHECKED  [main.assertion.4]  line 386  P3: ev_head no intervalo
+  NOT CHECKED  [main.assertion.5]  line 387  P3: ev_tail consistente
+  FAILED       [main.assertion.6]  line 392  P4: todo evento e entregue, pendente ou contado como descartado
+  NOT CHECKED  [main.assertion.7]  line 395  P4: com o host drenando, nenhum evento e descartado
+  NOT CHECKED  [main.assertion.8]  line 402  P5: transicao fora da Figura 3
+  NOT CHECKED  [main.assertion.9]  line 407  INV: invariante preservada
+
+** 1 of 9 properties failed, 8 not checked
+   (this mode stops at the first violation; use --multi-property for a verdict on every property)
+
+VERIFICATION FAILED

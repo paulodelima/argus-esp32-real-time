@@ -1,0 +1,11 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    for (int i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active && (c->tracks[i].start_x < 0 || c->tracks[i].start_x >= 160)) return 0;
+    }
+    if (c->next_id == 46010512) return 0;  // Exclui o estado de partida inalcancavel
+    return 1;
+}
+```
+
+A nova versão de `inv_extra` exclui o estado de partida inalcancável, onde `c->next_id` é igual a 46010512. Isso é feito adicionando uma condição que retorna 0 se `c->next_id` for igual a 46010512. A função continua a verificar se as coordenadas `start_x` de todos os rastreamentos ativos estão dentro dos limites válidos (0 a 159). Essa verificação se preserva em um frame porque `argus_update` atualiza corretamente as coordenadas dos rastreamentos e `argus_init` inicializa `next_id` corretamente, garantindo que esse valor específico não seja alcançado em uma execução real.

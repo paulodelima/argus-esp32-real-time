@@ -1,0 +1,4 @@
+volta,origem,filtro,base,passo,tempo_llm_s,tempo_passo_s,violada
+0,base,OK,PASSA,FALHA,,2.5,"P4: todo evento e entregue, pendente ou contado como descartado"
+1,llm,OK,PASSA,FALHA,13.5,4.8,"P4: todo evento e entregue, pendente ou contado como descartado"
+2,llm,OK,PASSA,PASSA,19.2,17.0,

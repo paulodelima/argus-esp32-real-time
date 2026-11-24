@@ -1,0 +1,83 @@
+esbmc verification/esbmc/argus_harness.c verification/abs/k2/argus_fsm.c -I"/Users/paulodelima/development/GitHub/argus-esp32-real-time/verification/abs/k2" -I"/Users/paulodelima/development/GitHub/argus-esp32-real-time/verification/inv_llm" -DARGUS_V2 -DENV_E2 -DINV -DINV_LLM -DMAX_DETS=1 -DFIX_Y -DSTEPS=0 -DNO_P3 -DNO_P4 -DNO_P5 --boolector --unwind 9
+
+ESBMC version 8.6.0 64-bit aarch64 macos
+Target: 64-bit little-endian aarch64-unknown-macos with esbmclibc
+Parsing verification/esbmc/argus_harness.c
+Parsing verification/abs/k2/argus_fsm.c
+Converting
+Generating GOTO Program
+GOTO program creation time: 0.138s
+GOTO program processing time: 0.002s
+Starting Bounded Model Checking
+Unwinding loop 3 iteration 1   file verification/abs/k2/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 3 iteration 2   file verification/abs/k2/argus_fsm.c line 81 column 5 function argus_init
+Unwinding loop 16 iteration 1   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Unwinding loop 16 iteration 2   file verification/esbmc/argus_harness.c line 109 column 5 function inv_ok
+Symex completed in: 0.005s (59 assignments)
+Caching time: 0.000s (removed 0 assertions)
+Slicing time: 0.000s (removed 58 assignments)
+Generated 114 VCC(s), 0 remaining after simplification (1 assignments)
+BMC program time: 0.005s
+
+** Results:
+/Users/paulodelima/development/GitHub/argus-esp32-real-time/verification/inv_llm/inv_llm_current.h, function inv_extra
+  PASSED       [inv_extra.object-out-of-bounds.1]    line   2  dereference failure: Access to object out of bounds
+  PASSED       [inv_extra.assertion.1]               line   2  dereference failure: Incorrect alignment when accessing data object
+verification/abs/k2/argus_fsm.c, function argus_init
+  PASSED       [argus_init.object-out-of-bounds.1]   line  72  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.1]              line  72  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.2]   line  73  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.2]              line  73  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.3]   line  74  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.3]              line  74  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.4]   line  75  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.4]              line  75  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.5]   line  76  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.5]              line  76  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.6]   line  77  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.6]              line  77  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.7]   line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.7]              line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.8]   line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.8]              line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.9]   line  78  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.9]              line  78  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.10]  line  79  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.10]             line  79  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.object-out-of-bounds.11]  line  80  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.11]             line  80  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [argus_init.array-bounds-violated.1]  line  81  array bounds violated: array lower bound
+  PASSED       [argus_init.array-bounds-violated.2]  line  81  array bounds violated: array upper bound
+  PASSED       [argus_init.object-out-of-bounds.12]  line  81  dereference failure: Access to object out of bounds
+  PASSED       [argus_init.assertion.12]             line  81  dereference failure: Incorrect alignment when accessing data object
+verification/esbmc/argus_harness.c, function inv_ok
+  PASSED       [inv_ok.object-out-of-bounds.1]       line  98  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.1]                  line  98  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.2]       line  99  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.2]                  line  99  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.3]       line 100  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.3]                  line 100  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.4]       line 101  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.4]                  line 101  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.5]       line 102  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.5]                  line 102  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.6]       line 103  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.6]                  line 103  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.7]       line 104  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.7]                  line 104  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.8]       line 105  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.8]                  line 105  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.9]       line 107  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.9]                  line 107  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.array-bounds-violated.1]      line 110  array bounds violated: array lower bound
+  PASSED       [inv_ok.array-bounds-violated.2]      line 110  array bounds violated: array upper bound
+  PASSED       [inv_ok.object-out-of-bounds.10]      line 110  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.10]                 line 110  dereference failure: Incorrect alignment when accessing data object
+  PASSED       [inv_ok.object-out-of-bounds.11]      line 137  dereference failure: Access to object out of bounds
+  PASSED       [inv_ok.assertion.11]                 line 137  dereference failure: Incorrect alignment when accessing data object
+verification/esbmc/argus_harness.c, function main
+  PASSED       [main.assertion.1]                    line 223  INV: vale no estado inicial (caso base)
+
+** 0 of 53 properties failed, 53 passed
+
+VERIFICATION SUCCESSFUL

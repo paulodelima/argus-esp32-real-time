@@ -1,0 +1,18 @@
+{
+  "model": "claude-opus-5-5",
+  "backend": "anthropic",
+  "ollama": "http://localhost:11434",
+  "anthropic_url": "https://api.anthropic.com/v1/messages",
+  "anthropic_version": "2023-06-01",
+  "max_tokens": 4096,
+  "rounds": 8,
+  "slots": 2,
+  "max_dets": 1,
+  "fuzz_runs": 300,
+  "esbmc_min": 10,
+  "temperature": 0.2,
+  "llm_timeout": 900,
+  "dry_run": false,
+  "skip_esbmc": false,
+  "inicio": "20261123-222358"
+}

@@ -1,0 +1,17 @@
+Estado de partida: c = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+c = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+.n_tracks=2, .tracks={ .active=1, .id=839483908, .start_x=129, .last_x=98,
+c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+.n_tracks=2, .tracks={ .active=1, .id=839483908, .start_x=129, .last_x=98,
+c->tracks[(signed long int)i].age = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+.n_tracks=2, .tracks={ .active=1073741824, .id=1880981247, .start_x=0, .last_x=132,
+c->tracks[(signed long int)i].missed = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+.n_tracks=2, .tracks={ .active=1073741824, .id=1880981247, .start_x=0, .last_x=132,
+c:argus_fsm.c@643@F@ev_push@c->ev_q[(signed long int)(&c:argus_harness.c@8169@F@main@c)->ev_tail] = { .state=1, .frame_w=160, .frame_h=120, .center_x=80, .next_id=134217728,
+ativos = (signed int)(c.tracks[0].active != 0)
+ativos = 1 + ((signed int)(c.tracks[1].active != 0))
+Violated property:
+file verification/esbmc/argus_harness.c line 407 column 9 function main
+INV: invariante preservada
+(_Bool)return_value$_inv_ok$5

@@ -14,13 +14,15 @@ Cada volta:
 A volta 0 roda sem reforco (inv_extra devolve 1), reproduzindo o ponto de
 partida. Tudo fica registrado em verification/inv_llm/runs/<data-hora>/.
 
+Claude pela API (mesmo prompt, sem contexto do projeto; credencial do `ant auth login`):
+  python3 verification/inv_llm/qwen_inv.py --backend anthropic --model claude-opus-5-5
 Executar na raiz do repositorio (Ollama rodando):
   python3 verification/inv_llm/qwen_inv.py --model qwen2.5-coder:7b
 Teste sem LLM (respostas prontas, para conferir o encadeamento):
   python3 verification/inv_llm/qwen_inv.py --dry-run
 """
 import argparse, csv, datetime, json, os, re, shutil, subprocess, sys, time
-import urllib.request
+import urllib.error, urllib.request
 
 ROOT = os.getcwd()
 H = "verification/esbmc/argus_harness.c"
@@ -133,12 +135,52 @@ def write(path, txt):
 def inv_ok_text():
     s = read(H)
     m = re.search(r"static int inv_ok\(.*?\n}\n", s, re.S)
-    return m.group(0) if m else "(nao encontrada)"
+    if not m:
+        return "(nao encontrada)"
+    # O bloco INV_IDS e a resposta (a invariante ja provada); nao pode ir
+    # no prompt, senao o LLM so copia. Fica fora em todas as rodadas.
+    return re.sub(r"#ifdef INV_IDS\n.*?#endif\n", "", m.group(0), flags=re.S)
+
+
+def anthropic_token():
+    """Credencial do `ant auth login` (OAuth, renovada pelo proprio ant) ou,
+    na falta dele, ANTHROPIC_API_KEY. O valor nunca e impresso nem gravado."""
+    key = os.environ.get("ANTHROPIC_API_KEY")
+    if key:
+        return {"x-api-key": key}
+    r = subprocess.run(["ant", "auth", "print-credentials", "--access-token"],
+                       capture_output=True, text=True)
+    tok = r.stdout.strip()
+    if r.returncode != 0 or not tok:
+        sys.exit("nao consegui a credencial: rode `ant auth login` (ou defina ANTHROPIC_API_KEY)")
+    return {"Authorization": "Bearer " + tok}
+
+
+def ask_anthropic(args, prompt, use_temp=True):
+    body = {"model": args.model, "max_tokens": args.max_tokens,
+            "messages": [{"role": "user", "content": prompt}]}
+    if use_temp:
+        body["temperature"] = args.temperature
+    hdr = {"Content-Type": "application/json", "anthropic-version": args.anthropic_version}
+    hdr.update(anthropic_token())
+    req = urllib.request.Request(args.anthropic_url, data=json.dumps(body).encode(), headers=hdr)
+    try:
+        with urllib.request.urlopen(req, timeout=args.llm_timeout) as r:
+            data = json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        msg = e.read().decode(errors="replace")
+        if use_temp and e.code == 400 and "temperature" in msg:
+            print("  (modelo recusou temperature; repetindo sem ela)")
+            return ask_anthropic(args, prompt, use_temp=False)
+        sys.exit(f"API Anthropic: HTTP {e.code}: {msg[:500]}")
+    return "".join(b.get("text", "") for b in data.get("content", []) if b.get("type") == "text")
 
 
 def ask_llm(args, prompt, k):
     if args.dry_run:
         return DRY[min(k - 1, len(DRY) - 1)]
+    if args.backend == "anthropic":
+        return ask_anthropic(args, prompt)
     body = json.dumps({"model": args.model, "prompt": prompt, "stream": False,
                        "options": {"temperature": args.temperature, "num_ctx": 16384}}).encode()
     req = urllib.request.Request(args.ollama + "/api/generate", data=body,
@@ -159,6 +201,9 @@ def rule_violations(prop):
     """Regras do prompt checadas no texto: a invariante nao pode ter efeito
     colateral nem chamar funcoes (o 7B chamou argus_poll_event dentro dela)."""
     body = re.sub(r"static int inv_extra\s*\([^)]*\)", "", prop)
+    # comentarios nao contam: "/* distancia ciclica (no anel) */" nao e chamada
+    body = re.sub(r"/\*.*?\*/", "", body, flags=re.S)
+    body = re.sub(r"//[^\n]*", "", body)
     v = []
     calls = [f for f in re.findall(r"\b([A-Za-z_]\w*)\s*\(", body)
              if f not in ("if", "for", "while", "return", "sizeof")]
@@ -247,7 +292,12 @@ def ensure_abs(k):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--model", default="qwen2.5-coder:7b")
+    ap.add_argument("--backend", choices=["ollama", "anthropic"], default="ollama",
+                    help="ollama (Qwen local) ou anthropic (Claude pela API, sem contexto do projeto)")
     ap.add_argument("--ollama", default="http://localhost:11434")
+    ap.add_argument("--anthropic-url", default="https://api.anthropic.com/v1/messages")
+    ap.add_argument("--anthropic-version", default="2023-06-01")
+    ap.add_argument("--max-tokens", type=int, default=4096)
     ap.add_argument("--rounds", type=int, default=6)
     ap.add_argument("--slots", type=int, default=2)
     ap.add_argument("--max-dets", type=int, default=1)

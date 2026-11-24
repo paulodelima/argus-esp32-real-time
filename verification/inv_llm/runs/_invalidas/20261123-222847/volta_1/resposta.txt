@@ -1,0 +1,14 @@
+```c
+static int inv_extra(const argus_ctx_t *c) {
+    int i;
+    for (i = 0; i < ARGUS_MAX_TRACKS; i++) {
+        if (c->tracks[i].active != 0 && c->tracks[i].active != 1) return 0;
+        if (c->tracks[i].active && c->tracks[i].missed >= c->tracks[i].age) return 0;
+    }
+    return 1;
+}
+```
+
+O estado de partida do contraexemplo tem `tracks[0].active = -2147483648`. Esse valor é inalcançável: `argus_init` zera todos os `active`, e `argus_update` só escreve 0 (em `finalize` ou no descarte por idade) ou 1 (ao criar um track). Por isso a contagem de finalizados do harness, que pressupõe `active` em {0,1}, deixa de bater com a de eventos.
+
+A segunda condição, `missed < age`, também vale em toda execução real e se preserva porque cada frame faz `age++` e, ao mesmo tempo, `missed = 0` ou `missed++`. Um track novo nasce com `age = 1` e `missed = 0`, e nenhum caminho escreve `active` com valor diferente de 0 ou 1, então ambas as condições se mantêm após um frame.
