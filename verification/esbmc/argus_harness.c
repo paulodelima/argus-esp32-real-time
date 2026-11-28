@@ -38,6 +38,12 @@
  *       anterior) + por evento: C_feedback + bip bloqueante (beep(): 180 ms
  *       por pulso; AMBIGUOUS = 2 pulsos, IN/OUT = 1). -DT_FRAME_US=n.
  *       Hipotese: STEPS < ARGUS_MAX_AGE (o encerramento por idade nao ocorre).
+ * -DBEEP_NB (com -DP6, firmware_v3): buzzer NAO bloqueante (argus_buzzer.c).
+ *       O laco nao espera o bip; os pulsos ficam numa agenda e saem em
+ *       sequencia. P6 mede ate o inicio agendado do 1o pulso. -DBEEP_ON_US e
+ *       -DBEEP_PERIOD_US definem o pulso (padrao 80 ms de tom em 180 ms,
+ *       igual a v2). P9: agenda nunca cheia, bips em ordem e sem sobreposicao,
+ *       e o tom liga no instante agendado quando o buzzer esta livre.
  * ===================================================================== */
 #include "argus_fsm.h"
 
@@ -154,6 +160,15 @@ static int inv_ok(const argus_ctx_t *c, argus_state_t prev) {
 #define C_FEEDBACK_US     5UL
 #define BEEP_PULSE_US 180000UL  /* beep(): tone 80 ms; delay(120) + delay(60) */
 #define D_ERGO_US     800000UL
+#ifdef BEEP_NB
+#include "argus_buzzer.h"
+#ifndef BEEP_ON_US
+#define BEEP_ON_US      80000UL
+#endif
+#ifndef BEEP_PERIOD_US
+#define BEEP_PERIOD_US 180000UL
+#endif
+#endif
 static unsigned long c_update_us(int N) {
     static const unsigned long tab[9] = {18, 6, 8, 9, 11, 14, 12, 14, 19};
     return (N >= 0 && N <= 8) ? tab[N] : 19UL;
@@ -207,6 +222,11 @@ int main(void) {
     unsigned long q_seen[ARGUS_MAX_EVENTS];
     int q_h = 0, q_n = 0, n_before, e;
     for (i = 0; i < ARGUS_MAX_TRACKS; i++) seen[i] = 0;
+#ifdef BEEP_NB
+    argus_buzzer_t bz;
+    unsigned long start, last_end = 0, pulses;
+    buzzer_init(&bz, BEEP_ON_US, BEEP_PERIOD_US);
+#endif
 #endif
 
 #ifdef INDUCT_STEP
@@ -364,10 +384,24 @@ int main(void) {
                 if (e == ARGUS_EVENT_NONE) break;
                 polled++;
                 t += C_FEEDBACK_US;
+#ifdef BEEP_NB
+                pulses = (e == ARGUS_EVENT_AMBIGUOUS) ? 2UL : 1UL;
+                start = (unsigned long)buzzer_push(&bz, (uint32_t)pulses, (uint64_t)t);
+                __ESBMC_assert(start != 0, "P9: agenda do buzzer nunca cheia");
+                __ESBMC_assert(start >= t && start >= last_end, "P9: bips em ordem e sem sobreposicao");
+                __ESBMC_assert(start != t || buzzer_level(&bz, (uint64_t)t) == 1,
+                               "P9: com o buzzer livre, o tom liga no instante agendado");
+                last_end = start + pulses * BEEP_PERIOD_US;
+                lat = start - q_seen[q_h];             /* do ultimo quadro visto ao 1o pulso */
+                __ESBMC_assert(lat <= D_ERGO_US, "P6: bip em ate 800 ms apos o objeto sair");
+                q_h = (q_h + 1) % ARGUS_MAX_EVENTS; q_n--;
+                /* nao bloqueia: o laco segue para o proximo quadro */
+#else
                 lat = t - q_seen[q_h];                 /* do ultimo quadro visto ao bip */
                 __ESBMC_assert(lat <= D_ERGO_US, "P6: bip em ate 800 ms apos o objeto sair");
                 q_h = (q_h + 1) % ARGUS_MAX_EVENTS; q_n--;
                 t += (e == ARGUS_EVENT_AMBIGUOUS ? 2UL : 1UL) * BEEP_PULSE_US;
+#endif
 #else
                 if (argus_poll_event(&c) == ARGUS_EVENT_NONE) break;
                 polled++;
